@@ -1,0 +1,1 @@
+Build a Recommender System using Amazon's new Deep Learning Library in 5 min http://www.reddit.com/r/MachineLearning/comments/4kq3yy/build_a_recommender_system_using_amazons_new_deep/

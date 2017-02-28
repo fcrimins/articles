@@ -1,0 +1,3755 @@
+<html>
+<head>
+<style TYPE="text/css">
+
+<!-- <\!-- p.serif{font-family:"Times New Roman",Times,serif;} -\-> -->
+<!-- <\!-- p.sansserif{font-family:Arial,Helvetica,sans-serif;} -\-> -->
+
+a {text-decoration:none;}
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}
+
+<!--  <\!-- a        {                   text-decoration : none ;      } -\-> -->
+<!--  <\!-- a:link   { color : #cc0000 ; } -\-> -->
+<!--  <\!-- a:visited{ color : #990000 ; } -\-> -->
+<!--  <\!-- a:hover  { color : red     ; text-decoration : underline ; } -\-> -->
+<!--  <\!-- a:active { color : #990000 ; } -\-> -->
+
+<!--  pre {color : rgb(153,153,153) ; } -->
+
+<!--    body { -->
+<!--     font-family  : verdana          ; -->
+<!--     font-size    : 0.64em            ; -->
+<!--     <\!-- background   : rgb(204,255,204) ; -\-> -->
+<!--     background   : rgb(0,0,0) ; -->
+<!--     word-spacing : 1px              ; -->
+<!--     } -->
+   h1 {
+    font-family  : verdana          ;
+    font-size    : 0.9em            ;
+    style        : bold             ;
+    color        : rgb(153,153,153) ;
+    }
+   h2 {
+    font-family  : verdana          ;
+    font-size    : 0.8em            ;
+    style        : bold             ;
+    color        : rgb(153,153,153) ;
+    }
+   h4 {
+    font-family  : verdana          ;
+    font-size    : 0.72em           ;
+    style        : bold             ;
+    color        : rgb(153,153,153) ;
+    }
+   p {
+    font-family  : palatino          ;
+    font-size    : 0.8em             ;
+    style        : normal            ;
+    color        : rgb(153,153,153)  ;
+    }
+   li {
+    font-family  : palatino          ;
+    font-size    : 0.8em             ;
+    style        : normal            ;
+    color        : rgb(153,153,153)  ;
+    }
+   blockquote {
+    font-family  : palatino          ;
+    font-size    : 0.8em             ;
+    style        : normal            ;
+    color        : rgb(153,153,153)  ;
+    }
+   i {
+    font-family  : palatino          ;
+    font-size    : 1.0em             ;
+    style        : normal            ;
+    color        : rgb(000,227,000)  ;
+    }
+   blockquote.resize { font-size : 1.0em ; }
+   code {
+    font-family  : courier           ;
+    style        : bold              ;
+    color        : blue              ;
+    }
+
+<!-- <title>Slot Grammar Features, Slots and Flags</title> -->
+</style>
+</head>
+
+<A NAME="documenttop"> </A>
+
+<font size="4">
+<div align=center>
+<h1>Slot Grammar Features, Slots and Flags</h1>
+<p>
+<h2>Michael C. McCord</h2>
+</div>
+
+<h2>Content Map</h2>
+
+<p class="sansserif">
+
+<blockquote>
+[ <A HREF="#features">Features</A> ],
+[ <A HREF="#semantictypes">Basic Semantic Types</A> ], 
+[ <A HREF="#slots">Slots &amp; Slot Options</A> ],
+[ <A HREF="#functions">Built-in Functions</A> ],
+[ <A HREF="#functionsmissing">Built-in Functions (To Be Described)</A> ],
+[ <A HREF="#flags">Flags</A> ]
+</blockquote>
+
+
+<A NAME="features"> </A>
+<h2>Features</h2>
+
+<blockquote>
+<A HREF="#phrasefeatures"> Phrase-level features</A> <br>
+<A HREF="#partofspeechfeatures"> Part-of-speech features</A> <br>
+<A HREF="#sharedfeatures"> Shared features</A> <br>
+<A HREF="#universalfeatures"> Universal features</A> <br>
+<A HREF="#verbfeatures"> Verb features</A> <br>
+<A HREF="#nounfeatures"> Noun features</A> <br>
+<A HREF="#adjfeatures"> Adjective features</A> <br>
+<A HREF="#advfeatures"> Adverb features</A> <br>
+<A HREF="#detfeatures"> Determiner features</A> <br>
+<A HREF="#qualfeatures"> Qualifier features</A> <br>
+<A HREF="#subconjfeatures"> Subordinate Conjunction features</A> <br>
+<A HREF="#prepfeatures"> Preposition features</A> <br>
+<A HREF="#allfeatures"> All features</A> <br>
+<blockquote class="resize">
+
+<a href="#feaacc"><code>acc</code></a>,
+<a href="#feaaccobj"><code>accobj</code></a>,
+<a href="#feaadj"><code>adj</code></a>,
+<a href="#feaadjmod"><code>adjmod</code></a>,
+<a href="#feaadjnoun"><code>adjnoun</code></a>,
+<a href="#feaadjobj"><code>adjobj</code></a>,
+<a href="#feaadjpass"><code>adjpass</code></a>,
+<a href="#feaadv"><code>adv</code></a>,
+<a href="#feaadvnoun"><code>advnoun</code></a>,
+<a href="#feaall"><code>all</code></a>,
+<a href="#feaamtmod"><code>amtmod</code></a>,
+<a href="#feaamtmoda"><code>amtmoda</code></a>,
+<a href="#feaansb"><code>ansb</code></a>,
+<a href="#feaaqual"><code>aqual</code></a>,
+<a href="#feaasprep"><code>asprep</code></a>,
+<a href="#feaassc"><code>assc</code></a>,
+<a href="#feabadadjmod"><code>badadjmod</code></a>,
+<a href="#feabadattrib"><code>badattrib</code></a>,
+<a href="#feabadcoord"><code>badcoord</code></a>,
+<a href="#feabadmedialadv"><code>badmedialadv</code></a>,
+<a href="#feabadnprep"><code>badnprep</code></a>,
+<a href="#feabadobjping"><code>badobjping</code></a>,
+<a href="#feabadpre"><code>badpre</code></a>,
+<a href="#feabadvenadj"><code>badvenadj</code></a>,
+<a href="#feac"><code>c</code></a>,
+<a href="#feacn"><code>cn</code></a>,
+<a href="#feacollectn"><code>collectn</code></a>,
+<a href="#feacomcord"><code>comcord</code></a>,
+<a href="#feacompar"><code>compar</code></a>,
+<a href="#feacompar"><code>compar</code></a>,
+<a href="#feacomparsc"><code>comparsc</code></a>,
+<a href="#feacomppref"><code>comppref</code></a>,
+<a href="#feaconj"><code>conj</code></a>,
+<a href="#feaconjadv"><code>conjadv</code></a>,
+<a href="#feacord"><code>cord</code></a>,
+<a href="#feacord"><code>cord</code></a>,
+<a href="#feacpropn"><code>cpropn</code></a>,
+<a href="#feadaprep"><code>daprep</code></a>,
+<a href="#feadat"><code>dat</code></a>,
+<a href="#feadatobj"><code>datobj</code></a>,
+<a href="#feadef"><code>def</code></a>,
+<a href="#feadet"><code>det</code></a>,
+<a href="#feadetadj"><code>detadj</code></a>,
+<a href="#feadetadv"><code>detadv</code></a>,
+<a href="#feadetr"><code>detr</code></a>,
+<a href="#feadual"><code>dual</code></a>,
+<a href="#feady"><code>dy</code></a>,
+<a href="#feaed"><code>ed</code></a>,
+<a href="#feaencprn"><code>encprn</code></a>,
+<a href="#feaerest"><code>erest</code></a>,
+<a href="#feaf"><code>f</code></a>,
+<a href="#feaf"><code>f</code></a>,
+<a href="#feafg"><code>fg</code></a>,
+<a href="#feafinsc"><code>finsc</code></a>,
+<a href="#feaforto"><code>forto</code></a>,
+<a href="#feagen"><code>gen</code></a>,
+<a href="#feagenobj"><code>genobj</code></a>,
+<a href="#feageodir"><code>geodir</code></a>,
+<a href="#feagerund"><code>gerund</code></a>,
+<a href="#feaglom"><code>glom</code></a>,
+<a href="#feagoodap"><code>goodap</code></a>,
+<a href="#feah"><code>h</code></a>,
+<a href="#feahasadjobj"><code>hasadjobj</code></a>,
+<a href="#feahg"><code>hg</code></a>,
+<a href="#feahplmod"><code>hplmod</code></a>,
+<a href="#feahum"><code>hum</code></a>,
+<a href="#feaincomplete"><code>incomplete</code></a>,
+<a href="#feaindef"><code>indef</code></a>,
+<a href="#feainfobj"><code>infobj</code></a>,
+<a href="#feainfto"><code>infto</code></a>,
+<a href="#feainfveden"><code>infveden</code></a>,
+<a href="#feainfven"><code>infven</code></a>,
+<a href="#feaingdet"><code>ingdet</code></a>,
+<a href="#feaingprep"><code>ingprep</code></a>,
+<a href="#feainitialmod"><code>initialmod</code></a>,
+<a href="#feainterj"><code>interj</code></a>,
+<a href="#feaintroadv"><code>introadv</code></a>,
+<a href="#feainvertadv"><code>invertadv</code></a>,
+<a href="#feainvertv"><code>invertv</code></a>,
+<a href="#feaiobjprn"><code>iobjprn</code></a>,
+<a href="#feaipp"><code>ipp</code></a>,
+<a href="#feaipt"><code>ipt</code></a>,
+<a href="#fealcase"><code>lcase</code></a>,
+<a href="#feale"><code>le</code></a>,
+<a href="#feale1"><code>le1</code></a>,
+<a href="#feale2"><code>le2</code></a>,
+<a href="#feale3"><code>le3</code></a>,
+<a href="#feale4"><code>le4</code></a>,
+<a href="#fealmeas"><code>lmeas</code></a>,
+<a href="#fealmeasadj"><code>lmeasadj</code></a>,
+<a href="#fealoadv"><code>loadv</code></a>,
+<a href="#fealoc"><code>loc</code></a>,
+<a href="#fealocadv"><code>locadv</code></a>,
+<a href="#fealocmp"><code>locmp</code></a>,
+<a href="#fealocn"><code>locn</code></a>,
+<a href="#fealocnoun"><code>locnoun</code></a>,
+<a href="#fealocprep"><code>locprep</code></a>,
+<a href="#feam"><code>m</code></a>,
+<a href="#feam"><code>m</code></a>,
+<a href="#feameas"><code>meas</code></a>,
+<a href="#feamf"><code>mf</code></a>,
+<a href="#feamf"><code>mf</code></a>,
+<a href="#feamo"><code>mo</code></a>,
+<a href="#feamotion"><code>motion</code></a>,
+<a href="#feamotionp"><code>motionp</code></a>,
+<a href="#feamuchmod"><code>muchmod</code></a>,
+<a href="#feanadjpn"><code>nadjpn</code></a>,
+<a href="#feanadvn"><code>nadvn</code></a>,
+<a href="#feanoadj"><code>noadj</code></a>,
+<a href="#feanoadv"><code>noadv</code></a>,
+<a href="#feanoadvpre"><code>noadvpre</code></a>,
+<a href="#feanoattrib"><code>noattrib</code></a>,
+<a href="#feanocompa"><code>nocompa</code></a>,
+<a href="#feanocompare"><code>nocompare</code></a>,
+<a href="#feanom"><code>nom</code></a>,
+<a href="#feanonlocp"><code>nonlocp</code></a>,
+<a href="#feanonn"><code>nonn</code></a>,
+<a href="#feanoobjpref"><code>noobjpref</code></a>,
+<a href="#feanopadv"><code>nopadv</code></a>,
+<a href="#feanopassio"><code>nopassio</code></a>,
+<a href="#feanopred"><code>nopred</code></a>,
+<a href="#feanotadjmod"><code>notadjmod</code></a>,
+<a href="#feanotinitialmod"><code>notinitialmod</code></a>,
+<a href="#feanotleftmod"><code>notleftmod</code></a>,
+<a href="#feanotleftsc"><code>notleftsc</code></a>,
+<a href="#feanotnadv"><code>notnadv</code></a>,
+<a href="#feanotnnoun"><code>notnnoun</code></a>,
+<a href="#feanotrightmod"><code>notrightmod</code></a>,
+<a href="#feanotwhpp"><code>notwhpp</code></a>,
+<a href="#feanoun"><code>noun</code></a>,
+<a href="#feanounadv"><code>nounadv</code></a>,
+<a href="#feanovadj"><code>novadj</code></a>,
+<a href="#feanperadv"><code>nperadv</code></a>,
+<a href="#feanpost"><code>npost</code></a>,
+<a href="#feanpref"><code>npref</code></a>,
+<a href="#feanpremod"><code>npremod</code></a>,
+<a href="#feanqual"><code>nqual</code></a>,
+<a href="#feant"><code>nt</code></a>,
+<a href="#feant"><code>nt</code></a>,
+<a href="#feantesgpl"><code>ntesgpl</code></a>,
+<a href="#feantsgpl"><code>ntsgpl</code></a>,
+<a href="#feanum"><code>num</code></a>,
+<a href="#feaobjpprn"><code>objpprn</code></a>,
+<a href="#feaobjpref"><code>objpref</code></a>,
+<a href="#feaobjprn"><code>objprn</code></a>,
+<a href="#feaokadjsc"><code>okadjsc</code></a>,
+<a href="#feaoknounsc"><code>oknounsc</code></a>,
+<a href="#feaoknsubconj"><code>oknsubconj</code></a>,
+<a href="#feaoreflprn"><code>oreflprn</code></a>,
+<a href="#feapartf"><code>partf</code></a>,
+<a href="#feapassen"><code>passen</code></a>,
+<a href="#feapercent"><code>percent</code></a>,
+<a href="#feapers1"><code>pers1</code></a>,
+<a href="#feapers2"><code>pers2</code></a>,
+<a href="#feapers3"><code>pers3</code></a>,
+<a href="#feaperspron"><code>perspron</code></a>,
+<a href="#feapl"><code>pl</code></a>,
+<a href="#feaplmod"><code>plmod</code></a>,
+<a href="#feapobjp"><code>pobjp</code></a>,
+<a href="#feapoorsubconj"><code>poorsubconj</code></a>,
+<a href="#feaposit"><code>posit</code></a>,
+<a href="#feaposs"><code>poss</code></a>,
+<a href="#feapossadj"><code>possadj</code></a>,
+<a href="#feapossdet"><code>possdet</code></a>,
+<a href="#feapost"><code>post</code></a>,
+<a href="#feapost"><code>post</code></a>,
+<a href="#feapost"><code>post</code></a>,
+<a href="#feapostcomp"><code>postcomp</code></a>,
+<a href="#feappadv"><code>ppadv</code></a>,
+<a href="#feappost"><code>ppost</code></a>,
+<a href="#feappre"><code>ppre</code></a>,
+<a href="#feapprefn"><code>pprefn</code></a>,
+<a href="#feapprefv"><code>pprefv</code></a>,
+<a href="#feapre"><code>pre</code></a>,
+<a href="#feaprefadv"><code>prefadv</code></a>,
+<a href="#feaprefdet"><code>prefdet</code></a>,
+<a href="#feapreflprn"><code>preflprn</code></a>,
+<a href="#feaprep"><code>prep</code></a>, 
+<a href="#feaprocprn"><code>procprn</code></a>,
+<a href="#feapron"><code>pron</code></a>,
+<a href="#feapropcn"><code>propcn</code></a>,
+<a href="#feapropid"><code>propid</code></a>,
+<a href="#feaproplocpp"><code>proplocpp</code></a>,
+<a href="#feapropn"><code>propn</code></a>,
+<a href="#feapropsubj"><code>propsubj</code></a>,
+<a href="#feaproptmpp"><code>proptmpp</code></a>,
+<a href="#feaptadv"><code>ptadv</code></a>,
+<a href="#feaq"><code>q</code></a>,
+<a href="#feaqnp"><code>qnp</code></a>,
+<a href="#feaqpp"><code>qpp</code></a>,
+<a href="#feaqual"><code>qual</code></a>,
+<a href="#feaquantn"><code>quantn</code></a>,
+<a href="#feareflprn"><code>reflprn</code></a>,
+<a href="#feareladv"><code>reladv</code></a>,
+<a href="#feareldet"><code>reldet</code></a>,
+<a href="#fearelnp"><code>relnp</code></a>,
+<a href="#fearelpp"><code>relpp</code></a>,
+<a href="#fearelvp"><code>relvp</code></a>,
+<a href="#feari"><code>ri</code></a>,
+<a href="#feari1"><code>ri1</code></a>,
+<a href="#feari2"><code>ri2</code></a>,
+<a href="#feari3"><code>ri3</code></a>,
+<a href="#feasayv"><code>sayv</code></a>,
+<a href="#feasbjncsc"><code>sbjncsc</code></a>,
+<a href="#fease"><code>se</code></a>,
+<a href="#feaseha"><code>seha</code></a>,
+<a href="#feasg"><code>sg</code></a>,
+<a href="#feasgpl"><code>sgpl</code></a>,
+<a href="#feasoadjp"><code>soadjp</code></a>,
+<a href="#feasoqual"><code>soqual</code></a>,
+<a href="#feaspecial"><code>special</code></a>,
+<a href="#feasta"><code>sta</code></a>,
+<a href="#feastaticp"><code>staticp</code></a>,
+<a href="#feasubconj"><code>subconj</code></a>,
+<a href="#feasubinf"><code>subinf</code></a>,
+<a href="#feasuperl"><code>superl</code></a>,
+<a href="#feasuperl"><code>superl</code></a>,
+<a href="#feathansc"><code>thansc</code></a>,
+<a href="#feathatcobj"><code>thatcobj</code></a>,
+<a href="#feathatconj"><code>thatconj</code></a>,
+<a href="#feathatcpref"><code>thatcpref</code></a>,
+<a href="#feathatmod"><code>thatmod</code></a>,
+<a href="#feathe"><code>the</code></a>,
+<a href="#feathereprep"><code>thereprep</code></a>,
+<a href="#featimep"><code>timep</code></a>,
+<a href="#featimepp"><code>timepp</code></a>,
+<a href="#featimesc"><code>timesc</code></a>,
+<a href="#featitle"><code>title</code></a>,
+<a href="#featm"><code>tm</code></a>,
+<a href="#featma"><code>tma</code></a>,
+<a href="#featmadj"><code>tmadj</code></a>,
+<a href="#featmadv"><code>tmadv</code></a>,
+<a href="#featmdetr"><code>tmdetr</code></a>,
+<a href="#featmeasadj"><code>tmeasadj</code></a>,
+<a href="#featmrel"><code>tmrel</code></a>,
+<a href="#featoadj"><code>toadj</code></a>,
+<a href="#featonoun"><code>tonoun</code></a>,
+<a href="#featosc"><code>tosc</code></a>,
+<a href="#featransalt"><code>transalt</code></a>,
+<a href="#feauif"><code>uif</code></a>,
+<a href="#feaunitph"><code>unitph</code></a>,
+<a href="#feavcond"><code>vcond</code></a>,
+<a href="#feavdep"> <code>vdep</code></a>,
+<a href="#feaved"><code>ved</code></a>,
+<a href="#feaveden"><code>veden</code></a>,
+<a href="#feaven"><code>ven</code></a>,
+<a href="#feaverb"><code>verb</code></a>,
+<a href="#feavfin"><code>vfin</code></a>,
+<a href="#feavfinf"><code>vfinf</code></a>,
+<a href="#feavfut"><code>vfut</code></a>,
+<a href="#feavimperf"><code>vimperf</code></a>,
+<a href="#feavimpr"><code>vimpr</code></a>,
+<a href="#feavind"><code>vind</code></a>,
+<a href="#feavindep"><code>vindep</code></a>,
+<a href="#feavinf"><code>vinf</code></a>,
+<a href="#feaving"><code>ving</code></a>,
+<a href="#feavipass"><code>vipass</code></a>,
+<a href="#feavirreg"><code>virreg</code></a>,
+<a href="#feavlast"><code>vlast</code></a>,
+<a href="#feavobjc"><code>vobjc</code></a>,
+<a href="#feavobjnom"><code>vobjnom</code></a>,
+<a href="#feavpass"><code>vpass</code></a>,
+<a href="#feavpast"><code>vpast</code></a>,
+<a href="#feavperfcond"><code>vperfcond</code></a>,
+<a href="#feavpers1"><code>vpers1</code></a>,
+<a href="#feavpers2"><code>vpers2</code></a>,
+<a href="#feavpers3"><code>vpers3</code></a>,
+<a href="#feavpinf"><code>vpinf</code></a>,
+<a href="#feavpluperf"><code>vpluperf</code></a>,
+<a href="#feavpost"><code>vpost</code></a>,
+<a href="#feavpref"><code>vpref</code></a>,
+<a href="#feavpres"><code>vpres</code></a>,
+<a href="#feavrelv"><code>vrelv</code></a>,
+<a href="#feavsbjnc"><code>vsbjnc</code></a>,
+<a href="#feavsubj"><code>vsubj</code></a>,
+<a href="#feavthat"><code>vthat</code></a>,
+<a href="#feavwas"><code>vwas</code></a>,
+<a href="#feaway"><code>way</code></a>,
+<a href="#feawh"><code>wh</code></a>,
+<a href="#feawh"><code>wh</code></a>,
+<a href="#feawhever"><code>whever</code></a>,
+<a href="#feawhevern"><code>whevern</code></a>,
+<a href="#feawhnom"><code>whnom</code></a>,
+<a href="#feawhsc"><code>whsc</code></a>,
+<a href="#feawoprep"><code>woprep</code></a>,
+<a href="#feaxtra"><code>xtra</code></a>,
+<a href="#feayr"><code>yr</code></a>,
+<a href="#feazerof2"><code>zerof2</code></a>,
+</blockquote>
+</blockquote>
+
+<A NAME="phrasefeatures"> </A>
+<A NAME="partofspeechfeatures"> </A>
+<p class="sansserif">
+The first feature in a phrase's feature list is the part of speech feature.
+The possible parts of speech are these:
+
+
+<blockquote><pre>
+<a name="feanoun"></a>noun, <a name="feaverb"></a>verb, <a name="feaadj"></a>adj, <a name="feaadv"></a>adv, <a name="feadet"></a>det, <a name="feaprep"></a>prep, subconj, conj, qual, subinf, infto, forto, thatconj, special, incomplete
+</pre></blockquote>
+
+<p class="sansserif">
+The first six of these have obvious meanings.
+The others can be described as follows:
+
+<ul>
+<a name="feasubconj"></a><li><code>subconj.</code>  Subordinate conjunction, like <i>if</i>, <i>after</i>, ...
+<a name="feaconj"></a><li><code>conj.</code>  Coordinate conjunction, like <i>and</i>, <i>or</i>, ...
+<a name="feaqual"></a><li><code>qual.</code>  Qualifier, like <i>very</i>, <i>even</i>.  Can modify adverbs and adjectives, not verbs.
+<a name="feasubinf"></a><li><code>subinf.</code>  For multiwords like <i>in order to</i> and <i>so as to</i> that act like preinfinitve <i>to</i> for infinitive verbs.
+<a name="feainfto"></a><li><code>infto.</code>  The preinfinitive sense of <i>to</i>, or analogs in the other languages.
+<a name="feaforto"></a><li><code>forto.</code>  The sense of <i>for</i> in <i>for-to</i> constructions like <i>for John to be there</i>.
+<a name="feathatconj"></a><li><code>thatconj.</code>  The subordinate conjunction sense of <i>that</i> (or <i>que, che, da\ss</i>).
+<a name="feaspecial"></a><li><code>special.</code>  A catch-all category for special "words" like apostrophe-s.
+<a name="feaincomplete"></a><li><code>incomplete.</code>  Used as the part-of-speech category for the top node of an incomplete parse.
+</ul>
+
+<p class="sansserif">
+Now let us look at the other possible features of a phrase.
+We organize these mainly by part of speech of the phrase.
+
+<A NAME="sharedfeatures"> </A>
+<h4>Shared features [ <A HREF="#documenttop">back to "Features"</A> ]</h4>
+
+<p class="sansserif">
+There are some features that are shared across several
+parts of speech.
+These include:
+<a name="feasg"></a><code>sg</code> (singular),
+<a name="feapl"></a><code>pl</code> (plural),
+<a name="feasgpl"><code>sgpl</code> (singular and plural),
+<a name="feadual"><code>dual</code> (dual),
+<a name="feacord"><code>cord</code> (coordinated),
+<a name="feawh"><code>wh</code>,
+and <a name="feawhnom"><code>whnom</code>.
+The last is used on determiners, nouns, and verbs;
+its ultimate purpose is to mark clauses, like
+<i>what you see</i>,
+that can be used essentially anywhere an <i>NP</i> can.
+
+<A NAME="universalfeatures"> </A>
+<h4>Universal features [ <A HREF="#documenttop">back to "Features"</A> ]</h4>
+
+<ul>
+<a name="feacomcord"></a><li><code>comcord.</code>  Comma-delimited coordination.
+<a name="feacord"></a><li><code>cord.</code>  Indicating head of coordination.
+<a name="fealcase"></a><li><code>lcase.</code>  ...
+<a name="feale"></a><li><code>le.</code>  ...
+<a name="feale1"></a><li><code>le1.</code>  ...
+<a name="feale2"></a><li><code>le2.</code>  ...
+<a name="feale3"></a><li><code>le3.</code>  ...
+<a name="feale4"></a><li><code>le4.</code>  ...
+<a name="feari"></a><li><code>ri.</code>  ...
+<a name="feari1"></a><li><code>ri1.</code>  ...
+<a name="feari2"></a><li><code>ri2.</code>  ...
+<a name="feari3"></a><li><code>ri3.</code>  ...
+<a name="feaunitph"></a><li><code>unitph.</code>  A phrase that has no modifiers, or each modifier is separated from its matrix phrase by a hyphen.
+<a name="feaxtra"></a><li><code>xtra.</code>  Extraposed phrase.
+</ul>
+
+<A NAME="verbfeatures"> </A>
+<h4>Verb features [ <A HREF="#documenttop">back to "Features"</A> ]</h4>
+
+<p class="sansserif">
+We list these in alphabetical order.
+
+<ul>
+<a name="feaansb"></a><li><code>ansb.</code>  ...
+<a name="feabadvenadj"></a><li><code>badvenadj.</code>  A past participle of such a verb does not easily fill the <code>nadj</code> slot.  Example: <i>said</i>.
+<a name="feacomppref"></a><li><code>comppref.</code>  Lexical feature to favor comp slot analysis.
+<a name="feaed"></a><li><code>ed.</code>  ...
+<a name="feagerund"></a><li><code>gerund.</code>  This gets marked on an <i>ing</i>-verb that has become a gerund, as in <i>the <u>barking</u> of the dogs</i>.
+<a name="feainfveden"></a><li><code>infveden.</code>  Citation form can be an infinitive or past or a past participle -- like <i>put</i>.
+<a name="feainfven"></a><li><code>infven.</code>  Citation form can be an infinitive or a past participle -- like <i>become</i>.
+<a name="feaingprep"></a><li><code>ingprep.</code>  A verb whose <i>ing</i> form behaves like a preposition.  Example: <i>concern</i>.
+<a name="feainvertv"></a><li><code>invertv.</code>  A verb (like <i>arise</i> or <i>come</i>) that allows its subject on the right and a <code>comp</code> <i>PP</i> or <i>there</i> left modifier.
+<a name="feaipp"></a><li><code>ipp.</code>  ...
+<a name="feaipt"></a><li><code>ipt.</code>  ...
+<a name="feanoadj"></a><li><code>noadj.</code>  ...
+<a name="feanoobjpref"></a><li><code>noobjpref.</code>  ...
+<a name="feanopassio"></a><li><code>nopassio.</code>  ...
+<a name="feanpref"></a><li><code>npref.</code>  Prefers to modify nouns over verbs, as head of non-finite <i>VP</i>.
+<a name="feaobjpref"></a><li><code>objpref.</code>  Verb preferring <i>NP</i> object over finite clause or <i>that</i>-complement.
+<a name="feapassen"></a><li><code>passen.</code>  ...
+<a name="feapostcomp"></a><li><code>postcomp.</code>  Means that the verb cannot have a <code>comp</code> slot filler preceding a filler of <code>(obj n)</code>.
+<a name="feapropsubj"></a><li><code>propsubj.</code>  A verb sense whose slot frame includes <code>(subj v)</code>.
+<a name="feaq"></a><li><code>q.</code>  Question clause.
+<a name="fearelvp"></a><li><code>relvp.</code>  Relative clause.
+<a name="feasayv"></a><li><code>sayv.</code>  Lexical feature for <code>say</code> verbs.
+<a name="fease"></a><li><code>se.</code>  German verb that takes <i>sein</i> for the present perfect.
+<a name="feaseha"></a><li><code>seha.</code>  ...
+<a name="feasta"></a><li><code>sta.</code>  Stative verb.
+<a name="feathatcpref"></a><li><code>thatcpref.</code>  Verb allowing both finite <i>VP</i> or <i>that</i>-complement but preferring the latter.
+<a name="featransalt"></a><li><code>transalt.</code>  Verb (like <i>increase</i>) allowing transitivity alternation.  The theme (the entity undergoing change) can be either the direct object or the subject (when no direct object is given).
+<a name="feavcond"></a><li><code>vcond.</code>  Conditional mood.
+<a name="feavdep"></a><li><code>vdep.</code>  Dependent clause.
+<a name="feaved"></a><li><code>ved.</code>  Preterite form of verb (ex: <i>became</i>).
+<a name="feaveden"></a><li><code>veden.</code>  Past participle and preterit forms are identical (ex: <i>abandoned</i>).
+<a name="feaven"></a><li><code>ven.</code>  Past participle.
+<a name="feavfin"></a><li><code>vfin.</code>  Finite verb.
+<a name="feavfinf"></a><li><code>vfinf.</code>  German infinitive verb modified by <i>zu</i>.
+<a name="feavfut"></a><li><code>vfut.</code>  Future tense (for Latin languages).
+<a name="feavimperf"></a><li><code>vimperf.</code>  Imperfect (for Latin languages).
+<a name="feavimpr"></a><li><code>vimpr.</code>  Imperative <i>VP</i>.
+<a name="feavind"></a><li><code>vind.</code>  Indicative mood.
+<a name="feavindep"></a><li><code>vindep.</code>  Indepedent clause.
+<a name="feavinf"></a><li><code>vinf.</code>  Infinitive.
+<a name="feaving"></a><li><code>ving.</code>  Present participle.
+<a name="feavipass"></a><li><code>vipass.</code>  ...
+<a name="feavirreg"></a><li><code>virreg_.</code>  Morphological feature for verbs with irregular inflection (used in Romance languages).
+<a name="feavlast"></a><li><code>vlast.</code>  <i>VP</i> whose last modifier is another <i>VP</i>.
+<a name="feavobjc"></a><li><code>vobjc.</code>  (For <b>GSG</b>) a verb with an overtly filled <code>obj</code> or <code>iobj</code>.
+<a name="feavobjnom"></a><li><code>vobjnom.</code>  (For <b>GSG</b>) a verb with a nominative overtly filled <code>obj</code>.
+<a name="feavpass"></a><li><code>vpass.</code>  Passive <code>ven</code> verb, as in <i>he was <u>taken</u></i>.
+<a name="feavpast"></a><li><code>vpast.</code>  Past tense.
+<a name="feavperfcond"></a><li><code>vperfcond.</code>  Morphological feature for ambiguous forms of past perfect or pluperfect and conditional (used in Romance languages).
+<a name="feavpers1"></a><li><code>vpers1.</code>  First person.
+<a name="feavpers2"></a><li><code>vpers2.</code>  Second person.
+<a name="feavpers3"></a><li><code>vpers3.</code>  Third person.
+<a name="feavpinf"></a><li><code>vpinf.</code>  Used in Brazilian Portuguese for class of verbs.
+<a name="feavpluperf"></a><li><code>vpluperf.</code>  Pluperfect (for Latin languages).
+<a name="feavpref"></a><li><code>vpref.</code>  Prefers to modify verbs over nouns, as head of non-finite <i>VP</i>.
+<a name="feavpres"></a><li><code>vpres.</code>  Present tense.
+<a name="feavrelv"></a><li><code>vrelv.</code>  Verb that easily allows a relative clause modifier of its subject to right-extraposed.
+<a name="feavsbjnc"></a><li><code>vsbjnc.</code>  Subjunctive.
+<a name="feavsubj"></a><li><code>vsubj.</code>  <i>VP</i> with overtly filled subject.
+<a name="feavthat"></a><li><code>vthat.</code>  Relative clause with <i>that</i> as the relative pronoun.
+<a name="feavwas"></a><li><code>vwas.</code>  ...
+<a name="feawhever"></a><li><code>whever.</code>  A clause like <i>whatever you see</i> or <i>whichever road you take</i> that is modified by an extraposed <code>wh-ever</code> <i>NP</i>.
+<a name="feazerof2"></a><li><code>zerof2.</code>  ...
+</ul>
+
+<A NAME="nounfeatures"> </A>
+<h4>Noun features [ <A HREF="#documenttop">back to "Features"</A> ]</h4>
+
+<ul>
+<a name="feaacc"></a><li><code>acc.</code>  Accusative.
+<a name="feaadvnoun"></a><li><code>advnoun.</code>  A noun that can behave adverbially.  Main examples: time nouns and locative nouns.
+<a name="feacn"></a><li><code>cn.</code>  Common noun.
+<a name="feacollectn"></a><li><code>collectn.</code>  Lexical feature indicating that noun is a group.
+<a name="feacpropn"></a><li><code>cpropn.</code>  Proper noun, like "Dane" or "Italian", that is like a common noun in denoting a class.
+<a name="feadat"></a><li><code>dat.</code>  Dative.
+<a name="feadef"></a><li><code>def.</code>  Definite pronoun.
+<a name="feadetr"></a><li><code>detr.</code>  Noun requiring a determiner when it (the noun) is singular.
+<a name="feady"></a><li><code>dy.</code>  Feature to indicate "day" (time-wise).
+<a name="feaencprn"></a><li><code>encprn.</code>  Can be an enclitic (for the Latin languages).
+<a name="feaf"></a><li><code>f.</code>  Feminine.
+<a name="feaf"></a><li><code>f_.</code>  Feminine feature.
+<a name="feafg"></a><li><code>fg_.</code>  ...
+<a name="feagen"></a><li><code>gen.</code>  Genitive.
+<a name="feaglom"></a><li><code>glom.</code>  A multiword noun obtained by agglomerating certain capitalized nouns in sequence.
+<a name="feagoodap"></a><li><code>goodap.</code>  Can easily be a right conjunct in comma coordination even though it itself is not coordinated.
+<a name="feah"></a><li><code>h_.</code>  Feature indicating Human (ambiguous with <code>animate</code>).
+<a name="feahg"></a><li><code>hg_.</code>  ...
+<a name="feahplmod"></a><li><code>hplmod.</code>  Noun that allows a plural nnoun modifier.
+<a name="feahum"></a><li><code>hum.</code>  ...
+<a name="feaindef"></a><li><code>indef.</code>  Indefinite pronoun.
+<a name="feaiobjprn"></a><li><code>iobjprn.</code>  Can be non-clitic iobj (Latin languages).
+<a name="fealmeas"></a><li><code>lmeas.</code>  Linear measure.
+<a name="fealoc"></a><li><code>loc.</code>  Locative.
+<a name="fealocn"></a><li><code>locn.</code>  ...
+<a name="fealocnoun"></a><li><code>locnoun.</code>  Locative noun (ex: <i>east</i>).
+<a name="feam"></a><li><code>m.</code>  Masculine.
+<a name="feam"></a><li><code>m_.</code>  Masculine feature.
+<a name="feameas"></a><li><code>meas.</code>  Measure.
+<a name="feamf"></a><li><code>mf.</code>  Masculine or feminine.
+<a name="feamf"></a><li><code>mf_.</code>  Masculine or feminine.
+<a name="feamo"></a><li><code>mo.</code>  Month.
+<a name="feanadjpn"></a><li><code>nadjpn.</code>  Pronoun that can fill <code>nadj</code> and must agree with head noun (Latin languages).
+<a name="feanadvn"></a><li><code>nadvn.</code>  Noun that can fill <code>nadv</code> and must agree with head noun (Latin languages).
+<a name="feanom"></a><li><code>nom.</code>  Nominative.
+<a name="feanonn"></a><li><code>nonn.</code>  A noun that cannot have an <code>nnoun</code> modifier.
+<a name="feanotnnoun"></a><li><code>notnnoun.</code>  A noun that cannot be an <code>nnoun</code> modifier.
+<a name="feanpremod"></a><li><code>npremod.</code>  Can be a noun premodifier of a noun even though it is also an adjective.
+<a name="feant"></a><li><code>nt.</code>  Neuter.
+<a name="feant"></a><li><code>nt_.</code>  Neuter feature.
+<a name="feantesgpl"></a><li><code>ntesgpl.</code>  ...
+<a name="feantsgpl"></a><li><code>ntsgpl.</code>  ...
+<a name="feanum"></a><li><code>num.</code>  A number noun.
+<a name="feaobjpprn"></a><li><code>objpprn.</code>  Can be object of preposition (Latin languages).
+<a name="feaobjprn"></a><li><code>objprn.</code>  Can be non-clitic obj (Latin languages).
+<a name="feaoreflprn"></a><li><code>oreflprn.</code>  Can be use <i>only</i> as a reflexive (Latin languages).
+<a name="feapercent"></a><li><code>percent.</code>  A percent number noun.
+<a name="feapers1"></a><li><code>pers1.</code>  First person.
+<a name="feapers2"></a><li><code>pers2.</code>  Second person.
+<a name="feapers3"></a><li><code>pers3.</code>  Third person.
+<a name="feaperspron"></a><li><code>perspron.</code>  Personal pronoun.
+<a name="feaplmod"></a><li><code>plmod.</code>  Noun that can be an <code>nnoun</code> even when it is plural.
+<a name="feaposit"></a><li><code>posit.</code>  Position (like <i>middle</i> or <i>end</i>).
+<a name="feaposs"></a><li><code>poss.</code>  Possesive pronoun.
+<a name="feaprocprn"></a><li><code>procprn.</code>  Can be proclitic (Latin languages).
+<a name="feapron"></a><li><code>pron.</code>  Pronoun.
+<a name="feapropcn"></a><li><code>propcn.</code>  Semantic type in ontology file (not used).
+<a name="feapropid"></a><li><code>propid.</code>  ...
+<a name="feapropn"></a><li><code>propn.</code>  Proper noun.
+<a name="feaqnp"></a><li><code>qnp.</code>  ...
+<a name="feaqpp"></a><li><code>qpp.</code>  ...
+<a name="feaquantn"></a><li><code>quantn.</code>  Denotes a quantity (like <i>all</i> or <i>half</i>).
+<a name="feareflprn"></a><li><code>reflprn.</code>  Reflexive pronoun.
+<a name="fearelnp"></a><li><code>relnp.</code>  An <i>NP</i> that can be the relativizer of a relative clause.
+<a name="featitle"></a><li><code>title.</code>  ...
+<a name="featm"></a><li><code>tm_.</code>  Time.
+<a name="featma"></a><li><code>tma.</code>  Time for period span (ex: <i>week</i>).
+<a name="featmdetr"></a><li><code>tmdetr.</code>  Noun that indicates time and takes a determiner (ex: <i>winter</i>).
+<a name="featmrel"></a><li><code>tmrel.</code>  Noun that indicates time and takes relative clause (ex: <i>time</i>).
+<a name="featonoun"></a><li><code>tonoun.</code>  A noun, like <i>school</i>, that can by itself (without premodifiers) be the <code>objprep</code> of <i>to</i>, even though it is also a verb.
+<a name="feauif"></a><li><code>uif.</code>  Uninflected.
+<a name="feaway"></a><li><code>way.</code>  Manner/way.
+<a name="feawhevern"></a><li><code>whevern.</code>  An <i>NP</i> like <i>whatever</i> or <i>whichever road</i>.
+<a name="feayr"></a><li><code>yr.</code>  Year.
+</ul>
+
+<A NAME="adjfeatures"> </A>
+<h4>Adjective features [ <A HREF="#documenttop">back to "Features"</A> ]</h4>
+
+<ul>
+<a name="feaadjnoun"></a><li><code>adjnoun.</code>  Adjectives like <i>poor</i> that can have a <i>the</i> premodifier and act like the head of an <i>NP</i>.
+<a name="feaadjpass"></a><li><code>adjpass.</code>  An adjective like <i>delighted</i> that is also a past participle, but the past participle is not allowed to fill <code>pred(en)</code>.
+<a name="feaaqual"></a><li><code>aqual.</code>  (For German) an adjective, like <i>denkbar</i> that can premodify an adverb (filling <code>advpre</code>).
+<a name="feabadpre"></a><li><code>badpre.</code>  Adjective not preferred in predicate (ex: <i>near</i>).
+<a name="feacompar"></a><li><code>compar.</code>  Comparative.
+<a name="feadetadj"></a><li><code>detadj.</code>  Adjectives like <i>next</i> and <i>last</i> that have an implicit definite article.
+<a name="feaerest"></a><li><code>erest.</code>  Can use <i>-er</i> and <i>-est</i> for comparative and superlative.  Applies to adverbs too.
+<a name="fealmeasadj"></a><li><code>lmeasadj.</code>  Adjective like <i>high</i> allowing constructions like <i>three feet high</i>.
+<a name="feamuchmod"></a><li><code>muchmod.</code>  ...
+<a name="feanoadv"></a><li><code>noadv.</code>  (For German) an adjective that cannot be used as an adverb.
+<a name="feanoattrib"></a><li><code>noattrib.</code>  Not allowed as filler of <code>nadj</code>.
+<a name="feanocompa"></a><li><code>nocompa.</code>  Not allowed as filler of <code>comp(a)</code>.
+<a name="feanocompare"></a><li><code>nocompare.</code>  Not allowing comparison (for Latin languages).
+<a name="feanopred"></a><li><code>nopred.</code>  Not allowed as filler of <code>pred</code>.
+<a name="feanovadj"></a><li><code>novadj.</code>  Adjective unlikely to fill vadj slot (ex: <i>other</i>).
+<a name="feanqual"></a><li><code>nqual.</code>  Adjectives like <i>medium</i> that allow constructions like <i>a medium quality car</i>.
+<a name="feapossadj"></a><li><code>possadj.</code>  Adjective that indicates possession (Romance languages).
+<a name="feapost"></a><li><code>post.</code>  Adjective like <i>available</i> that can easily postmodify a noun, as in <i>the first car available</i>.
+<a name="feasoadjp"></a><li><code>soadjp.</code>  Gets put by the grammar on an adjective phrase like <i>so good</i> to allow that phrase to fill <code>nadv</code> in an <i>NP</i> like <i>so good a person</i>.  This is done when the adjective (like <i>good</i>) is premodified by a qualifier marked <code>soqual</code>.
+<a name="feasuperl"></a><li><code>superl.</code>  Superlative.
+<a name="feathatmod"></a><li><code>thatmod.</code>  ...
+<a name="featmadj"></a><li><code>tmadj.</code>  A time adjective like <i>early</i>.
+<a name="featmeasadj"></a><li><code>tmeasadj.</code>  Adjective that conveys idea of time (ex: <i>old</i>).
+<a name="featoadj"></a><li><code>toadj.</code>  Similar to <code>tonoun</code>.
+</ul>
+
+<A NAME="advfeatures"> </A>
+<h4>Adverb features [ <A HREF="#documenttop">back to "Features"</A> ]</h4>
+
+<ul>
+<a name="feaadjmod"></a><li><code>adjmod.</code>  Adverb that is adjective too (ex: <i>likely</i>).
+<a name="feaamtmoda"></a><li><code>amtmoda.</code>  Adverb indicating approximation (ex: <i>about</i>).
+<a name="feabadadjmod"></a><li><code>badadjmod.</code>  Preferred not to modify adjective.
+<a name="feabadmedialadv"></a><li><code>badmedialadv.</code>  ...
+<a name="feacompar"></a><li><code>compar.</code>  Comparative.
+<a name="feaconjadv"></a><li><code>conjadv.</code>  Adverb that can function as coordinator (ex: <i>also</i>).
+<a name="feadetadv"></a><li><code>detadv.</code>  Can modify a determiner.
+<a name="feageodir"></a><li><code>geodir.</code>  Geographical direction (ex: <i>east</i>).
+<a name="feainitialmod"></a><li><code>initialmod.</code>  Modifies on left only as first modifier.
+<a name="feainterj"></a><li><code>interj.</code>  An interjection.
+<a name="feaintroadv"></a><li><code>introadv.</code>  Adverb like <i>hello</i> that easily left-coordinates by comma-coordination.
+<a name="feainvertadv"></a><li><code>invertadv.</code>  Adverb that allows certain constructions <i>Adv Verb Subj</i>.
+<a name="fealoadv"></a><li><code>loadv.</code>  Easily modifies a locational prep or adverb (particle).
+<a name="fealocadv"></a><li><code>locadv.</code>  Locative adverb like <i>above</i>.
+<a name="feamotion"></a><li><code>motion.</code>  Motion (ex: <i>down</i>).
+<a name="feanoadvpre"></a><li><code>noadvpre.</code>  Cannot have (qualifier) premodifier.
+<a name="feanopadv"></a><li><code>nopadv.</code>  Cannot modify preposition.
+<a name="feanotadjmod"></a><li><code>notadjmod.</code>  Cannot modify an adjective.
+<a name="feanotinitialmod"></a><li><code>notinitialmod.</code>  Cannot appear clause-initially.
+<a name="feanotleftmod"></a><li><code>notleftmod.</code>  Cannot modify verb on left.
+<a name="feanotnadv"></a><li><code>notnadv.</code>  Cannot premodify a noun.
+<a name="feanotrightmod"></a><li><code>notrightmod.</code>  Cannot modify verb on right.
+<a name="feanounadv"></a><li><code>nounadv.</code>  Can modify noun.
+<a name="feanperadv"></a><li><code>nperadv.</code>  Can fill <code>nper</code> slot for nouns, like <i>apiece</i> and <i>each</i>.
+<a name="feanpost"></a><li><code>npost.</code>  Can postmodify a noun in slot <code>nadjp</code>.
+<a name="feapartf"></a><li><code>partf.</code>  Adverb that can be a particle (also applies to prepositions that can be particles).
+<a name="feapost"></a><li><code>post.</code>  Can postmodify (like <i>enough</i>).
+<a name="feappadv"></a><li><code>ppadv.</code>  Can modify preposition (with no penalty).
+<a name="feaprefadv"></a><li><code>prefadv.</code>  Adverb analysis as <code>vadv</code> is preferred over noun analysis as <code>obj</code>.
+<a name="feaptadv"></a><li><code>ptadv.</code>  ...
+<a name="feareladv"></a><li><code>reladv.</code>  For Spanish, an adverb like <i>cuando</i> that can create a relative clause.
+<a name="feasuperl"></a><li><code>superl.</code>  Superlative.
+<a name="feathereprep"></a><li><code>thereprep.</code>  Adverb like <i>thereafter, thereof, ...</i>.
+<a name="featmadv"></a><li><code>tmadv.</code>  Time adverb like <i>before, early, ...</i>.
+<a name="feavpost"></a><li><code>vpost.</code>  Cannot modify a finite verb on the left.
+</ul>
+
+<A NAME="detfeatures"> </A>
+<h4>Determiner features [ <A HREF="#documenttop">back to "Features"</A> ]</h4>
+
+<ul>
+<a name="feaall"></a><li><code>all.</code>  Only for the determiner <i>all</i>.
+<a name="feaingdet"></a><li><code>ingdet.</code>  Marked on <code>possdet</code>s and <i>the</i>.  Can premodify present participle verbs.
+<a name="feapossdet"></a><li><code>possdet.</code>  Possessive pronoun as determiner.
+<a name="feaprefdet"></a><li><code>prefdet.</code>  Preferred as determiner (over other parts of speech).
+<a name="feareldet"></a><li><code>reldet.</code>  For Spanish, a determiner like <i>cuyo</i> that can create an <i>NP</i> serving as relativizer.
+<a name="feathe"></a><li><code>the.</code>  Marked only on <i>the</i>.
+</ul>
+
+<A NAME="qualfeatures"> </A>
+<h4>Qualifier features [ <A HREF="#documenttop">back to "Features"</A> ]</h4>
+
+<ul>
+<a name="feabadattrib"></a><li><code>badattrib.</code>  If it modifies an adjective, then that adjective cannot fill <code>nadj</code> slot.
+<a name="feac"></a><li><code>c.</code>  Modifies only comparative adverbs.
+<a name="feapost"></a><li><code>post.</code>  Can postmodify.
+<a name="feapre"></a><li><code>pre.</code>  Can premodify (the default).
+<a name="feasoqual"></a><li><code>soqual.</code>  See <code>soadjp</code> for adjectives above.
+<a name="feawh"></a><li><code>wh.</code>  wh-word (ex: <i>how</i>).
+</ul>
+
+<A NAME="subconjfeatures"> </A>
+<h4>Subordinate conjunction (<code>subconj</code>) features [ <A HREF="#documenttop">back to "Features"</A> ]</h4>
+
+<ul>
+<a name="feaassc"></a><li><code>assc.</code>  For <i>as</i> (or analogs in other languages).
+<a name="feacomparsc"></a><li><code>comparsc.</code>  For <code>assc</code> or <code>thansc</code>.
+<a name="feafinsc"></a><li><code>finsc.</code>  Allows only finite clause complements (filling <code>sccomp</code>).
+<a name="feanotleftsc"></a><li><code>notleftsc.</code>  A clause with this as head cannot left-modify a clause (as <code>vsubconj</code>).  Example: <i>for</i>.
+<a name="feaokadjsc"></a><li><code>okadjsc.</code>  Allows adjective complement.
+<a name="feaoknounsc"></a><li><code>oknounsc.</code>  Allows noun complement.
+<a name="feaoknsubconj"></a><li><code>oknsubconj.</code>  Can fill <code>nsubconj</code>.
+<a name="feapoorsubconj"></a><li><code>poorsubconj.</code>  Preferred not as <code>subconj</code>.
+<a name="feasbjncsc"></a><li><code>sbjncsc.</code>  For the Latin languages: Suppose a <code>subjconj</code> <i>S</i> has a finite clause complement <i>C</i> (<i>C</i> is filler of <code>sccomp</code>).  Then <i>S</i> must be marked <code>sbjncsc</code> if <i>C</i> is marked <code>vsbjnc</code> (subjunctive) but not <code>vind</code> (indicative).  And if <i>S</i> is marked <code>sbjncsc</code> and <i>C</i> is marked <code>vsbjc</code>, then remove <code>vind</code> from <i>C</i> if it is present.
+<a name="feathansc"></a><li><code>thansc.</code>  For <i>than</i> (or analogs in other languages).
+<a name="featimesc"></a><li><code>timesc.</code>  Subordinate conjunction indicating time (ex: <i>before</i>).
+<a name="featosc"></a><li><code>tosc.</code>  Allows <code>infto</code> complement.
+<a name="feawhsc"></a><li><code>whsc.</code>  A wh-<code>subconj</code> (like <i>whether</i>).
+</ul>
+
+<A NAME="prepfeatures"> </A>
+<h4>Preposition features [ <A HREF="#documenttop">back to "Features"</A> ]</h4>
+
+<ul>
+<a name="feaaccobj"></a><li><code>accobj.</code>  (For German) allows the <code>objprep</code> to be accusative.
+<a name="feaadjobj"></a><li><code>adjobj.</code>  (For German) allows the <code>objprep</code> to be an adjective or past participle phrase.
+<a name="feaamtmod"></a><li><code>amtmod.</code>  Preposition (multiword) that indicates motion (ex: <i>up to</i>).
+<a name="feaasprep"></a><li><code>asprep.</code>  For <i>as</i> and analogs in other languages.
+<a name="feabadcoord"></a><li><code>badcoord.</code>  Preposition not preferred in coordination (ex: <i>except</i>).
+<a name="feabadnprep"></a><li><code>badnprep.</code>  Preposition not preferred as preposition to noun (ex: <i>because of</i>).
+<a name="feabadobjping"></a><li><code>badobjping.</code>  Cannot have a <code>ving</code> <code>objprep</code> (under certain conditions).
+<a name="feadaprep"></a><li><code>daprep.</code>  For German.  For <i>PPs</i> like <i>dabei</i> and <i>darauf</i>.  A word <i>da+Prep</i> is unfolded to a <i>PP</i> with head <i>Prep</i> marked <code>daprep</code> and <code>objprep</code> filled by <i>es</i>.
+<a name="feadatobj"></a><li><code>datobj.</code>  (For German) allows the <code>objprep</code> to be dative.
+<a name="feagenobj"></a><li><code>genobj.</code>  (For German) allows the <code>objprep</code> to be genitive.
+<a name="feahasadjobj"></a><li><code>hasadjobj.</code>  (For German) the <code>objprep</code> is an adjective or past participle phrase.
+<a name="feainfobj"></a><li><code>infobj.</code>  (For Latin languages) has an <code>objprep</code> that is an infinitive <i>VP</i>.
+<a name="fealocmp"></a><li><code>locmp.</code>  Used for multiword prepositions that fill <code>comp(lo)</code>.
+<a name="fealocprep"></a><li><code>locprep.</code>  Prepostion indicating location (ex: <i>near</i>).
+<a name="feamotionp"></a><li><code>motionp.</code>  Prefers not to fill <code>comp</code> if the matrix verb is marked <code>sta</code>.
+<a name="feanonlocp"></a><li><code>nonlocp.</code>  Cannot be a filler of <code>comp(lo)</code>.
+<a name="feanotwhpp"></a><li><code>notwhpp.</code>  Cannot have wh <code>objprep</code> (under certain conditions).
+<a name="feapobjp"></a><li><code>pobjp.</code>  The <code>objprep</code> can be a <i>PP</i> itself.  Example: <i>from</i>.
+<a name="feappost"></a><li><code>ppost.</code>  The preposition can follow the <code>objprep</code>.  If the preposition is marked <code>ppost</code> but not <code>ppre</code>, then the preposition <i>must</i> be on the right.
+<a name="feappre"></a><li><code>ppre.</code>  The preposition can precede the <code>objprep</code>.  There is no need to mark this feature on the preposition, in order to allow the preposition to be on the left, unless the preposition is marked <code>ppost</code>.
+<a name="feapprefn"></a><li><code>pprefn.</code>  Prefers to modify nouns.
+<a name="feapprefv"></a><li><code>pprefv.</code>  Prefers to modify verbs.
+<a name="feapreflprn"></a><li><code>preflprn.</code>  Marked by the grammar on a <i>PP</i> when the <code>objprep</code> is a reflexive pronoun.
+<a name="feaproplocpp"></a><li><code>proplocpp.</code>  To mark modifier of locative preposition.
+<a name="feaproptmpp"></a><li><code>proptmpp.</code>  To mark modifier of temporal preposition.
+<a name="fearelpp"></a><li><code>relpp.</code>  A <i>PP</i> that can serve as a relativizer for a relative clause.
+<a name="feastaticp"></a><li><code>staticp.</code>  Preposition like <i>in</i> or <i>on</i> that is used normally to represent static location vs. goal of motion (as with <i>into</i> and <i>onto</i>).
+<a name="feathatcobj"></a><li><code>thatcobj.</code>  ...
+<a name="featimep"></a><li><code>timep.</code>  Common modifier of time nouns, as in <i>two days after the meeting</i>.
+<a name="featimepp"></a><li><code>timepp.</code>  For certain <i>PPs</i> where the <code>objprep</code> is a time noun.
+<a name="feawoprep"></a><li><code>woprep.</code>  Like <code>daprep</code>, but with <i>wo</i> instead of <i>da</i>.
+</ul>
+
+<A NAME="semantictypes"> </A>
+<h2>Basic semantic types [ <A HREF="#documenttop">back to top</A> ]</h2>
+
+<p class="sansserif">
+Here we list and briefly describe the most basic semantic types
+used with <b>ESG</b>.
+They are listed in alphabetical order.
+Most of the types are marked on nouns, and just a few (named specifically)
+are marked on verbs.
+
+<ul>
+<li><code>abst.</code>  Abstraction.
+<li><code>accomp.</code>  Accomplishment, achievment.  < <code>act</code>.
+<li><code>act.</code>  Act by a human.
+<li><code>activity.</code>  Activity (ex: <i>"dancing"</i>).
+<li><code>actor.</code>  Person, professional or amateur, who acts; Actor (ex: <i>"pantomimer"</i>).
+<li><code>agreement.</code>  Exchange of promises.
+<li><code>ameas.</code>  Unit of area measure.  < <code>meas</code>.
+<li><code>anml.</code>  Animal.
+<li><code>art.</code>  Learned superior skill.
+<li><code>artcomp.</code>  Artistic composition &ndash; includes <code>litcomp</code>, <code>musicomp</code>, <code>show</code>.
+<li><code>artf.</code>  Artifact. < <code>physobj</code>.
+<li><code>artist.</code>  In the general sense of person doing creative work, not just visual arts.
+<li><code>athlete.</code>  Athlete (ex: <i>"alpinist"</i>).
+<li><code>biz.</code>  A business, commercial enterprise.  < <code>org</code>.
+<li><code>bodyofwater.</code>  Body of water.
+<li><code>capitalist.</code>  Person who invests capital in a (large) business.
+<li><code>century.</code>  Named century like <i>"300 B.C."</i>.
+<li><code>change.</code>  Action of going from one state to another, result of that action.
+<li><code>chngmag.</code>  Change magnitude/size (verb type).
+<li><code>clothing.</code>  For item of clothing or an accessory (ex: <i>"sock"</i>, <i>"anklet"</i>).
+<li><code>cmeas.</code>  Unit of volume measure.  < <code>meas</code>.
+<li><code>cognition.</code>  Result of perception, learning, reasoning.
+<li><code>cognsa.</code>  Cognitive state or activity.
+<li><code>coll.</code>  Collection.  Largely > <code>collectn</code>.  Includes nouns like <i>"shrubbery"</i> that don't highlight the set nature as much.
+<li><code>collectn.</code>  Collective noun dealing overtly with a set &ndash; like <i>"set"</i>, <i>"group"</i>, <i>"family"</i>.
+<li><code>comdoc.</code>  Commercial document.
+<li><code>comm.</code>  Communication &ndash; something communicated between people.  < <code>abst</code>.
+<li><code>communicator.</code>  Writer, reporter, broadcaster, etc.
+<li><code>composer.</code>  For individual who composes music-based creation (ex: <i>"songwriter"</i>).
+<li><code>concept.</code>  For noun indicating a concept (ex: <i>"assumption"</i>).
+<li><code>cond.</code>  Condition &ndash; state at a given time.
+<li><code>container.</code>  Something that can hold or include (ex: <i>"box"</i>).
+<li><code>cpropn.</code>  Common proper noun.  A propn, like <i>"German"</i> that can name a class, and so is like a common noun.
+<li><code>create.</code>  Cause sth to exist or become (verb type).
+<li><code>creation.</code>  An artf created by person(s).
+<li><code>creator.</code>  Person who creates things skillfully.
+<li><code>cst.</code>  State or province in a country.
+<li><code>ctitle.</code>  A postposed company title, like <i>"Inc."</i> or "Co.".
+<li><code>ctry.</code>  Named country.
+<li><code>cty.</code>  Named city.
+<li><code>dance.</code>  Act of dancing.
+<li><code>dancer.</code>  Person who performs dances (ex: <i>"ballerina"</i>).
+<li><code>device.</code>  Instl invented for a particular purpose.
+<li><code>discipline.</code>  Branch of knowledge.
+<li><code>doc.</code>  Document.
+<li><code>dy.</code>  Day.  Named weekdays like Tuesday or named holiday days.
+<li><code>emeas.</code>  Unit of electromagnetic measure. < <code>meas</code>.
+<li><code>engineer.</code>  Professional (ex: <i>"programmer"</i>).
+<li><code>entertainer.</code>  Person, professional or amateur, who is in show business (ex: <i>"actor"</i>).
+<li><code>era.</code>  Time period (ex: <i>"antiquity"</i>).
+<li><code>evnt.</code>  Event.
+<li><code>expert.</code>  Person knowledgeable in a knowledge domain or very good at doing something (ex: <i>"adjuster"</i>).
+<li><code>f.</code>  Female.
+<li><code>facility.</code>  Building or place providing a service.  < <code>artf</code>.
+<li><code>feeling.</code>  Feeling, emotion.
+<li><code>geoarea.</code>  Geographical area, demarcated area of the earth.  < <code>location</code>.
+<li><code>geoform.</code>  Geological formation.  < <code>natent</code>.
+<li><code>geopol.</code>  Named geopolitical unit &ndash; like <code>ctry</code>, <code>cst</code>, <code>cty</code>.
+<li><code>gname.</code>  Human given name.
+<li><code>goodperson.</code>  Benefactor, philanthropist, etc.
+<li><code>govseat.</code>  Government seat (<i>"capital"</i>, etc.).
+<li><code>groupact.</code>  Group action (by humans).  < <code>act</code>.
+<li><code>h.</code>  Human individual &ndash; same as <code>hi</code> &ndash; but in some versions of ESG, <code>h</code> includes <code>hg</code> also.
+<li><code>hdofstate.</code>  Head of state.
+<li><code>hg.</code>  Human group.
+<li><code>hi.</code>  Human individual.
+<li><code>imeas.</code>  Unit of illumination measure.  < <code>meas</code>.
+<li><code>inst.</code>  Instrument.  Device that requires skill to use.  < <code>device</code> < <code>instl</code>.
+<li><code>instl.</code>  Instrumentality.  Artifact(s) instrumental in accomplishing some end.
+<li><code>instt.</code>  Institution, establishment.  < <code>org</code>.
+<li><code>intellectual.</code>  Person who does not used hands but brains to perform tasks (ex: <i>"academician"</i>).
+<li><code>langunit.</code>  Language unit, like <i>word</i>, <i>discourse</i>, etc.
+<li><code>leader.</code>  Person expert in some knowledge domain or at leading others (ex: <i>"bishop"</i>).
+<li><code>legaldoc.</code>  Legal document.
+<li><code>litcomp.</code>  Literary composition.
+<li><code>liv.</code>  Living thing.
+<li><code>lmeas.</code>  Unit of linear measure.  < <code>meas</code>.
+<li><code>loc.</code>  Pronoun for location, like <i>"here"</i>, <i>"anywhere"</i> or certain general locational common nouns like <i>"outside"</i>.
+<li><code>location.</code>  Point or region in space.
+<li><code>locn.</code>  Named location &ndash; like a <code>geopol</code> or an ocean.
+<li><code>locnoun.</code>  Noun like <i>"here"</i> or <i>"east"</i> that can function adverbially or fill <code>comp(lo)</code>. > <code>loc</code>.
+<li><code>m.</code>  Male.
+<li><code>massn.</code>  Mass noun.
+<li><code>material.</code>  ...
+<li><code>meas.</code>  Unit of measure.
+<li><code>mmeas.</code>  Unit of money.  < <code>meas</code>.
+<li><code>mo.</code>  Month.  Named months like October.
+<li><code>monarch.</code>  Sole hereditary ruler of state or nation (ex: <i>"czar"</i>).
+<li><code>money.</code>  Currency, coins, medium that can be exchanged for goods and/or services (ex: <i>"fund"</i>).
+<li><code>move.</code>  Change locations (verb type).
+<li><code>movie.</code>  Motion picture (ex: <i>"movie"</i>).
+<li><code>musician.</code>  ...
+<li><code>musicomp.</code>  Musical composition.
+<li><code>name.</code>  Usual sense. < <code>langunit</code>.
+<li><code>natent.</code>  Natural entity (not made by humans).  < <code>physobj</code>.
+<li><code>natlang.</code>  Natural language.
+<li><code>natphenom.</code>  Natural phenomenon.
+<li><code>ntitle.</code>  A postposed part of a human name like <i>"Jr."</i> or "Sr.".
+<li><code>org.</code>  Organization, group of humans that work together.  < <code>hg</code>.
+<li><code>percent.</code>  Percent expression.
+<li><code>performer.</code>  Person who acts or plays music (ex: <i>"accompanist"</i>).
+<li><code>personage.</code>  Influential person.
+<li><code>physobj.</code>  Physical object.
+<li><code>physphenom.</code>  Physical phenomenon.  < <code>natphenom</code>.
+<li><code>place.</code>  Area set aside for a purpose.  < <code>geoarea</code> < <code>location</code>.
+<li><code>plant.</code>  Multicellular organism that produces its own food by photosynthesis (ex: <i>"fir"</i>).
+<li><code>plantmaterial.</code>  Material derived from plants (ex: <i>"bamboo"</i>).
+<li><code>play.</code>  A dramatic work.
+<li><code>preserver.</code>  Person who keeps others safe, e.g. <i>"policenman"</i>.
+<li><code>process.</code>  Sequence of events of change.
+<li><code>professional.</code>  A person who has a learned profession.
+<li><code>propcn.</code>  A common noun, like <i>"society"</i> or <i>"mathematics"</i>, that can name a single entity and function like a propn &ndash; sometimes capitalized, especially in older writing.
+<li><code>property.</code>  (Synonym of <i>"attribute"</i>).
+<li><code>psychofea.</code>  Phychological feature &ndash; like cognition or feeling.
+<li><code>ptitle.</code>  A postposed human title, like <i>"Ph.D."</i> or <i>"M.D."</i>.
+<li><code>quantn.</code>  Quantity pronoun like <i>"more"</i>, <i>"half"</i>, or ordinal number or collectn noun.
+<li><code>relative.</code>  Person related by blood or marriage.
+<li><code>relig.</code>  Named religion.  < <code>instt</code>.
+<li><code>rlent.</code>  Role entity.  An entity (usually person) viewed as having a particular role &ndash; includes many human roles like leader, artist, engineer, ...
+<li><code>rmeas.</code>  Relation between measures, like rate or scale.
+<li><code>saying.</code>  Expression or locution.
+<li><code>sayv.</code>  Verb of saying (verb type).
+<li><code>sbst.</code>  Substance.
+<li><code>scientist.</code>  Expert in natural or physical sciences (ex: <i>"physicist"</i>).
+<li><code>show.</code>  Public exhibition or entertainment.
+<li><code>sname.</code>  Human surname.
+<li><code>socialevent.</code>  Human social event.
+<li><code>sound.</code>  Sensation produced by vibrations to ears, auditory effect, noise (ex: <i>noisiness</i>).
+<li><code>speechact.</code>  Speech act, e.g. <i>request</i>, <i>command</i>, <i>promise</i>.
+<li><code>sport.</code>  Sport.  Athletic activity (ex: <i>acrobatics</i>).
+<li><code>sta.</code>  Stative (not change of state) (verb type).
+<li><code>strct.</code>  Structure (thing constructed).  < <code>artf</code>.
+<li><code>title.</code>  Human title, like <i>"President"</i> or <i>"Professor"</i>.
+<li><code>tm.</code>  Time noun, like <i>"year"</i> or <i>"yesterday"</i>.
+<li><code>tma.</code>  Time noun, usually a pron or propn, or that behaves as such &ndash; e.g. <i>"now"</i>, <i>"tomorrow"</i>.
+<li><code>tmdetr.</code>  Time noun, like <i>"season"</i>, that requires a determiner in order to act adverbially.
+<li><code>tmeas.</code>  Unit of temperature measure. < <code>meas</code>.
+<li><code>tmperiod.</code>  Time period.
+<li><code>tmrel.</code>  Time noun allowing certain finite clauses as <code>nrel</code> modifiers.
+<li><code>tool.</code>  Implement used in practice of a vocation.  < <code>instl</code>.
+<li><code>trait.</code>  Distinguishing feature of personal nature.
+<li><code>transaction.</code>  Process, exchange (ex: <i>"arbitrage"</i>).
+<li><code>transalt.</code>  Transitivity alternation &ndash; verb (like <i>"increase"</i>) where the THEME can be subj or obj (verb type).
+<li><code>traveler.</code>  Person who moves about for business or pleasure (ex: <i>"alien"</i>).
+<li><code>uspres.</code>  U.S. president.
+<li><code>ust.</code>  U.S. state. < <code>cst</code>.
+<li><code>vchng.</code>  Change (verb type).
+<li><code>vchngmag.</code>  Change magnitude/size (verb type).
+<li><code>vcreate.</code>  Cause sth to exist or become (verb type).
+<li><code>vmeas.</code>  Unit of sound volume measure.  < <code>meas</code>.
+<li><code>vmove.</code>  Change locations (verb type).
+<li><code>wlocn.</code>  Named water mass, like <i>"Atlantic Ocean"</i>.
+<li><code>wmeas.</code>  Unit of weight measure.  < <code>meas</code>.
+<li><code>worker.</code>  Person with a non-professional occupation.
+<li><code>writer.</code>  Person, professional or amateur, who communicates with written word (ex: <i>"Byron"</i>).
+<li><code>yr.</code>  Year.  Specific year, usually given numerically.
+</ul>
+
+<A NAME="slots"> </A>
+<h2>Slots and Slot Options [ <A HREF="#documenttop">back to top</A> ]</h2>
+
+<blockquote>
+<A HREF="#slotoptions">Slot options:</A> <br>
+<blockquote class="resize"><code>
+a, agent, aj, av, bfin, binf, dt, en, ena,
+fin, fina, finq, finv, ft, ger, gn,
+impr, inf, ing, io, it, itinf, itthatc, itwh,
+n, na, nen, nmeas, nop, nummeas, padj, pinf, pinfd,
+prflx, prop, pthatc, pwh, qt, rflx, sc, so, thatc, v, whn
+</code></blockquote>
+
+<A HREF="#verbcslots">Verb complement slots:</A> 
+<a href="#slotsubj"><code>subj</code></a>,
+<a href="#slotobj"><code>obj</code></a>,
+<a href="#slotiobj"><code>iobj</code></a>,
+<a href="#slotcomp"><code>comp</code></a>,
+<a href="#slotpred"><code>pred</code></a>,
+<a href="#slotauxcomp"><code>auxcomp</code></a>,
+<br>
+<A HREF="#verbaslots">Verb adjunct slots:</A> 
+<blockquote class="resize">
+<a href="#slotvadv"><code>vadv</code></a>,
+<a href="#slotvprep"><code>vprep</code></a>,
+<a href="#slotvsubconj"><code>vsubconj</code></a>,
+<a href="#slotvnfvp"><code>vnfvp</code></a>,
+<a href="#slotvfvp"><code>vfvp</code></a>,
+<a href="#slotvforto"><code>vforto</code></a>,
+<a href="#slotvcomment"><code>vcomment</code></a>,
+<a href="#slotvadjp"><code>vadjp</code></a>,
+<a href="#slotvvoc"><code>vvoc</code></a>,
+<a href="#slotvadj"><code>vadj</code></a>,
+<a href="#slotvdet"><code>vdet</code></a>,
+<a href="#slotvnoun"><code>vnoun</code></a>,
+<a href="#slotvrel"><code>vrel</code></a>,
+<a href="#slotvextra"><code>vextra</code></a>,
+<a href="#slotvpreinf"><code>vpreinf</code></a>,
+<a href="#slotvnp"><code>vnp</code></a>,
+<a href="#slotvinfp"><code>vinfp</code></a>,
+<a href="#slotvdat"><code>vdat</code></a>,
+<a href="#slotvnthatc"><code>vnthatc</code></a>,
+<a href="#slotwhadv"><code>whadv</code></a>,
+<a href="#slotwhprep"><code>whprep</code></a>,
+</blockquote>
+<A HREF="#nouncslots">Noun complement slots:</A>
+<a href="#slotnsubj"><code>nsubj</code></a>,
+<a href="#slotnobj"><code>nobj</code></a>,
+<a href="#slotncomp"><code>ncomp</code></a>,
+<a href="#slotnid"><code>nid</code></a>,
+<br>
+<A HREF="#nounaslots">Noun adjunct slots:</A>
+<blockquote class="resize">
+<a href="#slotndet"><code>ndet</code></a>,
+<a href="#slotnadj"><code>nadj</code></a>,
+<a href="#slotnnoun"><code>nnoun</code></a>,
+<a href="#slotnadv"><code>nadv</code></a>,
+<a href="#slotnposs"><code>nposs</code></a>,
+<a href="#slotnadjp"><code>nadjp</code></a>,
+<a href="#slotnper"><code>nper</code></a>,
+<a href="#slotnprop"><code>nprop</code></a>,
+<a href="#slotnappos"><code>nappos</code></a>,
+<a href="#slotnloc"><code>nloc</code></a>,
+<a href="#slotnprep"><code>nprep</code></a>,
+<a href="#slotngen"><code>ngen</code></a>,
+<a href="#slotnrel"><code>nrel</code></a>,
+<a href="#slotnrela"><code>nrela</code></a>,
+<a href="#slotnnfvp"><code>nnfvp</code></a>,
+<a href="#slotnsubconj"><code>nsubconj</code></a>,
+<a href="#slotncompar"><code>ncompar</code></a>,
+<a href="#slotnsothat"><code>nsothat</code></a>,
+</blockquote>
+<A HREF="#adjcslots">Adjective complement slots:</A> 
+<a href="#slotaobj"><code>aobj</code></a>,
+<a href="#slotasubj"><code>asubj</code></a>,
+<br>
+<A HREF="#adjaslots">Adjective adjunct slots:</A> 
+<a href="#slotadjpre"><code>adjpre</code></a>,
+<a href="#slotanoun"><code>anoun</code></a>,
+<a href="#slotadjpost"><code>adjpost</code></a>,
+<a href="#slotacompar"><code>acompar</code></a>,
+<a href="#slotaprep"><code>aprep</code></a>,
+<a href="#slotasothat"><code>assothat</code></a>,
+<a href="#slotarel"><code>arel</code></a>,
+<a href="#slotanfvp"><code>anfvp</code></a>,
+<br>
+<A HREF="#advcslots">Adverb complement slots:</A> 
+<a href="#slotavobj"><code>avobj</code></a>,
+<a href="#slotavsubj"><code>avsubj</code></a>,
+<br>
+<A HREF="#advaslots">Adverb adjunct slots:</A> 
+<a href="#slotadvpre"><code>advpre</code></a>,
+<a href="#slotadvpost"><code>advpost</code></a>,
+<a href="#slotadvinf"><code>advinf</code></a>,
+<a href="#slotavsothat"><code>avsothat</code></a>,
+<a href="#slotavcompar"><code>avcompar</code></a>,
+<br>
+<A HREF="#prepcslots">Preposition complement slots:</A> 
+<a href="#slotobjprep"><code>objprep</code></a>,
+<a href="#slotpsubj"><code>psubj</code></a>,
+<br>
+<A HREF="#prepaslots">Preposition adjunct slots:</A> 
+<a href="#slotpadv"><code>padv</code></a>,
+<a href="#slotpvapp"><code>pvapp</code></a>,
+<br>
+<A HREF="#detaslot">Determiner adjunct slot:</A>
+a<a href="#slotdadv"><code>dadv</code></a> 
+<br>
+<A HREF="#subconjcslot">Subconj complement slot:</A> 
+<a href="#slotsccomp"><code>sccomp</code></a> 
+<br>
+<A HREF="#subconjaslot">Subconj adjunct slot:</A> 
+<a href="#slotscadv"><code>scadv</code></a> 
+<br>
+<A HREF="#inftocslot">Infto complement slot:</A> 
+<a href="#slottocomp"><code>tocomp</code></a> 
+<br>
+<A HREF="#inftoaslot">Infto adjunct slot:</A> 
+<a href="#slottoadv"><code>toadv</code></a> 
+<br>
+<A HREF="#fortocslots">Forto complement slots:</A> 
+<a href="#slotforsubj"><code>forsubj</code></a>,
+<a href="#slotforcomp"><code>forcomp</code></a> 
+<br>
+<A HREF="#thatconjcslot">Thatconj complement slot:</A> 
+<a href="#slotthatcomp"><code>thatcomp</code></a>
+<br>
+<A HREF="#subinfcslot">Subinf complement slot:</A> 
+<a href="#slotsubinfcomp"><code>subinfcomp</code></a>
+<br>
+</blockquote>
+
+
+<p class="sansserif">
+Slots are of two kinds &ndash; <i>complement</i> slots
+and <i>adjunct</i> slots.  The complement slots correspond to logical
+arguments of the head word sense of the phrase; they are specified in
+the lexical entry for the word sense.
+
+<p class="sansserif">
+The possible complement slots for verbs are these six:
+
+<p class="sansserif">
+<table border="1" class="boldtable">
+<tr>
+   <th><code>subj</code></th>
+   <th><i>subject</i></th>
+</tr>
+<tr>
+   <th><code>obj</code></th>
+   <th><i>direct object</i></th>
+</tr>
+<tr>
+   <th><code>iobj</code></th>
+   <th><i>indirect object</i></th>
+</tr>
+<tr>
+   <th><code>pred</code></th>
+   <th><i>predicate complement</i></th>
+</tr>
+<tr>
+   <th><code>auxcomp</code></th>
+   <th><i>auxiliary complement</i></th>
+</tr>
+<tr>
+   <th><code>comp</code></th>
+   <th><i>complement</i></th>
+</tr>
+</table>
+
+<p class="sansserif">
+We discuss these in more detail below.
+
+<p class="sansserif">
+The fillers of adjunct slots are like "outer modifiers".
+In logical form, they often predicate on the logical form
+of the phrase that they modify.
+Adjunct slots are associated with parts of speech, and
+are specified in the syntactic component of <b>XSG</b>.
+
+<p class="sansserif">
+An SG phrase also shows the <i>slot option</i> chosen for
+a given slot.
+Slot options correspond roughly to the phrase category
+(part of speech) chosen for the filler of the slot.
+A given slot may be filled by phrases of various categories.
+For instance the <code>iobj</code> slot in English can normally
+be filled by either an <i>NP</i> or a <i>to-PP</i>, as in these
+two examples:
+
+<blockquote><i>
+Mary gave <u>John</u> the book. <br>
+Mary gave the book <u>to John</u>.
+</i></blockquote>
+
+<A NAME="slotoptions"> </A>
+<p class="sansserif">
+The lexical entry for a word sense shows, for each of its
+complement slots, what slot options are allowed for that slot.
+The semantic idea is that (as mentioned) the slot corresponds
+to a logical argument, but the list of options for the slot
+indicates how the argument can be realized syntactically.
+(The slot itself also carries syntactic information though.)
+The current possible SG slot options are these:
+
+<blockquote><code>
+a, agent, aj, av, bfin, binf, dt, en, ena,
+fin, fina, finq, finv, ft, ger, gn,
+impr, inf, ing, io, it, itinf, itthatc, itwh,
+n, na, nen, nmeas, nop, nummeas, padj, pinf, pinfd,
+prflx, prop, pthatc, pwh, qt, rflx, sc, so, thatc, v, whn
+</code></blockquote>
+
+<p class="sansserif">
+We will not describe these here because usually (though not always)
+the feature list of the phrase contains the information provided by
+the slot option &ndash; especially since the feature list includes the
+part of speech of the phrase.  But see <i>The Slot Grammar Lexical
+Formalism</i> for a description of the main options.  Generally, one
+should think of slot options as providing control for parsing itself.
+There is one case at least where it is important to look at the slot
+option: The <code>comp</code> slot for verbs can have
+an <code>n</code> option, fillable by <i>NP</i>s, for object
+complements like this:
+
+<blockquote><i>
+They elected
+<u>Ellen</u><sub><code>obj(n)</code></sub>
+<u>president of the company</u><sub><code>comp(n)</code></sub>.
+</i></blockquote>
+
+<p class="sansserif">
+But <code>comp</code> also allows an option <code>io</code>, fillable by <i>NPs</i>,
+for an alternative form of the indirect object, like this:
+
+<blockquote><i>
+They took
+<u>John</u><sub><code>comp(io)</code></sub>
+<u>the contract</u><sub><code>obj(n)</code></sub>.
+</i></blockquote>
+
+<p class="sansserif">
+Since in both cases <code>comp</code> is filled by an <i>NP</i> &ndash; even a
+human <i>NP</i> &ndash; it is worth looking at the distinction of options
+<code>n</code> vs. <code>io</code>.
+
+<p class="sansserif">
+Now let us look at the SG slots.
+We organize the description by part of speech.
+It is worth noting that most slots &ndash; especially
+complement slots &ndash; allow several options.
+In some of the description, we will be a bit imprecise
+by not distinguishing between a slot and the filler of the slot.
+For instance, in a statement like
+"The <code>subj</code> agrees with the finite verb",
+we really mean:
+"The filler of <code>subj</code> agrees with the finite verb".
+
+<A NAME="verbcslots"> </A>
+<h4>Verb complement slots [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<p class="sansserif">
+We will elucidate these in part in terms of the thematic roles
+THEME, LOCATION, GOAL, and AGENT, in the sense of
+Gruber and Jackendoff.
+In verbs that describe a change, the THEME is what changes,
+and it changes to the GOAL state.
+The AGENT (if present) is the participant that carries out the change.
+In verbs that describe a state, the THEME is what the state
+is predicated of and the LOCATION is that state.
+
+<ul>
+
+<a name="slotsubj"></a><li><code>subj.</code>
+Most readers of this document will be familiar
+with the subject slot, but let us make a few comments.
+If a verb has an AGENT, then this will normally
+fill <code>subj</code>.
+The subject may also be THEME.
+The default position of the subject in our European languages
+is before the verb in an active declarative clause.
+The subject is filled overtly (in these languages) only
+in finite clauses, and then it must agree in person and number
+with the finite verb.
+In non-finite <i>VPs</i>, we often show the logical subject in
+the word sense predication.
+The <code>subj</code> slot may be filled by several different categories
+of phrases besides noun phrases, as in:
+
+<blockquote class="resize"><i>
+<u>Seeing him</u> was difficult. <br>
+<u>That he did that</u> is amazing. <br>
+<u>Whether he can go</u> is an open question.
+</i></blockquote>
+
+<a name="slotobj"></a><li><code>obj.</code>
+If a verb has a THEME and a filled <code>obj</code>, then
+that <code>obj</code> is normally the THEME.
+The <code>obj</code> may be filled by several different categories
+of phrases, as in:
+
+<blockquote class="resize"><i>
+He believes <u>John's story</u>. <br>
+He believes <u>in John</u>. <br>
+He believes <u>that John was there</u>. <br>
+He believes <u>what John said</u>. <br>
+John said, "<u>I was there</u>".  <br>
+He likes <u>seeing John</u>. <br>
+He believes <u>John</u> to be honest.
+</i></blockquote>
+
+<a name="slotiobj"></a><li><code>iobj.</code>
+The indirect object normally has a GOAL role.
+In English, it can most typically be filled by both
+an <i>NP</i> and a <i>to-PP</i>.
+But some verbs, like <i>ensure</i>, can take only an <i>NP</i> <code>iobj</code>.
+And others, like <i>confess</i>, take only a <i>to-PP</i> <code>iobj</code>.
+The <code>iobj</code> sometimes allows other prepositions, as in:
+
+<blockquote class="resize"><i>
+She bought some books <u>for me</u>.  <br>
+She bought <u>me</u> some books.
+</i></blockquote>
+
+An <i>NP</i> <code>iobj</code> normally takes the dative case in our
+European languages.
+
+<a name="slotcomp"></a><li><code>comp.</code>
+In the thematic roles, the basic idea of <code>comp</code>
+is that it is the GOAL in verbs of change and the
+LOCATION in verbs that describe a state.
+The <code>iobj</code> slot could actually be folded into the <code>comp</code>
+slot, and in fact the option <code>io</code> for <code>comp</code> is more or less an
+alternative way of expressing <code>iobj(n)</code>, as mentioned above.
+But we use <code>iobj</code>, partly for the sake of familiarity.
+As with the other verb complement slots,
+<code>comp</code> allows several options.
+We gave <i>NP</i> examples above.
+The most typical <code>comp</code> is a <i>PP</i>.
+Examples:
+
+<blockquote class="resize"><i>
+Alice drove <u>Betty</u><sub><code>obj(n)</code></sub> <u>to the store</u><sub><code>comp(lo)</code></sub>.  <br>
+Alice drove <u>Betty</u><sub><code>obj(n)</code></sub> <u>to distraction</u><sub><code>comp(lo)</code></sub>.  <br>
+Alice drove <u>Betty</u><sub><code>obj(n)</code></sub> <u>crazy</u><sub><code>comp(a)</code></sub>.
+</i></blockquote>
+
+<a name="slotpred"></a><li><code>pred.</code>
+In English, <code>pred</code> is a slot only for the verb <i>be</i>.
+It can be filled by a very wide range of categories of phrases,
+illustrated in part by the following:
+
+<blockquote class="resize"><i>
+Bob is <u>a teacher</u>.  <br>
+Bob is <u>happy</u>.  <br>
+Bob is <u>in love</u>.  <br>
+Bob is <u>to leave tomorrow</u>.  <br>
+Bob is <u>leaving tomorrow</u>.  <br>
+Bob was <u>taken to the station</u>.
+</i></blockquote>
+
+In our other European languages, <code>pred</code> is used for some
+more verbs besides the analogs of <i>be</i>;
+for instance for German it is used for <i>werden</i> as
+well as <i>sein</i>.
+
+<a name="slotauxcomp"></a><li><code>auxcomp.</code>
+This slot is used in English mainly for the modal verbs,
+where <code>auxcomp</code> is filled by a bare infinitive,
+for the auxiliary <i>do</i>, which also takes a bare infinitive,
+and for the perfect sense of <i>have</i>, where the filler
+is an active past participle.
+
+</ul>
+
+<A NAME="verbaslots"> </A>
+<h4>Verb adjunct slots [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<p class="sansserif">
+The names of most of these slots begin with "<code>v</code>".
+For most of these, instead of giving a general definition,
+we will just give one or more examples.
+
+<ul>
+
+<a name="slotvadv"></a><li><code>vadv.</code>
+<i>He <u>always</u> likes chocolate.</i>
+
+<a name="slotvprep"></a><li><code>vprep.</code>
+<i><u>In that case</u>, please buy some chocolate.</i>
+
+<a name="slotvsubconj"></a><li><code>vsubconj.</code>
+<i><u>If the shoe fits</u>, wear it.</i>
+
+<a name="slotvnfvp"></a><li><code>vnfvp.</code>
+The <code>nfvp</code> stands for "non-finite verb phrase".
+
+<blockquote class="resize"><i>
+<u>Using the mouse</u>, select the chocolate icon.  <br>
+<u>Made in Switzerland</u>, this chocolate is sold in many countries. <br>
+<u>To select the chocolate icon</u>, use the mouse.
+</i></blockquote>
+
+<a name="slotvfvp"></a><li><code>vfvp.</code>
+The <code>fvp</code> stands for "finite verb phrase".
+
+<blockquote class="resize"><i>
+<u>However you do it</u>, select the chocolate icon.  <br>
+<u>Had you selected this kind of chocolate</u>, you would be happier.
+</i></blockquote>
+
+<a name="slotvforto"></a><li><code>vforto.</code>
+<i><u>For John to be there on time</u>, we'll have to call.</i>
+
+<a name="slotvcomment"></a><li><code>vcomment.</code>
+<i>This chocolate, <u>I think</u>, is best.</i>
+
+<a name="slotvadjp"></a><li><code>vadjp.</code>
+<i><u>Happy with the results</u>, she left.</i>
+
+<a name="slotvvoc"></a><li><code>vvoc.</code>
+<i><u>John</u>, can you hear me?</i>
+
+<a name="slotvadj"></a><li><code>vadj.</code>
+<i><u>happy</u>-seeming</i>
+
+<a name="slotvdet"></a><li><code>vdet.</code>
+<i><u>his</u> seeing the car</i>
+
+<a name="slotvnoun"></a><li><code>vnoun.</code>
+<i><u>user</u>-defined</i>
+
+<a name="slotvrel"></a><li><code>vrel.</code>
+<i>Someone appeared <u>who I didn't expect</u>.</i>
+
+<a name="slotvextra"></a><li><code>vextra.</code>
+<i>It was assumed <u>that she would arrive Tuesday</u>.</i>
+
+<a name="slotvpreinf"></a><li><code>vpreinf.</code>
+<i><u>zu</u> sehen</i>
+
+<a name="slotvnp"></a><li><code>vnp.</code>
+<i><u>Votre ami</u>, aime-t-il le chocolat?</i>
+
+<a name="slotvinfp"></a><li><code>vinfp.</code>
+<i><u>Trouver ce chocolat</u>, c'est tr&egrave;s difficile.</i>
+
+<a name="slotvdat"></a><li><code>vdat.</code>
+<i><u>Mi</u> mangio una mela.</i>
+
+<a name="slotvnthatc"></a><li><code>vnthatc.</code>
+<i>Er hat keine Erkenntnis gehabt, <u>dass sie da war</u>.</i>
+
+<a name="slotwhadv"></a><li><code>whadv.</code>
+<i><u>When</u> did you eat?</i>
+
+<a name="slotwhprep"></a><li><code>whprep.</code>
+<i><u>At which table</u> did you sit?</i>
+
+</ul>
+
+<A NAME="nouncslots"> </A>
+<h4>Noun complement slots [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<p class="sansserif">
+There are four of these.
+The most important are:
+
+<a name="slotnsubj"></a>
+<a name="slotnobj"></a>
+<a name="slotncomp"></a>
+<blockquote><pre>
+nsubj, nobj, ncomp
+</pre></blockquote>
+
+<p class="sansserif">
+For deverbal nouns, these slots correspond to the verb slots:
+
+<blockquote><pre>
+subj, obj, comp
+</pre></blockquote>
+
+<p class="sansserif">
+&ndash; allowing for the view that <code>iobj</code> is a kind of
+special case of <code>comp</code>.  These noun slots have roughly the
+same range of possible slot options as the corresponding verb slots
+do.  But the <code>n</code> option for the noun slots is filled by
+an <i>of</i>-PP instead of an NP.
+
+<p class="sansserif">
+For example we have the correspondence:
+
+<blockquote><i>
+<u>John</u><sub><code>subj(n)</code></sub> knows <u>that Bill was there</u><sub><code>obj(thatc)</code></sub>  <br>
+<u>John's</u><sub><code>nsubj(n)</code></sub> knowledge <u>that Bill was there</u><sub><code>nobj(thatc)</code></sub>  <br>
+</i></blockquote>
+
+<p class="sansserif">
+Filling of the <code>nsubj</code> slot by <i>John's</i> here is seen
+only in the deep structure, in the predicate arguments
+of <i>knowledge</i>.  In the surface structure, <i>John's</i> fills
+the adjunct slot <code>ndet</code> of <i>knowledge</i>.
+
+<p class="sansserif">
+The <code>nsubj</code> slot can be filled directly in postmodification
+by <i>by</i>-NPs, <i>of</i>-NPs, or <i>from</i>-NPs, depending on the
+head noun and the modifier context.
+
+<p class="sansserif">
+There are relational nouns that are not deverbal, but
+still have some of the slots <code>nsubj</code>, <code>nobj</code>, <code>ncomp</code>.
+Example:
+
+<blockquote><i>
+A poem <u>by Smith</u><sub><code>nsubj(agent)</code></sub> <u>about nature</u><sub><code>ncomp(p)</code></sub>
+</i></blockquote>
+
+<p class="sansserif">
+There are many nouns that have only the slot <code>nobj</code>,
+typically with option <code>n</code>, for example in:
+
+<blockquote><i>
+Department <u>of Mathematics</u><sub><code>nobj(n)</code></sub>
+</i></blockquote>
+
+<a name="slotnid"></a>
+<p class="sansserif">
+The last noun complement slot is <code>nid</code> ("noun identifier"),
+which is illustrated in <code>nid</code> slots for <i>page</i> and <i>Appendix</i>, in:
+
+<blockquote><i>
+It appears on page <u>235</u><sub><code>nid(n)</code></sub> in Appendix <u>B</u><sub><code>nid(n)</code></sub>.
+</i></blockquote>
+
+<A NAME="nounaslots"> </A>
+<h4>Noun adjunct slots [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<p class="sansserif">
+The names of these all begin with "<code>n</code>".
+For English, the first four premodify the noun, and the
+remaining postmodify.
+
+<ul>
+
+<a name="slotndet"> </a><li><code>ndet.</code>
+<br>
+<blockquote class="resize"><i><u>the</u> house</i> <br>
+<i><u>her</u> house</i> <br>
+<i><u>my mother's</u> house</i>
+</i></blockquote>
+
+<a name="slotnadj"> </a><li><code>nadj.</code>
+<br>
+<blockquote class="resize"><i>the <u>large</u> house</i> <br>
+<i>the <u>Chicago</u> house</i> <br>
+<i><u>three</u> houses</i>
+</i></blockquote>
+
+<a name="slotnnoun"> </a><li><code>nnoun.</code>
+<i>the <u>boat</u> house</i>
+
+<a name="slotnadv"> </a><li><code>nadv.</code>
+<i><u>only</u> the house</i>
+
+<a name="slotnposs"> </a><li><code>nposs.</code>
+<i>John <u>'s</u></i>
+
+<a name="slotnadjp"> </a><li><code>nadjp.</code>
+<i>anyone <u>available for the job</u></i>
+
+<a name="slotnper"> </a><li><code>nper.</code>
+<i>$2.00 <u>per gallon</u></i>
+
+<a name="slotnprop"> </a><li><code>nprop.</code>
+<i>company <u>X</u></i>
+
+<a name="slotnappos"> </a><li><code>nappos.</code>
+<br>
+<blockquote class="resize"><i>John, <u>my brother</u></i> <br>
+<i>Paris, <u>the capital of France</u></i>
+</i></blockquote>
+
+<a name="slotnloc"> </a><li><code>nloc.</code>
+<i>Paris, <u>France</u></i>
+
+<a name="slotnprep"> </a><li><code>nprep.</code>
+<i>the man <u>in the house</u></i>
+
+<a name="slotngen"> </a><li><code>ngen.</code>
+<i>ein Freund <u>meines Vaters</u></i>
+
+<a name="slotnrel"> </a><li><code>nrel.</code>
+<i>the man <u>that I saw yesterday</u></i>
+
+<a name="slotnrela"> </a><li><code>nrela.</code>
+<i>the man <u>I saw yesterday</u></i>
+
+<a name="slotnnfvp"> </a><li><code>nnfvp.</code>
+<br>
+<blockquote class="resize"><i>
+anyone <u>seeing John</u> <br>
+anyone <u>seen by John</u> <br>
+the first person <u>to see John</u>
+</i></blockquote>
+
+<a name="slotnsubconj"> </a><li><code>nsubconj.</code>
+<i>the situation <u>as described by John</u></i>
+
+<a name="slotncompar"> </a><li><code>ncompar.</code>
+<i>more money <u>than he has</u></i>
+
+<a name="slotnsothat"> </a><li><code>nsothat.</code>
+<i>such a good speaker <u>that he gets many invitations</u></i>
+
+</ul>
+
+<A NAME="adjcslots"> </A>
+<h4>Adjective complement slots [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<p class="sansserif">
+There are two.
+The main one is <a name="slotaobj"><code>aobj</code>.
+Examples:
+
+<blockquote><i>
+happy <u>with the result</u> <br>
+happy <u>to see the result</u> <br>
+happy <u>that the result was good</u>
+</i></blockquote>
+
+<p class="sansserif">
+The second one is <a name="slotasubj"><code>asubj</code> and is filled
+by a noun that the adjective modifies.
+
+<A NAME="adjaslots"> </A>
+<h4>Adjective adjunct slots [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<ul>
+
+<a name="slotadjpre"> </a><li><code>adjpre.</code>
+<i><u>very</u> happy</i>
+
+<a name="slotanoun"> </a><li><code>anoun.</code>
+<i><u>user</u>-friendly</i>
+
+<a name="slotadjpost"> </a><li><code>adjpost.</code>
+<i>happy <u>enough</u></i>
+
+<a name="slotacompar"> </a><li><code>acompar.</code>
+<i>happier <u>than John</u></i>
+
+<a name="slotaprep"> </a><li><code>aprep.</code>
+<i>red <u>in the face</u></i>
+
+<a name="slotasothat"> </a><li><code>asothat.</code>
+<i>so red <u>that he glowed</u></i>
+
+<a name="slotarel"> </a><li><code>arel.</code>
+This is like the noun adjunct <code>nrel</code> but is used for
+<code>adjnoun</code> adjectives like "poor", "rich", "latter",
+that can be used like nouns when modified by "the", as in:
+<i>the latter, <u>which was discussed in the preceding section</u></i>
+
+<a name="slotanfvp"> </a><li><code>anfvp.</code>
+Similar to <code>arel</code>, but is analogous to <code>nnfvp</code> as in: <br>
+<i>the latter, <u>discussed in the preceding section</u></i>
+
+</ul>
+
+<A NAME="advcslots"> </A>
+<h4>Adverb complement slots [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<p class="sansserif">
+There are two.
+The main one is <a name="slotavobj"> <code>avobj</code>.
+Examples:
+
+<blockquote><i>
+enough <u>for me</u> <br>
+enough <u>to accomplish the result</u> <br>
+enough <u>that the result was good</u>
+</i></blockquote>
+
+<p class="sansserif">
+The second one is <a name="slotavsubj"> <code>avsubj</code> and is filled
+by a verb that the adverb modifies.
+
+<A NAME="advaslots"> </A>
+<h4>Adverb adjunct slots [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<ul>
+<a name="slotadvpre"> </a><li><code>advpre.</code>
+<i><u>very</u> quickly</i>
+
+<a name="slotadvpost"> </a><li><code>advpost.</code>
+<i>quickly <u>enough</u></i>
+
+<a name="slotadvinf"> </a><li><code>advinf.</code>
+<i>how <u>to do it</u></i>
+
+<a name="slotavsothat"> </a><li><code>avsothat.</code>
+<i>so quickly <u>that it smoked</u></i>
+
+<a name="slotavcompar"> </a><li><code>avcompar.</code>
+<i>more happily <u>than John</u></i>
+
+</ul>
+
+<A NAME="prepcslots"> </A>
+<h4>Preposition complement slots [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<p class="sansserif">
+There are two.
+The main one is <a name="slotobjprep"><code>objprep</code>.
+Examples:
+
+<blockquote><i>
+in <u>the house</u>  <br>
+in <u>seeing the house</u>  <br>
+in <u>what you see</u>
+</i></blockquote>
+
+<p class="sansserif">
+The second one is <a name="slotpsubj"><code>psubj</code>, and is filled
+by the noun or verb modified by the PP headed
+by the preposition.
+
+<A NAME="prepaslots"> </A>
+<h4>Preposition adjunct slots [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<ul>
+
+<a name="slotpadv"> </a><li><code>padv.</code>
+<br>
+<blockquote class="resize"><i>
+<u>out</u> in the yard <br>
+<u>expressly</u> for John
+</i></blockquote>
+
+<a name="slotpvapp"> </a><li><code>pvapp.</code>
+<i>daran, <u>dass er geht</u></i>
+
+</ul>
+
+<A NAME="detaslot"> </A>
+<h4>Determiner adjunct slot [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<ul>
+<a name="slotdadv"> </a><li><code>dadv</code>.  Example:
+<i><u>almost</u> all people</i>
+</ul>
+
+<A NAME="subconjcslot"> </A>
+<h4>Complement slot for <code>subconj</code> [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+<ul>
+<a name="slotsccomp"> </a><li><code>sccomp</code>.
+Example:
+<i>if <u>the shoe fits</u></i>
+</ul>
+
+<A NAME="subconjaslot"> </A>
+<h4>Adjunct slot for <code>subconj</code> [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+<ul>
+<a name="slotscadv"> </a><li><code>scadv</code>.
+Example:
+<i><u>only</u> while she eats</i>
+</ul>
+
+<A NAME="inftocslot"> </A>
+<h4>Complement slot for <code>infto</code> [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+<ul>
+<a name="slottocomp"> </a><li><code>tocomp</code>.
+Example:
+<i>to <u>eat chocolate</u></i>
+</ul>
+
+<A NAME="inftoaslot"> </A>
+<h4>Adjunct slot for <code>infto</code> [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+<ul>
+<a name="slottoadv"> </a><li><code>toadv</code>.
+Example:
+<i><u>only</u> to eat</i>
+</ul>
+
+<A NAME="fortocslots"> </A>
+<h4>Complement slots for <code>forto</code> [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<ul>
+<a name="slotforsubj"> </a><li><code>forsubj.</code>
+Example:
+<i>for <u>John</u> to write the book</i>
+
+<a name="slotforcomp"> </a><li><code>forcomp.</code>
+Example:
+<i>for John <u>to write the book</u></i>
+</ul>
+
+<A NAME="thatconjcslot"> </A>
+<h4>Complement slot for <code>thatconj</code> [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<ul>
+<a name="slotthatcomp"> </a><li><code>thatcomp</code>.
+Example:
+<i>that <u>he wants to go</u></i>
+</ul>
+
+<A NAME="subinfcslot"> </A>
+<h4>Complement slot for <code>subinf</code> [ <A HREF="#slots">back to "Slots &amp; Slot Options"</A> ]</h4>
+
+<ul>
+<a name="slotsubinfcomp"> </a><li><code>subinfcomp</code>.
+Example:
+<i>in order to <u>see the show</u></i>
+</ul>
+
+<A NAME="functions"> </A>
+<h2>Built-in ESG functions [ <A HREF="#documenttop">back to top</A> ]</h2>
+
+<p class="sansserif">
+The SG shell provides a large collection of &quot;built-in&quot; functions
+to make it easier to make relevant tests and changes in slot functions.
+Here we list them in alphabetical order, for easier reference.
+Most of these functions are predicates and return an integer
+(type <code>sint</code>).
+In such cases, we will not show the return type.
+If the return type is <i>different</i> from <i>sint</i>,
+then we say what it is <i>after</i> the function header, in order to
+make the alphabetical order stand out more.
+Some of the listed &quot;functions&quot; are actually macros,
+but we will not usually make the distinction in this listing.
+
+<ul>
+
+<li><code>addfea(phrase ph, sint fea).</code>
+Adds feature <code>fea</code> to phrase <code>ph</code>.
+Equivalent to <code>addffea(ph->f, fea)</code>.
+
+<li><code>addff(feast f, sint fea).</code>
+Adds the bit code of symbolic feature <code>fea</code> to <code>f</code>,
+assuming that bit code lies only in the <code>f[0]</code> range.
+Better to use <code>addffea</code>.
+
+<li><code>addffea(feast f, sint fea).</code>
+Adds the bit code of symbolic feature <code>fea</code> to <code>f</code>.
+
+<li><code>addff1(feast f, sint fea).</code>
+Like <code>addff</code> but assumes bit code is on <code>f[1]</code> range.
+
+<li><code>addff2(feast f, sint fea).</code>
+Like <code>addff</code> but assumes bit code is on <code>f[2]</code> range.
+
+<li><code>addhfea(sint fea).</code>
+Means <code>addffea(hf, fea)</code>.
+
+<li><code>addmfea(sint fea).</code>
+Means <code>addffea(mf, fea)</code>.
+
+<li><code>badquoted(phrase ph).</code>
+Means that <code>ph</code> begins with an opening quote but does not
+end with the corresponding closing quote.
+
+<li><code>bc(sint fea).</code>
+This is the 0-level bit code of <code>fea</code>, or <code>(sgh->bca)[fea][0]</code>.
+Better not to use this or the next two in X<code>syn</code>, since bit codes
+may change.
+
+<li><code>bc1(sint fea).</code>
+This is the 1-level bit code of <code>fea</code>, or <code>(sgh->bca)[fea][1]</code>.
+
+<li><code>bc2(sint fea).</code>
+This is the 2-level bit code of <code>fea</code>, or <code>(sgh->bca)[fea][2]</code>.
+
+<li><code>caphead(phrase ph).</code>
+The head word of <code>ph</code> is capitalized (in its first letter).
+
+<li><code>commafree(phrase ph).</code>
+The phrase <code>ph</code> has no commas within it
+(but it may have commas at the left or right boundary).
+
+<li><code>dashph(phrase ph).</code>
+The head of the phrase is a hyphen or dash.
+
+<li><code>dashtok(sint id).</code>
+This token id is a hyphen or dash.
+
+<li><code>delfea(phrase ph, sint fea).</code>
+Remove feature <code>fea</code> from the phrase.
+
+<li><code>delff(feast f, sint fea).</code>
+Removes the bit code of symbolic feature <code>fea</code> from <code>f</code>,
+assuming that bit code lies only in the <code>f[0]</code> range.
+Better to use <code>delffea</code>.
+
+<li><code>delffea(feast f, sint fea).</code>
+Remove <code>fea</code> from <code>f</code>.
+
+<li><code>delff1(feast f, sint fea).</code>
+Like <code>delff</code> but assumes bit code is on <code>f[1]</code> range.
+
+<li><code>delff2(feast f, sint fea).</code>
+Like <code>delff</code> but assumes bit code is on <code>f[2]</code> range.
+
+<li><code>delhfea(sint fea).</code>
+Means <code>delffea(hf, fea)</code>.
+
+<li><code>delmfea(sint fea).</code>
+Means <code>delffea(mf, fea)</code>.
+
+<li><code>eobslopt(phrase ph, sint sl, sint opt).</code>
+Among the unfilled (empty) slots of <code>ph</code> there is
+an obligatory slot with slot name <code>sl</code> which in turn
+has an option with name <code>opt</code>.
+
+<li><code>eobslot(phrase ph, sint sl).</code>
+Among the unfilled slots of <code>ph</code> there is
+an obligatory slot with slot name <code>sl</code>.
+
+<li><code>eprepopt(phrase ph, st prp).</code>
+Among the unfilled slots of <code>ph</code> there is
+one that can be filled by the preposition <code>prp</code>.
+
+<li><code>eraiseslots.</code>
+An abbreviation for
+<code>Eraiseslots(sgh, hslot, opt, mph, hph, raisedslots)</code>.
+
+<li><code>Eraiseslots(sghn sgh, slot hslot, sint opt,
+phrase mph, phrase hph, slotlist *raisedslots).</code>
+Like <code>Raiseslots</code> (see below),
+but if <code>mph</code> is on the right and goes to the
+end of the sentence, and the sentence ends with a colon or dash,
+and the part of speech of <code>mph</code> is
+<code>prep</code>, <code>subconj</code>, <code>infto</code>, or <code>thatconj</code>,
+then this function just succeeds without requiring the raising of
+any slots.
+
+<li><code>esatisfied.</code>
+Either the <code>mph</code> has no obligatory unfilled slots,
+or <code>mph</code> is on the right and
+the sentence ends with a colon or dash.
+
+<li><code>eslot(phrase ph, sint sl).</code>
+The phrase <code>ph</code> has <code>sl</code> as (the name of) an unfilled slot.
+
+<li><code>eslotopt(phrase ph, sint sl, sint opt).</code>
+The phrase <code>ph</code> has <code>sl</code> as (the name of) an unfilled slot
+which has an option <code>opt</code>.
+
+<li><code>feacpy(feast f, feast g).</code>
+Copy <code>g</code> to <code>f</code>.
+
+<li><code>ff(feast f, sint fea).</code>
+The bit code of <code>fea</code> intersects <code>f[0]</code>.
+Better to use <code>hasffea</code> (see below) than this or the next two.
+
+<li><code>ff1(feast f, sint fea).</code>
+The bit code of <code>fea</code> intersects <code>f[1]</code>.
+
+<li><code>ff2(feast f, sint fea).</code>
+The bit code of <code>fea</code> intersects <code>f[2]</code>.
+
+<li><code>firstlmod(phrase ph, phrase *mph).</code>
+The phrase <code>ph</code> has a left modifier, and it assigns <code>mph</code>
+to the first such.
+
+<li><code>firstsllmod(phrase ph, sint sl, phrase *mph).</code>
+The phrase <code>ph</code> has a left modifier, the first one
+filling slot <code>sl</code>, and it assigns <code>mph</code> to this.
+
+<li><code>firstslrmod(phrase ph, sint sl, phrase *mph).</code>
+The phrase <code>ph</code> has a right modifier, the last one
+(in sentence order)
+filling slot <code>sl</code>, and it assigns <code>mph</code> to this.
+
+<li><code>firstw(phrase ph, st word).</code>
+Phrase <code>ph</code> has <code>word</code> as the lower case form
+of its first word.
+
+<li><code>frslot(phrase ph, sint sl).</code>
+Phrase <code>ph</code> has a slot in the <code>frame</code> of its
+<code>wframe</code> with name <code>sl</code>.
+
+<li><code>frslotopt(phrase ph, sint sl, sint opt, sint pos).</code>
+Phrase <code>ph</code> has a slot <code>s</code> in the <code>frame</code> of its
+<code>wframe</code> with name <code>sl</code>, and <code>s</code> has an option
+that has name <code>opt</code> and that requires the part of speech
+<code>pos</code> of its filler.
+
+<li><code>getslotopt(phrase ph, sint sln, sint opt, slot *sl).</code>
+This tests whether <code>ph</code> has an unfilled slot with name
+<code>sln</code> and option <code>opt</code>, and assigns the first such to <code>sl</code>.
+(Note that <code>sln</code> is only a slot name, but <code>sl</code> is
+a complete <code>slot</code> object.)
+
+<li><code>hascite(phrase ph, st c).</code>
+Phrase <code>ph</code> has <code>c</code> as its <code>cite</code>
+(in its <code>wframe</code>).
+
+<li><code>hascitel(phrase ph, st c).</code>
+Phrase <code>ph</code> has <code>c</code> as a member of its <code>citel</code>
+(in its <code>wframe</code>).
+
+<li><code>hascomplmod(phrase ph).</code>
+Had a left modifier filling a complement slot (as opposed to adjunct).
+
+<li><code>hascomprmod(phrase ph).</code>
+Had a right modifier filling a complement slot.
+
+<li><code>hasfea(phrase ph, sint fea).</code>
+Means <code>hasffea(ph->f, fea)</code>.
+
+<li><code>hasffea(feast f, sint fea).</code>
+The feature structure <code>f</code> has feature <code>fea</code>
+(according to bit codes).
+
+<li><code>hasfreeopt(slot sl, sint opt).</code>
+Slot <code>sl</code> has an option with name <code>opt</code> and for
+which the <code>test</code> field is <code>nil</code>.
+
+<li><code>hasid(phrase ph, sint id).</code>
+Means <code>ph->wframe->id == id</code>.
+
+<li><code>haslcword(phrase ph, st w).</code>
+Means that <code>ph->wframe->lcword</code> equals <code>w</code>.
+
+<li><code>haslmod(phrase ph, sint sl).</code>
+The phrase <code>ph</code> has a left modifier filling slot <code>sl</code>.
+
+<li><code>hasmw(sint lb, sint rb).</code>
+There is a multiword in the sentence that stretches from
+left boundary <code>lb</code> to right boundary <code>rb</code>.
+
+<li><code>hasnextword(phrase ph, st *word).</code>
+There is a (single) word in the sentence just after the
+right boundary of <code>ph</code>, and <code>word</code> is set to the lower case
+form of this word.
+
+<li><code>hasopt(slot sl, sint opt).</code>
+The slot <code>sl</code> has an option with name <code>opt</code>.
+
+<li><code>hasprevword(phrase ph, st *word).</code>
+Similar to <code>hasnextword</code>, but it looks just to the left of <code>ph</code>.
+
+<li><code>hasrealconj(phrase ph).</code>
+The phrase <code>ph</code> is a coordinated phrase where the conjunction
+is a &quot;real conjunction&quot; (like <i>and</i>) as opposed to
+punctuation conjunction;
+or else, recursively, the right conjunct of <code>ph</code> has this property.
+
+<li><code>hasrmod(phrase ph, sint sl).</code>
+The phrase <code>ph</code> has a right modifier filling slot <code>sl</code>.
+
+<li><code>hassense(phrase ph, st sns).</code>
+The string <code>ph->wframe->sense</code> is equal to <code>sns</code>.
+
+<li><code>hasword(phrase ph, st w).</code>
+The string <code>ph->wframe->word</code> is equal to <code>w</code>.
+
+<li><code>has1lmod(phrase ph, sint sl).</code>
+The first left modifier of <code>ph</code> exists and fills slot <code>sl</code>.
+
+<li><code>has1rmod(phrase ph, sint sl).</code>
+The rightmost right modifier (in sentence order) of <code>ph</code>
+exists and fills slot <code>sl</code>.
+
+<li><code>hbc(sint fea)</code>
+This is the 0-level &quot;full&quot; or &quot;implied&quot; bit code string
+of <code>fea</code>, or <code>sgh->hbca)[fea][0]</code>.
+Better not to use this or the next two in X<code>syn</code>, since bit codes
+may change.
+
+<li><code>hbc1(sint fea).</code>
+This is the full 1-level bit code of <code>fea</code>,
+or <code>(sgh->hbca)[fea][1]</code>.
+
+<li><code>hbc2(sint fea).</code>
+This is the full 2-level bit code of <code>fea</code>,
+or <code>(sgh->hbca)[fea][2]</code>.
+
+<li><code>hcit.</code>
+Means <code>hph->wframe->cite</code>.
+
+<li><code>hcite(st c).</code>
+Means that <code>hph->wframe->cite</code> equals <code>c</code>.
+
+<li><code>hdoptslot(phrase ph, sint sl).</code>
+There is an initial word phrase <code>wph</code> (it could be a
+multiword) having the same boundaries as <code>ph->wframe</code> such that
+<code>wph</code> has an optional slot with name <code>sl</code>.
+
+<li><code>hdprepopt(phrase ph, stlist citel).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that
+some slot of <code>wph</code> has an option whose <code>ctest</code> list
+intersects <code>citel</code>.
+
+<li><code>headf(phrase ph, lint feamask, lint feaval).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that
+<code>((wph->f)[0] &amp; feamask)</code> equals <code>feaval</code>.
+Not recommended because of dependence on bit coding in level 0.
+
+<li><code>headfn(phrase ph, sint (* fn)(sghn, phrase)).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that
+<code>fn(sgh, wph)</code> is true.
+
+<li><code>headfsat(phrase ph, lint feamask, lint feaval).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that
+<code>((wph->f)[0] &amp; feamask)</code> equals <code>feaval</code>,
+and <code>wph</code> has no obligatory slots.
+Not recommended because of dependence on bit coding in level 0.
+
+<li><code>headnextpf(phrase ph, sint pos, sint fea).</code>
+The head word of <code>ph</code> is not the last word of the sentence,
+and its word number <code>n</code> satisfies <code>wordpf(n+1, pos, fea)</code>.
+
+<li><code>headnextpos(phrase ph, sint pos).</code>
+The head word of <code>ph</code> is not the last word of the sentence,
+and its word number <code>n</code> satisfies
+<code>wordpos(n+1, pos)</code>.
+
+<li><code>headnextword(phrase ph, st wd).</code>
+The head word of <code>ph</code> is not the last word of the sentence,
+and the lower case form of the next word equals <code>wd</code>.
+
+<li><code>headobslot(phrase ph, sint sl).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that
+<code>wph</code> has an obligatory slot named <code>sl</code>.
+
+<li><code>headopt(phrase ph, sint opt).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that <code>wph</code>
+has a slot with an option named <code>opt</code>.
+
+<li><code>headpf(phrase ph, sint pos, sint fea).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that <code>wph</code>
+has part of speech <code>pos</code> and feature <code>fea</code>.
+
+<li><code>headpfph(phrase ph, sint pos, sint fea, phrase *ph1).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that <code>wph</code>
+has part of speech <code>pos</code> and feature <code>fea</code>.
+And <code>ph1</code> is assigned to <code>wph</code>.
+
+<li><code>headpfs(phrase ph, sint pos, sint fea, st sense).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that <code>wph</code>
+has part of speech <code>pos</code>, feature <code>fea</code>, and sense <code>sense</code>.
+
+<li><code>headpf2(phrase ph, sint pos, sint fea1, sint fea2).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that <code>wph</code>
+has part of speech <code>pos</code> and features <code>fea1</code> and <code>fea2</code>.
+
+<li><code>headpos(phrase ph, sint pos).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that <code>wph</code>
+has part of speech <code>pos</code>.
+
+<li><code>headprevpf(phrase ph, sint pos, sint fea).</code>
+The head word of <code>ph</code> is not the first word of the sentence,
+and its word number <code>n</code> satisfies
+<code>wordpf(n-1, pos, fea)</code>.
+
+<li><code>headprevpos(phrase ph, sint pos).</code>
+The head word of <code>ph</code> is not the first word of the sentence,
+and its word number <code>n</code> satisfies
+<code>wordpos(n-1, pos)</code>.
+
+<li><code>headprevword(phrase ph, st wd).</code>
+The head word of <code>ph</code> is not the first word of the sentence,
+and its word number <code>n</code> satisfies the condition that
+<code>wd</code> equals <code>sgh->segword[n-1]->lcword</code>.
+
+<li><code>headp2f(phrase ph, sint pos, lint fea).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that <code>wph</code>
+has part of speech <code>pos</code> and <code>((wph->f)[2] &amp; fea)</code> is not 0.
+
+<li><code>headslotopt(phrase ph, sint sl, sint opt).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that <code>wph</code>
+has a slot named <code>sl</code> having an option named <code>opt</code>.
+
+<li><code>head2slotopt(phrase ph, sint sl1, sint opt1, sint sl2, sint opt2).</code>
+There is an initial word phrase <code>wph</code>
+having the same boundaries as <code>ph->wframe</code> such that <code>wph</code>
+has a slot named <code>sl1</code> having an option named <code>opt1</code> and also
+has a slot named <code>sl2</code> having an option named <code>opt2</code>.
+
+<li><code>heslot(sint sl).</code>
+Means <code>eslot(hph, sl)</code>.
+
+<li><code>hfea(sint fea).</code>
+Means <code>hasffea(hf, fea)</code>.
+
+<li><code>hheadpf(sint pos, sint fea).</code>
+Means <code>headpf(hph, pos, fea)</code>.
+
+<li><code>hheadpos(sint pos).</code>
+Means <code>headpos(hph, pos)</code>.
+
+<li><code>hlb.</code>
+Means <code>hph->lb</code>.
+
+<li><code>hlcword(st w).</code>
+Means that <code>hph->wframe->lcword</code> equals <code>w</code>.
+
+<li><code>hlheadpf(sint pos,sint fea).</code>
+Means <code>wordpf(hph->lb+1, pos, fea)</code>.
+
+<li><code>hlheadpos(sint pos).</code>
+Means <code>wordpos(hph->lb+1, pos)</code>.
+
+<li><code>hnextpf(sint pos, sint fea).</code>
+The head word of <code>ph</code> is not the last word of the sentence,
+and its word number <code>n</code> satisfies
+<code>wordpf(n+1, pos, fea)</code>.
+
+<li><code>hnextpos(sint pos).</code>
+The head word of <code>ph</code> is not the last word of the sentence,
+and its word number <code>n</code> satisfies
+<code>wordpos(n+1, pos)</code>.
+
+<li><code>hnextword(st wd).</code>
+The head word of <code>ph</code> is not the last word of the sentence,
+and its word number <code>n</code> satisfies the condition that
+<code>wd</code> equals <code>sgh->segword[n+1]->lcword</code>.
+
+<li><code>hpos.</code>
+Means the part of speech of <code>hf</code>,
+which is <code>(sint)(*hf &amp; pmsk)</code>.
+
+<li><code>hposfea(sint pos, sint fea).</code>
+Means <code>posfea(hph, pos, fea)</code>.
+
+<li><code>hprevpf(sint pos, sint fea).</code>
+The head word of <code>hph</code> is not the first word of the sentence,
+and its word number <code>n</code> satisfies
+<code>wordpf(n-1, pos, fea)</code>.
+
+<li><code>hprevpos(sint pos).</code>
+The head word of <code>hph</code> is not the first word of the sentence,
+and its word number <code>n</code> satisfies
+<code>wordpos(n-1, pos)</code>.
+
+<li><code>hprevword(st wd).</code>
+The head word of <code>hph</code> is not the first word of the sentence,
+and its word number <code>n</code> satisfies the condition that <code>wd</code>
+equals <code>sgh->segword[n - 1]->lcword</code>.
+
+<li><code>hrb.</code>
+Means <code>hph->rb</code>.
+
+<li><code>hsens.</code>
+Means <code>hph->wframe->sense</code>.
+
+<li><code>hsense(st sns).</code>
+Means that <code>sns</code> equals <code>hph->wframe->sense</code>.
+
+<li><code>hword(st w).</code>
+Means that <code>w</code> equals  <code>hph->wframe->word</code>.
+
+<li><code>isa(phrase ph, st semtype).</code>
+This means that the phrase <code>ph</code> has the semantic type <code>semtype</code>,
+which should be a string representing a (single) semantic type
+(not a Boolean combination of types).
+This succeeds iff either one of the terms in the list <code>ph->sf</code>
+is a <i>subtype</i> of <code>semtype</code>.
+For a string <code>s</code> to be a <i>subtype</i>
+means that either <code>t</code> equals <code>t</code>, or when you look up <code>s</code>
+in <code>ont.lx</code>, <code>t</code> is within the list of values found
+(<code>t</code> is among the types that are higher than <code>s</code>).
+
+<li><code>isexseg(sghn sgh).</code>
+Means that the segment ends in a an exclamation mark,
+and for Spanish it also begins with an inverted exclamation.
+
+<li><code>ismwphpos(sghn sgh, phrase ph, sint pos).</code>
+There is a multiword analysis with part of speech <code>pos</code>
+which spans the same part of the sentence that <code>ph</code> does.
+
+<li><code>isqseg(sghn sgh).</code>
+Means that the segment ends in a a question mark,
+and for Spanish it also begins with an inverted question mark.
+
+<li><code>lastnode(phrase ph).</code>
+Returns the word number of the last word in <code>ph</code>.
+If the last word is a multiword, this number is the word number
+of the head of that multiword.
+
+<li><code>lastrmod(phrase ph, phrase *mph).</code>
+Means that <code>ph</code> has a right modifier, and it assigns to
+<code>mph</code> the filler phrase of last one (in sentence order).
+
+<li><code>lastsllmod(phrase ph, sint sl, phrase *mph).</code>
+Means that <code>ph</code> has a left modifier, and the
+the last one (in sentence order) fills slot <code>sl</code>,
+and it assigns the filler phrase of this to <code>mph</code>.
+
+<li><code>lastslrmod(phrase ph, sint sl, phrase *mph).</code>
+Means that <code>ph</code> has a right modifier, and the
+the last one (in sentence order) fills slot <code>sl</code>,
+and it assigns the filler phrase of this to <code>mph</code>.
+
+<li><code>lastw(phrase ph, st word).</code>
+The lower case form of the last word of <code>ph</code> equals <code>word</code>.
+Last word must be a single word (not multiword).
+
+<li><code>lbcite(phrase ph, st cite).</code>
+The leftmost word of <code>ph</code> has some initial word phrase analysis
+with part of speech citation form <code>cite</code>.
+
+<li><code>lbf(phrase ph, lint feamask, lint feaval).</code>
+The leftmost word of <code>ph</code> has some initial word phrase analysis
+<code>wph</code> such that
+<code>(wph->f)[0] &amp; feamask</code> equals <code>feaval</code>.
+Not recommended.
+
+<li><code>lbpf(phrase ph, sint pos, sint fea).</code>
+The leftmost word of <code>ph</code> has some initial word phrase analysis
+with part of speech <code>pos</code> and feature <code>fea</code>.
+
+<li><code>lbpos(phrase ph, sint pos).</code>
+The leftmost word of <code>ph</code> has some initial word phrase analysis
+with part of speech <code>pos</code>.
+
+<li><code>Lbpunc(sghn sgh, sint puncid, phrase ph).</code>
+At the left boundary of <code>ph</code>, there is a punctuation mark
+with <code>id</code> field equal to <code>puncid</code>.
+
+<li><code>lcommafree(phrase hph, phrase mph).</code>
+There is no comma whose position index <code>n</code> satisfies
+<code>(mph->rb</code> <i><</i> <code>n</code> <i><=</i> <code>hph->wframe->lb</code>.
+
+<li><code>lheadpf(phrase ph, sint pos, sint fea).</code>
+Means <code>wordpf(ph->lb+1, pos, fea)</code>.
+
+<li><code>lheadpos(ph, pos).</code>
+Means <code>wordpos(ph->lb+1, pos)</code>.
+
+<li><code>lmodcite(phrase ph, sint sl, st cite).</code>
+There is a left modifier of <code>ph</code> filling slot <code>sl</code> and
+having citation form <code>cite</code>.
+
+<li><code>lmodf(phrase ph, sint sl, lint feamask, lint feaval).</code>
+There is a left modifier phrase <code>mph</code> of <code>ph</code>
+filling slot <code>sl</code> and such that
+<code>((mph->f)[0] &amp; feamask)</code> equals <code>feaval</code>.
+Not recommended.
+
+<li><code>lmodff(phrase ph, lint feamask, lint feaval).</code>
+There is a left modifier phrase <code>mph</code> of <code>ph</code>
+such that
+<code>((mph->f)[0] &amp; feamask)</code> equals <code>feaval</code>.
+Not recommended.
+
+<li><code>lmodoptcite(phrase ph, sint sl, sint opt, st cite).</code>
+There is a left modifier phrase of <code>ph</code>
+filling slot <code>sl</code> with option <code>opt</code> and having citation form
+<code>cite</code>.
+
+<li><code>lmodoptf(phrase ph, sint sl, sint opt, sint fea).</code>
+There is a left modifier phrase of <code>ph</code>
+filling slot <code>sl</code> with option <code>opt</code> and having feature <code>fea</code>.
+
+<li><code>lmodoptmd(phrase ph, sint sl, sint opt, mod *md).</code>
+There is a left modifier of <code>ph</code> with slot <code>sl</code> and option
+<code>opt</code>; and <code>md</code> is assigned the first such.
+
+<li><code>lmodoptph(phrase ph, sint sl, sint opt, phrase *mph).</code>
+There is a left modifier phrase of <code>ph</code>
+filling slot <code>sl</code> with option <code>opt</code>; and <code>mph</code> is
+assigned the first such.
+
+<li><code>lmodph(phrase ph, sint sl, phrase *mph).</code>
+There is a left modifier phrase of <code>ph</code>
+filling slot <code>sl</code>; and <code>mph</code> is assigned the first such.
+
+<li><code>lmodslotopt(phrase ph, sint sl, sint opt).</code>
+There is a left modifier phrase of <code>ph</code>
+filling slot <code>sl</code> with option <code>opt</code>.
+
+<li><code>lmod1slotopt(phrase ph, sint sl, sint opt).</code>
+The phrase <code>ph</code> has a left modifier, and the first
+left modifier fills slot <code>sl</code> with option <code>opt</code>.
+
+<li><code>lplength(ph).</code>
+Means the length <code>ph->wframe->lb - ph->lb</code>.
+
+<li><code>lpuncfree(phrase hph, phrase mph).</code>
+There is no punctuation token whose position index <code>n</code> satisfies
+<code>mph->rb</code> <i><</i> <code>n</code> <i><=</i> <code>hph->wframe->lb</code>.
+
+<li><code>lstsloplmod(phrase ph, sint sl, sint opt, phrase *mph).</code>
+The last left modifier phrase of <code>ph</code> fills slot <code>sl</code>
+with option <code>sl</code>, and <code>mph</code> is assigned this phrase.
+
+<li><code>lstsloprmod(phrase ph, sint sl, sint opt, phrase *mph).</code>
+The last right modifier phrase of <code>ph</code> (in sentence order)
+fills slot <code>sl</code> with option <code>sl</code>, and <code>mph</code>
+is assigned this phrase.
+
+<li><code>l1slopt(phrase ph, sint sl, sint opt, phrase *mph).</code>
+There is a left modifier phrase of <code>ph</code>, and the first such
+fills slot <code>sl</code> with option <code>opt</code>;
+and <code>mph</code> is assigned to this phrase.
+
+<li><code>mcit.</code>
+Means <code>mph->wframe->cite</code>.
+
+<li><code>mcite(st c).</code>
+Means that <code>mph->wframe->cite</code> equals <code>c</code>.
+
+<li><code>mcitel(st c).</code>
+Means that <code>c</code> is a member of <code>mph->wframe->citel</code>.
+
+<li><code>mcitl.</code>
+Means <code>mph->wframe->citel</code>.
+
+<li><code>meslot(sint sl).</code>
+Means that <code>eslot(mph, sl)</code>.
+
+<li><code>mfea(sint fea).</code>
+Means that <code>hasffea(mf, fea)</code>.
+
+<li><code>mfirstlmod(phrase ph, mod *md, phrase *mph).</code>
+Means that <code>ph</code> has a left modifier, and it assigns the first
+such to <code>md</code> and the filler phrase of that to <code>mph</code>.
+
+<li><code>mheadpf(sint pos, sint fea).</code>
+Means that <code>headpf(mph, pos, fea)</code>.
+
+<li><code>mheadpos(sint pos).</code>
+Means that <code>headpos(mph, pos)</code>.
+
+<li><code>mkmod(sghn sgh, sint sl, slotlist origins, sint opt,
+feast f, phrase filler).</code>
+General constructor function for a <code>mod</code>.
+
+<li><code>mkphrase(sghn sgh, wordframe wframe, feast f, term sf,
+slotlist slots, modlist lmods, modlist rmods,
+double reward, double eval, double aeval, sint lb, sint rb).</code>
+General constructor function for a <code>phrase</code>.
+
+<li><code>mkslot(sghn sgh, sint name, sint wordno, slotlist origins,
+sint ob, optionlist opts, term test).</code>
+General constructor function for a <code>slot</code>.
+
+<li><code>mkwordframe(sghn sgh, sint wordno, sint type, sint id,
+st word, st lcword, st cite, stlist citel, st hdcite,
+st sense, term ssense, feast f, term sf, lstatlist lstats,
+span sp, sint lb, sint rb,
+tokenlist lmarkup, tokenlist rmarkup, slotframe frame).</code>
+General constructor function for a <code>wordframe</code>.
+
+<li><code>mlb.</code>
+Means <code>mph->lb.</code>
+
+<li><code>mlcword(st w).</code>
+Means that <code>mph->wframe->lcword</code> equals <code>w</code>.
+
+<li><code>mlheadpf(sint pos, sint fea).</code>
+Means that <code>wordpf(mph->lb+1, pos, fea)</code>.
+
+<li><code>mlheadpos(sint pos).</code>
+Means that <code>wordpos(mph->lb+1, pos)</code>.
+
+<li><code>mnextpf(sint pos, sint fea).</code>
+Means that the head word of <code>mph</code> is not the last word
+in the sentence and the word number <code>n</code> of this head satisfies
+<code>wordpf(n+1, pos, fea)</code>.
+
+<li><code>mnextpos(sint pos).</code>
+Means that the head word of <code>mph</code> is not the last word
+in the sentence and the word number <code>n</code> of this head satisfies
+<code>wordpos(n+1, pos)</code>.
+
+<li><code>mnextword(st wd).</code>
+Means that the head word of <code>mph</code> is not the last word
+in the sentence and the word number <code>n</code> of this head satisfies
+the condition that <code>wd</code> equals <code>sgh->segword[n+1]->lcword</code>.
+
+<li><code>mpos.</code>
+Means the part of speech of <code>mf</code>,
+which is <code>sint)(*mf &amp; pmsk)</code>.
+
+<li><code>mposfea(sint pos, sint fea).</code>
+Means that <code>posfea(mph, pos, fea)</code>.
+
+<li><code>mprevpf(sint pos, sint fea).</code>
+Means that the head word of <code>mph</code> is not the first word
+in the sentence and the word number <code>n</code> of this head satisfies
+<code>wordpf(n-1, pos, fea)</code>.
+
+<li><code>mprevpos(sint pos).</code>
+Means that the head word of <code>mph</code> is not the first word
+in the sentence and the word number <code>n</code> of this head satisfies
+<code>wordpos(n-1, pos)</code>.
+
+<li><code>mprevword(st wd).</code>
+Means that the head word of <code>mph</code> is not the first word
+in the sentence and the word number <code>n</code> of this head satisfies
+the condition that <code>wd</code> equals <code>sgh->segword[n-1]->lcword</code>.
+
+<li><code>mrb.</code>
+Means <code>mph->rb</code>.
+
+<li><code>msens.</code>
+Means <code>mph)->wframe->sense</code>.
+
+<li><code>msense(st sns).</code>
+Means that <code>sns</code> equals <code>mph->wframe->sense</code>.
+
+<li><code>mwcite(phrase ph).</code>
+Means that the head of <code>ph</code> is a multiword, in the sense that
+<code>ph->wframe->cite</code> does not contain a blank or '<code>-</code>' or '<code>/</code>'.
+
+<li><code>mword(st w).</code>
+Means that <code>w</code> equals <code>mph->wframe->word</code>.
+
+<li><code>npuncid(sint n, sint id).</code>
+Means that at position <code>n</code> in the sentence there is a
+punctuation token with the given <code>id</code>.
+
+<li><code>npunct(sint n, sint type).</code>
+Means that at position <code>n</code> in the sentence there is a
+punctuation token with the given <code>type</code>.
+
+<li><code>onelmod(phrase ph, phrase *mph).</code>
+Means that <code>ph</code> has only one left modifier, and it
+assigns <code>mph</code> to the phrase filler of this.
+
+<li><code>onermod(phrase ph, phrase *mph).</code>
+Means that <code>ph</code> has only one right modifier, and it
+assigns <code>mph</code> to the phrase filler of this.
+
+<li><code>onlylmod(phrase ph, sint sl, phrase *mph).</code>
+Means that <code>ph</code> has only one left modifier and
+this unique left modifier fills slot <code>sl</code>.
+It assigns <code>mph</code> to the phrase filler of this.
+
+<li><code>onlyolmod(phrase ph, sint sl, sint opt, phrase *mph).</code>
+Means that <code>ph</code> has only one left modifier and
+this unique left modifier fills slot <code>sl</code> and option <code>opt</code>.
+It assigns <code>mph</code> to the phrase filler of this.
+
+<li><code>onlyormod(phrase ph, sint sl, sint opt, phrase *mph).</code>
+Means that <code>ph</code> has only one right modifier and
+this unique right modifier fills slot <code>sl</code> and option <code>opt</code>.
+It assigns <code>mph</code> to the phrase filler of this.
+
+<li><code>onlyrmod(phrase ph, sint sl, phrase *mph).</code>
+Means that <code>ph</code> has only one right modifier and
+this unique right modifier fills slot <code>sl</code>.
+It assigns <code>mph</code> to the phrase filler of this.
+
+<li><code>optnmem(sghn sgh, sint optn, optionlist opts).</code>
+There is an option in the list <code>opts</code> that has name <code>optn</code>.
+
+<li><code>phcite(phrase ph).</code>
+Means <code>ph->wframe->cite</code>.
+
+<li><code>phid(phrase ph).</code>
+Means <code>ph->wframe->id</code>.
+
+<li><code>phlb(phrase ph).</code>
+Means <code>ph->lb</code>.
+
+<li><code>phpos(phrase ph).</code>
+Means the part of speech of <code>ph</code>, which is
+<code>(sint)((ph->f)[0] &amp; pmsk)</code>.
+
+<li><code>phrasen(sghn sgh, sint n, phrase ph, phrase *phn).</code>
+Means that some one of the head words of <code>ph</code>
+on some level (could be embedded) has word number <code>n</code>.
+
+<li><code>phrb(phrase ph).</code>
+
+<li><code>phsense(phrase ph).</code>
+Means <code>ph->wframe->sense</code>.
+
+<li><code>phtype(phrase ph).</code>
+Means <code>ph->wframe->type</code>.
+
+<li><code>phword(phrase ph).</code>
+Means <code>ph->wframe->word</code>.
+
+<li><code>phwordno(phrase ph).</code>
+Means <code>ph->wframe->wordno</code>.
+
+<li><code>plength(phrase ph).</code>
+Means <code>ph->rb - ph->lb</code>.
+
+<li><code>posfea(phrase ph, sint pos, sint fea).</code>
+Means that <code>ph</code> has part of speech <code>pos</code> and feature <code>fea</code>.
+
+<li><code>posffea(feast f, sint pos, sint fea).</code>
+Means that <code>f</code> has part of speech <code>pos</code> and feature <code>fea</code>.
+
+<li><code>ppos(phrase ph, sint pos).</code>
+Means that <code>ph</code> has part of speech <code>pos</code>.
+
+<li><code>prevpos(phrase ph, sint pos).</code>
+Means that there is an initial word phrase just to the left of
+<code>ph</code> whose part of speech is <code>pos</code>.
+
+<li><code>prevslotopt(phrase ph, sint sl, sint opt).</code>
+Means that there is an initial word phrase just to the left of
+<code>ph</code> which has a slot named <code>sl</code> with option named <code>opt</code>.
+
+<li><code>puncfree(phrase ph).</code>
+There is no punctuation or tag token with index strictly
+between the left and right boundaries of <code>ph</code>
+(there may be some on the boundaries).
+
+<li><code>puncin(sint puncid, phrase ph).</code>
+There is a punctuation or tag token with index strictly
+between the left and right boundaries and having <code>id</code>
+field equal to <code>puncid</code>.
+
+<li><code>quoted(phrase ph).</code>
+There is an opening quote or highlight token at the left boundary
+of <code>ph</code> and the corresponding closing token is at the
+right boundary.
+
+<li><code>raiseslots.</code>
+An abbreviation for
+<code>Raiseslots(sgh, hslot, opt, mph, hph, raisedslots)</code>.
+
+<li><code>Raiseslots(sghn sgh, slot hslot, sint opt,
+phrase mph, phrase hph, slotlist *raisedslots).</code>
+This is written in X<code>syn</code>, and is responsible for both
+raising of suitable slots from <code>mph</code> to the <code>slots</code>
+field of <code>hph</code>, and for checking that the non-raised slots
+are not obligatory.
+
+<li><code>rbcite(phrase ph, st cite).</code>
+The rightmost word of <code>ph</code> has some initial word phrase analysis
+with part of speech citation form <code>cite</code>.
+
+<li><code>rbf(phrase ph, lint feamask, lint feaval).</code>
+The rightmost word of <code>ph</code> has some initial word phrase analysis
+<code>wph</code> such that
+<code>(wph->f)[0] &amp; feamask</code> equals <code>feaval</code>.
+Not recommended.
+
+<li><code>rbnextpos(phrase ph, sint pos).</code>
+Means that the rightmost word of <code>ph</code> is not the last word
+in the sentence and the word number <code>n</code> of this word satisfies
+<code>wordpos(n + 1, pos)</code>.
+
+<li><code>rbpf(phrase ph, sint pos, sint fea).</code>
+The righttmost word of <code>ph</code> has some initial word phrase analysis
+with part of speech <code>pos</code> and feature <code>fea</code>.
+
+<li><code>rbpos(phrase ph, sint pos).</code>
+The righttmost word of <code>ph</code> has some initial word phrase analysis
+with part of speech <code>pos</code>.
+
+<li><code>rbposph(phrase ph, sint pos, phrase *ph1).</code>
+The righttmost word of <code>ph</code> has some initial word phrase analysis
+<code>wph</code> with part of speech <code>pos</code>, and <code>ph1</code> is
+assigned to <code>wph</code>.
+
+<li><code>Rbpunc(sghn sgh, sint puncid, phrase ph).</code>
+At the right boundary of <code>ph</code>, there is a punctuation mark
+with <code>id</code> field equal to <code>puncid</code>.
+
+<li><code>rcommafree(phrase hph, phrase mph).</code>
+There is no comma whose position index <code>n</code> satisfies
+<code>hph->wframe->rb</code> <i>>=</i> <code>n</code> <i><</i> <code>mph->lb</code>.
+
+<li><code>realconj(phrase ph, st *conjcite).</code>
+The phrase <code>ph</code> is a coordinated phrase where the conjunction
+is a &quot;real conjunction&quot; (like <i>and</i>) as opposed to a
+punctuation conjunction;
+or else, recursively, the right conjunct of <code>ph</code> has this property.
+The citation form of the first such conjunction found is assigned
+to <code>conjcite</code>.
+
+<li><code>rmodcite(phrase ph, sint sl, st cite).</code>
+There is a right modifier of <code>ph</code> filling slot <code>sl</code> and
+having citation form <code>cite</code>.
+
+<li><code>rmodf(phrase ph, sint sl, lint feamask, lint feaval).</code>
+There is a right modifier phrase <code>mph</code> of <code>ph</code>
+filling slot <code>sl</code> and such that
+<code>((mph->f)[0] &amp; feamask)</code> equals <code>feaval</code>.
+Not recommended.
+
+<li><code>rmodff(phrase ph, lint feamask, lint feaval).</code>
+There is a right modifier phrase <code>mph</code> of <code>ph</code>
+such that
+<code>((mph->f)[0] &amp; feamask)</code> equals <code>feaval</code>.
+Not recommended.
+
+<li><code>rmodoptcite(phrase ph, sint sl, sint opt, st cite).</code>
+There is a right modifier phrase of <code>ph</code>
+filling slot <code>sl</code> with option <code>opt</code> and having citation form
+<code>cite</code>.
+
+<li><code>rmodoptf(phrase ph, sint sl, sint opt, sint fea).</code>
+There is a right modifier phrase of <code>ph</code>
+filling slot <code>sl</code> with option <code>opt</code> and having feature <code>fea</code>.
+
+<li><code>rmodoptmd(phrase ph, sint sl, sint opt, mod *md).</code>
+There is a right modifier of <code>ph</code> with slot <code>sl</code> and option
+<code>opt</code>; and <code>md</code> is assigned the first such.
+
+<li><code>rmodoptph(phrase ph, sint sl, sint opt, phrase *mph).</code>
+There is a right modifier phrase of <code>ph</code>
+filling slot <code>sl</code> with option <code>opt</code>; and <code>mph</code> is
+assigned the first such.
+
+<li><code>rmodph(phrase ph, sint sl, phrase *mph).</code>
+There is a right modifier phrase of <code>ph</code>
+filling slot <code>sl</code>; and <code>mph</code> is assigned the first such.
+
+<li><code>rmodslotopt(phrase ph, sint sl, sint opt).</code>
+There is a right modifier phrase of <code>ph</code>
+filling slot <code>sl</code> with option <code>opt</code>.
+
+<li><code>rmod1slotopt(phrase ph, sint sl, sint opt).</code>
+The phrase <code>ph</code> has a right modifier, and the first
+left modifier fills slot <code>sl</code> with option <code>opt</code>.
+
+<li><code>rplength(phrase ph).</code>
+Means <code>ph->rb - ph->wframe->rb</code>.
+
+<li><code>rpuncfree(phrase hph, phrase mph).</code>
+There is no punctuation token whose position index <code>n</code> satisfies
+<code>hph->wframe->rb</code> <code>></code> <code>n</code> <code><</code> <code>mph->lb</code>.
+
+<li><code>rquoted(phrase ph).</code>
+On the right boundary of <code>ph</code> there is a quote token
+or closing highlight token.
+
+<li><code>rslotopt(phrase ph, sint *sl, sint *opt, phrase *ph1).</code>
+The rightmost modifier (in surface order) of <code>ph</code> exists.
+The slot it fills is assigned to <code>sl</code>, the option to <code>opt</code>,
+and the filler phrase to <code>ph1</code>.
+
+<li><code>r1slopt(phrase ph, sint sl, sint opt, phrase *mph).</code>
+There is a right modifier phrase of <code>ph</code>, and the last such
+(in surface order) fills slot <code>sl</code> with option <code>opt</code>;
+and <code>mph</code> is assigned to the filler phrase.
+
+<li><code>satfillraise.</code>
+An abbreviation for
+<code>Satfillraise(sgh, mph, hph, mf, hf, hslots, raisedslots)</code>.
+
+<li><code>Satfillraise(sghn sgh, phrase mph, phrase hph, feast mf,
+feast hf, slotlist *hslots, slotlist *raisedslots).</code>
+This function is written in X<code>syn</code>, and applies to fillers
+of the <code>pred en)</code> slot.
+The idea of the &quot;<code>fill</code>&quot; part of the name is that
+a passivized object-type of slot is &quot;filled&quot; implicitly
+by the passivization.
+The idea of the &quot;<code>raise</code>&quot; part is that other raisable
+slots of <code>mph</code> are raised to <code>hph</code>.
+The idea of the &quot;<code>Sat</code>&quot; part is that otherwise the
+unfilled slots of <code>mph</code> are &quot;satisfied&quot;, in the sense that they
+are not obligatory.
+
+<li><code>satisfied.</code>
+Abbreviation for <code>Satisfied(sgh, mph)</code>.
+
+<li><code>Satisfied(sghn sgh, phrase ph).</code>
+This is provided in the shell.
+The rough idea is that we want to use <code>ph</code> as a filler
+phrase and <code>ph</code> should be &quot;satisfied&quot; in the sense that
+all its unfilled slots are optional.
+But it can fail in other ways than having an unfilled obligatory slot.
+For English, it fails if <code>ph</code> has an extraposed <code>subj</code> slot.
+(Footnote: Cases like <i>Who did you say he thought was there?</i> do not
+call <code>Satisfied</code> at the spot where the <code>subj</code> is raised.)
+For French and German, there is a similar failure for
+extraposed subjects unless they are agentive subjects.
+
+<li><code>satisfill(sint en, phrase ph, slot *extsl).</code>
+This function is written in X<code>syn</code>, and applies to fillers of slots
+like <code>comp en)</code> that take a passivized past participle phrase.
+The idea of the &quot;<code>fill</code>&quot; part of the name is that
+a passivized object-type of slot is &quot;filled&quot; implicitly
+by the passivization.
+The idea of the &quot;<code>satis</code>&quot; part is that otherwise the
+unfilled slots of <code>mph</code> are &quot;satisfied&quot;, in the sense that they
+are not obligatory.
+
+<li><code>satisobj(phrase ph).</code>
+The phrase <code>ph</code> has an (available) slot named <code>obj</code>
+and every slot of <code>ph</code> is either optional or named <code>obj</code>.
+
+<li><code>satorfill(phrase ph).</code>
+Similar to <code>satisfill</code>; see existing X<code>syn</code> for the differences.
+
+<li><code>SSatisfied(sghn sgh, phrase ph, sint *badsupport).</code>
+Like <code>satisfied</code>, but in addition if an obligatory unfilled slot
+originates from a support verb within <code>ph</code>, then
+<code>badsupport</code> is set to 1 (otherwise it is 0).
+
+<li><code>upprpn(sghn sgh, phrase ph).</code>
+The <code>sense</code> field of the wordframe of <code>ph</code> begins with
+a capital letter, and (the head of) <code>ph</code> is a proper noun.
+
+<li><code>wlcssns(sint n, sint *n1, st *lcword, term *ssense).</code>
+When there are no multiwords involved, this looks at
+the first initial word phrase at position <code>n</code>
+and sets <code>lcword</code> to its <code>lcword</code>, <code>ssense</code>
+to its <code>ssense</code>, and <code>n1</code> to <code>n</code>.
+Otherwise it searches to the right of position <code>n</code>
+until it finds an initial multiword phrase <code>wph</code>, and it sets
+<code>lcword</code> and <code>ssense</code> to the appropriate fields
+of <code>wph</code>, and sets <code>n1</code> to <code>wph->rb</code>.
+
+<li><code>wlcword(sint n, st *lcword).</code>
+This says that there is an initial word phrase at position <code>n</code>,
+and it sets <code>lcword</code> to its <code>lcword</code>.
+
+<li><code>wordf(sint wordno, lint feamask, lint feaval).</code>
+This says that there is an initial word phrase <code>wph</code>
+at position <code>n</code> with <code>wph->f)[0] &amp; feamask)</code>
+equal to <code>feaval</code>.
+Not recommended.
+
+<li><code>wordpf(sint n, sint pos, sint fea).</code>
+There is an initial word phrase position <code>n</code>
+having part of speech <code>pos</code> and feature <code>fea</code>.
+
+<li><code>wordpos(sint n, sint pos).</code>
+There is an initial word phrase position <code>n</code>
+having part of speech <code>pos</code>.
+
+<li><code>wphpos(phrase ph).</code>
+Means the part of speech of the <code>wframe</code> of <code>ph</code>,
+which is <code>sint)((ph->wframe->f)[0] &amp; pmsk)</code>.
+This is usually the same as <code>phpos(ph)</code>,
+but for a coordinated phrase <code>ph</code>, <code>wphpos(ph)</code>
+is <code>conj</code>, whereas <code>phpos(ph)</code> is usually the part of
+speech of its conjuncts.
+
+</ul>
+
+<A NAME="functionsmissing"> </A>
+<h2>Built-in ESG functions (missing descriptions) [ <A HREF="#documenttop">back to top</A> ]</h2>
+
+<ul>
+<li><code>actsa(sghn sgh, st sja).</code>   Check subject area set at runtime.
+<li><code>Allconjpf(sghn sgh, phrase ph, sint pos, sint fea).</code>   Check coordinated phrase <code>ph</code> with part of speech pos and feature fea.
+<li><code>allconjpf(ph, pos, fea).</code>  Macro for <code>Allconjpf(sgh, ph, pos, fea).</code>
+<li><code>Allhdslotopt(sghn sgh, phrase ph, sint sl, sint opt).</code>  ...
+<li><code>allhdslotopt(x, y, z).</code>  Macro for <code>Allhdslotopt(sgh, x, y, z).</code>
+<li><code>allpf(sghn sgh, phrase ph, sint pos, sint fea).</code>  ...
+<li><code>citest(stlist ctest, stlist citel).</code>   Tests that <code>ctest</code> is empty OR some member of <code>citel</code> is a member of <code>ctest</code>.
+<li><code>Crealconj(sghn sgh, phrase ph, st ccite).</code>   Means that phrase <code>ph</code> is a real conjunction phrase as opposed to comma phrase and its citation form is the conjunction word.
+<li><code>crealconj(x, y).</code>  Macro for <code>Crealconj(sgh, x, y).</code>
+<li><code>Eadvopt(sghn sgh, phrase ph, st advrb).</code>   Tests that <code>advrb</code> is a particle adverb (like <i>&quot;back&quot;</i> or <i>&quot;ahead&quot;</i>), and <code>ph</code> has a slot with an option that either asks for advrb or is <code>lo</code>.
+<li><code>eadvopt(x, y).</code>  Macro for <code>Eadvopt(sgh, x, y).</code>
+<li><code>ebslotopt(phrase ph, slot hslot, sint sl, sint opt).</code>   The head of phrase <code>ph</code> has among its slots slot <code>sl</code> with option <code>opt</code>.
+<li><code>deobslots(sghn sgh, slotlist *slots).</code>  Takes the slotlist <code>*slots</code> and makes any occurrences of <code>obj</code> or <code>objprep</code> in the list optional.  &quot;deob&quot; suggests &quot;de-obligatory&quot;.
+<li><code>eprepslopt(phrase ph, st prp, sint sln).</code>  Phrase <code>ph</code> with preposition <code>prp</code> in unfilled slot <code>sln</code>.
+<li><code>ffea(f, fea).</code>  Macro for <code>Hasffea(sgh, f, fea).</code>  ...
+<li><code>filltest(sghn sgh, term test, phrase mph, phrase hph, slotlist *raisedslots, double *evaladd, double *rewardadd).</code>  ...
+<li><code>firstmod(phrase ph, sint sl, phrase *mph).</code>  Means that phrase <code>ph</code> has modifier, the first one filling slot <code>sl</code> and it assigns to <code>*mph</code> the first such.
+<li><code>firstsolmod(phrase ph, sint sl, sint opt, phrase *mph).</code>  Means that phrase <code>ph</code> has first left modifier, the first one filling slot <code>sl</code> with option <code>opt</code> and it assigns to <code>*mph</code> to the first such.
+<li><code>firstsormod(phrase ph, sint sl, sint opt, phrase *mph).</code>  Means that phrase <code>ph</code> has right modifier, the first one filling slot <code>sl</code> with option <code>opt</code> and it assigns to <code>*mph</code> to the first such.
+<li><code>firstrmod(phrase ph, phrase *mph).</code>  The phrase <code>ph</code> has a right modifier and it assigns <code>*mph</code> to the first such.
+<li><code>Firstw(sghn sgh, phrase ph, st word).</code>  First word of phrase <code>ph</code> is word <code>word</code>.
+<li><code>firstw(x, y).</code>  Macro for <code>Firstw(sgh, x, y).</code>
+<li><code>freeslotopt(phrase ph, sint sl, sint opt).</code>  There is a phrase <code>ph</code> with slot <code>sl</code> with option <code>opt</code> that is not filled.
+<li><code>haslmodopt(phrase ph, sint sl, sint opt).</code>  There is a phrase <code>ph</code> with left modifier filling slot <code>sl</code> with option <code>opt</code>.
+<li><code>hasrmodopt(phrase ph, sint sl, sint opt).</code>  There is a phrase <code>ph</code> with right modifier filling slot <code>sl</code> with option <code>opt</code>.
+<li><code>Haspfrealconj(sghn sgh, phrase ph, sint pos, sint fea).</code>  ...
+<li><code>haspfrealconj(x, y, z).</code>  Macro for <code>Haspfrealconj(sgh, x, y, z).</code>
+<li><code>haslmodpos(phrase ph, sint sl, sint pos).</code>  The phrase <code>ph</code> has left modifier filling slot <code>sl</code> with part of speech <code>pos</code>.
+<li><code>hasrmodpos(phrase ph, sint sl, sint pos).</code>  The phrase <code>ph</code> has right modifier filling slot <code>sl</code> with part of speech <code>pos</code>.
+<li><code>hasrmwpos(sghn sgh, sint n, sint pos).</code>  There is a multiword with part of speech <code>pos</code> at right boundary of a phrase.
+<li><code>Hd2sloptcite(sghn sgh, phrase ph, sint sl1, sint opt1, sint sl2, sint opt2, st cite).</code>  There is a phrase <code>ph</code> filling <code>slot1</code> with option <code>opt1</code> and <code>slot2</code> with option <code>opt2</code> and having citation form <code>cite</code>.
+<li><code>Hdpfsat(sghn sgh, phrase ph, sint pos, sint fea).</code>  Tests that there is an associated whphrase w<code>ph</code> for <code>ph</code> (a member of <code>sgh->wphrases[ph->wframe->rb]</code> with <code>wph->lb == ph->wframe[lb]</code>) where w<code>ph</code> has the given <code>pos</code> and <code>fea</code>, and has no obligatory slots.
+<li><code>hdpfsat(x, y, z).</code>  Macro for <code>Hdpfsat(sgh, x, y, z).</code>
+<li><code>Hdposprepopt(sghn sgh, phrase ph, sint pos, st prp).</code>  ...
+<li><code>hdposprepopt(x, y, z).</code>  Macro for <code>Hdposprepopt(sgh, x, y, z).</code>
+<li><code>Hdsposprepopt(sghn sgh, phrase ph, sint pos, st prp, sint sln, sint optn).</code>  ...
+<li><code>hdsposprepopt(x, y, z, u, v).</code>  Macro for <code>Hdsposprepopt(sgh, x, y, z, u, v).</code>
+<li><code>Hdslot(sghn sgh, phrase ph, sint sl).</code>  There is an initial word phrase w<code>ph</code> having same boundaries as <code>ph->phrase</code> such that w<code>ph</code> has slot <code>sl</code>.
+<li><code>hdslot(x, y).</code>  Macro for <code>Hdslot(sgh, x, y).</code>
+<li><code>Headsem(sghn sgh, phrase ph, st sem).</code>  There is a phrase <code>ph</code> the head of which has semantic type <code>sem</code>.
+<li><code>headsem(ph, sem).</code>  Macro for <code>Headsem(sgh, ph, sem).</code>
+<li><code>Headpfsat(sghn sgh, phrase ph, sint pos, sint fea).</code>  Tests that there is an associated whphrase <code>wph</code> for <code>ph</code> (a member of <code>sgh->wphrases[ph->wframe->rb]</code> with <code>wph->lb == ph->wframe[lb]</code>) where w<code>ph</code> has the given pos, and has no obligatory slots, and if <code>fea >= 0</code>, <code>wph</code> does NOT have that feature.
+<li><code>headpfsat(x, y, z).</code>  Macro for <code>Headpfsat(sgh, x, y, z).</code>
+<li><code>Headsatslots(sghn sgh, phrase ph, sint pos).</code>  Tests that there is an associated whphrase <code>wph</code> for <code>ph</code> (a member of <code>sgh->wphrases[ph->wframe->rb]</code> with <code>wph->lb == ph->wframe[lb]</code>) where <code>wph</code> has the given <code>pos</code>, and has no obligatory slots.
+<li><code>headsatslots(ph, pos).</code>  Macro for <code>Headsatslots(sgh, ph, pos).</code>
+<li><code>Headlcpos(sghn sgh, phrase ph, sint pos).</code>  Means there is a phrase <code>ph</code> with part of speech <code>pos</code> in lower case.
+<li><code>headlcpos(x, y).</code>  Macro for <code>Headlcpos(sgh, x, y).</code>
+<li><code>Headucpos(sghn sgh, phrase ph, sint pos).</code>  Means there is a phrase <code>ph</code> with part of speech <code>pos</code> in upper case.
+<li><code>headucpos(x, y).</code>  Macro for <code>Headucpos(sgh, x, y).</code>
+<li><code>hdisa(ph, semtype).</code>  Macro for <code>wordisa((ph)->wframe->wordno, semtype))</code>.  Tests that higher phrase of phrase <code>ph</code> has semantic type <code>semtype</code>. 
+<li><code>hdisa0(ph, semtype).</code>  Macro for <code>wordisa0((ph)->wframe->wordno, semtype)</code>.  Tests that at least one of the semantic types of higher phrase of phrase <code>ph</code> (which are listed in <code>ph->ssf</code>) is equal to <code>semtype</code>. 
+<li><code>hsatisfill(sghn sgh, sint en, phrase ph, phrase hph, slot *extsl, double *eval).</code>  ...
+<li><code>Hsatfillraise(sghn sgh, phrase ph, phrase hph, slotlist *raisedslots,  double *eval, double *reward).</code>  ...
+<li><code>hsatfillraise</code>  Macro for <code>Hsatfillraise(sgh, mph, hph, raisedslots, eval, reward).</code>
+<li><code>Isa0(sghn sgh, phrase ph, st semtype).</code>  Tests that at least one of the semantic types of <code>ph</code> (which are listed in <code>ph->ssf</code>) is equal to <code>semtype</code>.
+<li><code>isa0(x, y).</code>  Macro for <code>Isa0(sgh, x, y).</code>  
+<li><code>Isa1(sghn sgh, phrase ph, st semtype).</code>  Tests that at least one of the semantic types of <code>ph</code> (which are listed in <code>ph->ssf</code>) is a subtype (includes equality) of <code>semtype</code>.   Same as <code>isa</code> for English.
+<li><code>isa1(x, y).</code>  Macro for <code>Isa1(sgh, x, y).</code>  Tests that at least one of the semantic types of <code>ph</code> (which are listed in <code>ph->ssf</code>) is a subtype (includes equality) of <code>semtype</code>.   Same as <code>isa</code> for English.
+<li><code>Lbalquoted(sghn sgh, phrase ph).</code>  Tests that if <code>ph</code> starts with a left quote, then somewhere within it there is a balancing right quote. 
+<li><code>lbalquoted(ph).</code>  Macro for <code>Lbalquoted(sgh, ph).</code>
+<li><code>Lbprevpf(sghn sgh, phrase ph, sint pos, sint fea).</code>  The word on left boundary of phrase <code>ph</code> has part of speech <code>pos</code> and feature <code>fea</code>.
+<li><code>lbprevpf(x, y, z).</code>  Macro for <code>Lbprevpf(sgh, x, y, z).</code>
+<li><code>Lbprevpos(sghn sgh, phrase ph, sint pos).</code>  The word on left boundary of phrase <code>ph</code> has part of speech <code>pos</code>.
+<li><code>lbprevpos(x, y).</code>  Macro for <code>Lbprevpos(sgh, x, y).</code> ...
+<li><code>Lbpf2(sghn sgh, phrase ph, sint pos, sint fea1, sint fea2).</code>  The word on left boundary of phrase <code>ph</code> has part of speech <code>pos</code>, features <code>fea1</code> and <code>fea2</code>.
+<li><code>lbpf2(x, y, z, w).</code>  Macro for <code>Lbpf2(sgh, x, y, z, w).</code>
+<li><code>Lmdfea(sghn sgh, phrase ph, sint fea).</code>  Means that phrase <code>ph</code> has left modifier with feature <code>fea</code>.
+<li><code>lmdfea(p, f).</code>  Macro for <code>Lmdfea(sgh, p, f).</code>
+<li><code>Lmodfea(sghn sgh, phrase ph, sint sl, sint fea).</code>  Means that phrase <code>ph</code> has left modifier filling slot <code>sl</code> with feature <code>fea</code>.
+<li><code>lmodfea(p, s, f).</code>  Macro for <code>Lmodfea(sgh, p, s, f).</code>
+<li><code>Lmodposfea(sghn sgh, phrase ph, sint sl, sint pos, sint fea).</code>  ...
+<li><code>lmodposfea(ph, sl, pos, fea).</code>  Macro for <code>Lmodposfea(sgh, ph, sl, pos, fea).</code>
+<li><code>lmodsense(phrase ph, sint sl, st sense).</code>  Means that phrase <code>ph</code> has left modifier filling slot <code>sl</code> with specific <code>sense</code>.
+<li><code>lowrmod(phrase ph, sint sl, phrase *mph).</code>  For this call to succeed (return 1), <code>ph</code> must have a right modifier, and the last such must fill slot <code>sl</code>.  It then goes down the right boundary of the tree, always checking for a rightmost modifer and requiring that it fills <code>sl</code>. It finds the lowest such, and sets <code>*mph</code> to that.
+<li><code>lowrmodf(sghn sgh, phrase ph, sint sl, sint fea).</code>  There is phrase <code>ph</code> with right modifier filling slot <code>sl</code> with feature <code>fea</code>.
+<li><code>LRpuncid(sghn sgh, sint node1, sint node2, sint id).</code>  ...
+<li><code>lrpuncid(x, y, z).</code>  Macro for <code>LRpuncid(sgh, x, y, z).</code>
+<li><code>misa0(fea).</code>  Macro for <code>isa0(mph, fea).</code>  Tests that at least one of the semantic types of modifier phrase <code>mph</code> (which are listed in <code>ph->ssf</code>) is equal to <code>semtype</code> (<code>fea</code>). 
+<li><code>nonsppunc(sghn sgh, sint n, sint id).</code>  ...
+<li><code>Npuncspw(sghn sgh, sint node, st spword).</code>  ...
+<li><code>npuncspw(x, y).</code>  Macro for <code>Npuncspw(sgh, x, y).</code>
+<li><code>only2lmods(phrase ph, sint sl1, sint sl2, phrase *ph1, phrase *ph2).</code>  Means pharse <code>ph</code> has only 2 left modifiers with slots <code>sl1</code> and <code>sl2</code> . It assigns <code>*ph1</code> and <code>*ph2</code> to fillers of these.
+<li><code>origph(sghn sgh, slot hslot, modlist mods, phrase *ph).</code>  ...
+<li><code>pfea(ph, fea).</code>  Macro for <code>ffea(((ph)->f), fea).</code>  Phrase <code>ph</code> has feature <code>fea</code>.
+<li><code>Phtagname(sghn sgh, phrase ph, st *tagname).</code>  ...
+<li><code>phtagname(x, y).</code>  Macro for <code>Phtagname(sgh, x, y).</code>
+<li><code>Prevcite(sghn sgh, phrase ph, st cite).</code>  Means that phrase <code>ph</code> has word with citation form <code>cite</code>.
+<li><code>prevcite(x, y).</code>  Macro for <code>Prevcite(sgh, x, y).</code>
+<li><code>Prevsloptcite(sghn sgh, phrase ph, sint sln, sint optn, st cite).</code>  There is a phrase <code>ph</code> [ ........ ]
+<li><code>prevsloptcite(x, y, z, w).</code>  Macro for <code>Prevsloptcite(sgh, x, y, z, w).</code>
+<li><code>Prevopt(sghn sgh, phrase ph, sint opt).</code>  There is a phrase <code>ph</code> preceeded by phrase with option <code>opt</code>.
+<li><code>prevopt(x, y).</code>  Macro for <code>Prevopt(sgh, x, y).</code>
+<li><code>Punctin(sghn sgh, sint punctype, phrase ph).</code>  ...
+<li><code>punctin(x, y).</code>  Macro for <code>Punctin(sgh, x, y).</code>
+<li><code>purenum(sghn sgh, phrase ph).</code>  Means thee is a phrase <code>ph</code> which has feature <code>num</code> or is a digit.
+<li><code>Qtnfea(sghn sgh, phrase ph, sint fea).</code>  ...
+<li><code>qtnfea(ph, fea).</code>  Macro for <code>Qtnfea(sgh, ph, fea).</code>
+<li><code>qtnph(phrase ph, phrase *ph1).</code>  ...
+<li><code>qtnpos(phrase ph, sint pos).</code>  ...
+<li><code>Qtnposfea(sghn sgh, phrase ph, sint pos, sint fea).</code>  ...
+<li><code>qtnposfea(ph, pos, fea).</code>  Macro for <code>Qtnposfea(sgh, ph, pos, fea).</code>
+<li><code>Rbnextpf(sghn sgh, phrase ph, sint pos, sint fea).</code>  The word on right boundary of phrase <code>ph</code> has part of speech <code>pos</code> and feature <code>fea</code>.
+<li><code>rbnextpf(x, y, z).</code>  Macro for <code>Rbnextpf(sgh, x, y, z).</code>
+<li><code>Rbnxtpf2(sghn sgh, phrase ph, sint pos, sint fea1, sint fea2).</code>  ...
+<li><code>rbnxtpf2(x, y, z, w).</code>  Macro for <code>Rbnxtpf2(sgh, x, y, z, w).</code>
+<li><code>Rbpunc(sghn sgh, sint puncid, phrase ph).</code>  ...
+<li><code>rbpunc(x, y).</code>  Macro for <code>Rbpunc(sgh, x, y).</code>
+<li><code>rfrslotopt(sghn sgh, phrase ph, sint sl, sint opt, sint pos).</code>  There is a phrase <code>ph</code> with right modifier, the first one filling slot <code>sl</code> with part of speech <code>pos</code> and feature <code>fea</code>.
+<li><code>Rbpunc(sghn sgh, sint puncid, phrase ph).</code>  ...
+<li><code>rbpunc(x, y).</code>  Macro for <code>Rbpunc(sgh, x, y).</code>
+<li><code>Relisa(sghn sgh, phrase ph, sint rel, st val).</code>  ...
+<li><code>relisa(ph, rel, val).</code>  Macro for <code>Relisa(sgh, ph, rel, val).</code>
+<li><code>rmodpos(phrase ph, sint pos).</code>  Right modifier of phrase <code>ph</code> has part of speech <code>pos</code>.
+<li><code>Rmodposfea(sghn sgh, phrase ph, sint sl, sint pos, sint fea).</code>  Means that phrase <code>ph</code> has right modifier filling slot <code>sl</code> with part of speech <code>pos</code> and feature <code>fea</code>.
+<li><code>rmodposfea(ph, sl, pos, fea).</code>  Macro for <code>Rmodposfea(sgh, ph, sl, pos, fea).</code>
+<li><code>secondsolmod(phrase ph, sint sl, sint opt, phrase *mph).</code>  Second slot with option <code>opt</code> on left of phrase <code>ph</code> and <code>*mph</code> is assigned to second.
+<li><code>Slconc(ptr *p, slotlist x, slotlist y);</code>  returns <code>slotlist</code>. ...
+<li><code>slconc(x, y).</code>  Macro for <li><code>Slconc(&pt, x, y).</code>
+<li><code>stconcnoCUIs(sghn sgh, stlist x, stlist y);</code>  returns <code>stlist></code>. ... 
+<li><code>wpos(ph, pos).</code>  Macro for <code>((sint)(*(ph)->wframe->f & pmsk) == pos).</code>  The part of speech of phrase <code>ph</code> is string <code>pos</code>.
+<li><code>Wordpf2(sghn sgh, sint wordno, sint pos, sint fea1, sint fea2).</code>  There is an initial word phrase at position n with part of speech <code>pos</code>, feature <code>fea1</code> and feature <code>fea2</code>.
+<li><code>wordpf2(x, y, z, w).</code>  Macro for <code>Wordpf2(sgh, x, y, z, w).</code>
+</ul>
+
+<A NAME="flags"> </A>
+<h2>Flags [ <A HREF="#documenttop">back to top</A> ]</h2>
+
+<p class="sansserif">
+The SG system has several <i>flags</i> that can be set to control
+various aspects of parsing.
+Each flag has an integer value, which is normally either
+1 (flag is on) or 0 (flag is off),
+but some flags use other integer values.
+Default values for all flags are set by <b>XSG</b> at
+initialization time.
+
+<p class="sansserif">
+To set a flag <i>F</i> on or off in interactive mode,
+you can type <code>+</code><i>F</i> or <code>-</code><i>F</i> respectively.
+Or you can type <code>+</code><i>F</i> <i>n</i> to set the value to any
+non-negative integer <i>n</i>.
+(So <code>-</code><i>F</i> is equivalent to <code>+</code><i>F</i> 0.)
+
+<p class="sansserif">
+Here is a list (in alphabetical order)
+of the most useful flags and their meanings.
+We will usually explain what the effect of having the
+flag <i>on</i> is.
+If the description includes a phrase like &quot;if this flag is turned on&quot;,
+then this means that it is off by default.
+Some of the flags, especially ones that trace the parsing process,
+have effect only when <b>XSG</b> is compiled
+in a way that allows more tracing.
+
+<ul>
+<li><code>HobbsLF.</code>
+...
+
+<li><code>aconvertseg.</code>
+...
+
+<li><code>adjustchunks.</code>
+When chunk-lexical processing is being done,
+this enables <b>ESG</b> to apply distribution in coordinated chunks &ndash; so that e.g.
+&quot;neck and back pain&quot; shows like &quot;neck pain and back pain&quot;.
+
+<li><code>alexcore.</code>
+...
+
+<li><code>all.</code>
+Process all of the top-level parses.
+When <code>all</code> is off, only the first (best-ranked)
+parse is processed.
+<i>Processing</i> a parse means displaying it, if the flag
+<code>syn</code> is on, and calling any post-parse hook functions.
+
+<li><code>allcapprop.</code>
+The general idea of <code>allcapprop</code> is that a word that consists
+of all capital letters will be treated as a proper noun.
+But more precisely it is this:
+Suppose (1) the flag is on, (2) <i>W</i> is a word consisting of
+all capital letters and having at least two letters, and (3) the
+containing segment does not consist totally of capital letters.
+Then the system will use only <i>W</i> itself in morphology and
+lexical look-up;
+it will <i>not</i> do morphology and look-up on the lower-case
+form of <i>W</i>.
+The latter action is the default.
+For instance, if the input segment contains &quot;MAN&quot;, the
+system will look up both &quot;MAN&quot; and &quot;man&quot;.
+If <code>allcapprop</code> is on (and the segment is not all caps),
+then it will look up only &quot;MAN&quot;.
+This flag is off by default.
+
+<li><code>allcappropl.</code>
+This has the following effect.
+Suppose (1) the flag is on, (2) <i>W</i> is a word consisting of
+all capital letters and having at least two letters, (3) the
+containing segment does not consist totally of capital letters,
+and (4) there is no lexical analysis of <i>W</i> itself.
+Then the system will create a proper noun analysis for <i>W</i>.
+And, if <code>allcapprop</code> is off, the system will add any
+lexical analyses it can obtain for the decapitalized form of <i>W</i>.
+This flag is off by default.
+
+<li><code>allmorph.</code>
+For <b>ESG</b> (English <b>XSG</b>), morphological analysis is not done
+on a word that appears directly in the lexicon.
+But if this flag is turned on, such analysis is done, as well
+as returning the analysis from the lexical entry.
+
+<li><code>allnodes.</code>
+If this is turned on, then the tree lines in the default
+parse display show a circle on each nodes's treeline.
+
+<li><code>allosenses.</code>
+...
+
+<li><code>alteditor.</code>
+...
+
+<li><code>aotrace.</code>
+When this is turned on, the effects of affix operations
+in morphology are shown.
+
+<li><code>bookie.</code>
+...
+
+<li><code>capng.</code>
+This causes capitalized noun groups to be agglomerated
+into multiword proper nouns.
+The noun group can contain (capitalized) common nouns,
+proper nouns, or adjectives.
+The agglomeration will not take place unless the segment
+is an <i>lcseg</i>;
+this means that the segment contains some &quot;content words&quot;
+(nouns or verbs) in lower case.
+The flag <code>capng</code> is off by default.
+
+<li><code>capprop.</code>
+This is similar to <code>capng</code> but does not produce as many
+proper noun agglomerations.
+If the segment is an <i>lcseg</i> then it agglomerates
+sequences of capitalized words that have some proper noun analysis.
+Else it agglomerates only capitalized words that have a
+<i>unique</i> analysis and this analysis is a proper noun.
+This flag is on by default.
+
+<li><code>captitleprop.</code>
+...
+
+<li><code>captoprop.</code>
+This is the strongest of schemes for turning capitalized words
+into proper nouns.
+The basic idea is that every capitalized word <i>W</i>
+becomes a proper noun,
+but there are several exceptions, as follows:
+(1) The segment is not an <i>lcseg</i>;
+(2) <i>W</i> is the first word of the sentence, or
+the first word after a quote;
+(3) <i>W</i> is a pronoun or already has a proper noun analysis;
+(4) <i>W</i> has one of the semantic types:
+
+<pre>
+tma, propcn, meas, title, hlanguage, st_people,
+st_religion, st_discipline, mmeas, wmeas, emeas, cmeas
+</pre>
+
+This flag is off by default.
+
+<li><code>chklexdup.</code>
+...
+
+<li><code>chlex.</code>
+...
+
+<li><code>chstruct.</code>
+...
+
+<li><code>chunkstruct.</code>
+Has same effect as flag <code>hststruct</code>.
+
+<li><code>colonsep.</code>
+Basically this causes colons to be treated as segment terminators.
+It is on by default.
+But if in addition the flag <code>linemode</code> is on,
+then the flag <code>lncolonsep</code> must be off in order for colons
+to be treated as terminators.
+When colons are not terminators, they will be treated as
+punctuation conjunctions.
+
+<li><code>colparses.</code>
+...
+
+<li><code>colsgphs.</code>
+...
+
+<li><code>convertseg.</code>
+...
+
+<li><code>convertsense.</code>
+...
+
+<li><code>ctrace.</code>
+When this is turned on, the process of coordination analysis
+in parsing is shown.
+
+<li><code>ctrldstop.</code>
+...
+
+<li><code>decaplook.</code>
+...
+
+<li><code>deptree.</code>
+Controls type of parse tree display.
+Discussed above.
+
+<li><code>derivmorph.</code>
+Enables derivational morphology.
+On by default.
+
+<li><code>detectlang.</code>
+...
+
+<li><code>displinecut.</code>
+If the current input is within a <i>display tag</i>
+(see <code>dodisplays</code>), then newlines break segments,
+i.e., segments cannot span across lines.
+On by default.
+
+<li><code>doLDT.</code>
+Produce Logical Dependency Trees in <code>sgph</code> form.
+
+<li><code>doLF.</code>
+Produce Logical Dependency Trees in <code>term</code> form.
+
+<li><code>doLFsense.</code>
+When this is turned on, the word predicates in LFs are shown in <b>XSG</b>
+sense form.
+Otherwise citation forms are used.
+
+<li><code>doUTF8.</code>
+Enables processing of UTF-8 texts.
+Off by default.
+
+<li><code>do_longhk.</code>
+...
+
+<li><code>do_seghook.</code>
+...
+
+<li><code>do_sghook.</code>
+...
+
+<li><code>doauxout.</code>
+...
+
+<li><code>dodisplays.</code>
+Certain tags are designated <i>display tags</i> in the shell
+(and which ones they are depends on the formatting language).
+The flag <code>dodisplays</code>, which is on by default,
+enables processing (parsing, etc.) of text within display
+(begin and end) tags.
+
+<li><code>doindices.</code>
+...
+
+<li><code>dolangs.</code>
+Enables use of lexicon enlang.lx, which has entries like
+
+<pre>
+academia &lt; es pt lt
+</pre>
+
+showing that the English headword (<code>academia</code> in this case)
+is also a word in the indicated languages.
+Allows better recognition of (multi-)words in other languages.
+Off by default.
+
+<li><code>dolatrwd.</code>
+Enables use of lexical features of the form <code>(latrwd R)</code>
+that reward the headword as a LAT (Lexical Answer Type) by real number <code>R</code>.
+Off by default.
+
+<li><code>doparsim.</code>
+...
+
+<li><code>dopostag.</code>
+If this is turned on, <b>XSG</b> does POS tagging of the input sentence, e.g.
+
+<pre>
+The[det] cats[cnpl] leapt[vpastpl3] up[prep]
+</pre>
+
+Off by default.
+
+<li><code>dosenses.</code>
+...
+
+<li><code>dosgph.</code>
+...
+
+<li><code>doshowstat.</code>
+Show parsing statistics for a file.
+Output goes at the end of the output file.
+On by default.
+
+<li><code>dosupwords.</code>
+...
+
+<li><code>dotime.</code>
+Do accounting on times spent on the various parts of
+the parsing process.
+On by default.
+
+<li><code>dotopeval.</code>
+...
+
+<li><code>echoseg.</code>
+Echo (print out) the input segment for each parse.
+On by default.
+
+<li><code>echosegext.</code>
+Echo segment-external material in output.
+Off by default.
+
+<li><code>echosegtags.</code>
+...
+
+<li><code>eea.</code>
+...
+
+<li><code>eterms.</code>
+...
+
+<li><code>fftrace.</code>
+Enables detailed tracing of the parsing process.
+Off by default.
+
+<li><code>forcenp.</code>
+This is used in <b>ESG</b>.
+When it is on, only the NP analyses of a segment will be produced,
+as long as there exists at least one NP analysis.
+Off by default.
+
+<li><code>ftrace.</code>
+...
+
+<li><code>fullfeas.</code>
+Activates display of additional phrase features in parse output,
+namely the features:
+
+<pre>
+le1, le2, le3, le4, ri1, ri2, ri3,
+xtra, cord, comcord, unitph, lcase, glom
+</pre>
+
+Among the <code>le</code><i>n</i>, it shows only the strongest one &ndash;
+the one with greatest <i>n</i> which the phrase has as a feature.
+Similarly for the <code>ri</code><i>n</i>.
+This flag is off by default.
+
+<li><code>glomnotfnd.</code>
+Enables agglomeration of adjacent non-found words into multiwords.
+On by default.
+
+<li><code>holdrs.</code>
+...
+
+<li><code>hstlex.</code>
+Enables chunk-lexical processing &ndash; see Subection~\ref{cklex}.
+Same as <code>usechunklex</code>.
+Off by default.
+
+<li><code>hststruct.</code>
+Has same effect as flag <code>chunkstruct</code>.
+Off by default.
+
+<li><code>html.</code>
+Enables processing of HTML documents.
+On by default.
+The flag <code>sgml</code> should also be set on when <code>html</code> is on.
+
+<li><code>hyphenblank.</code>
+Off by default.
+
+<li><code>ibmiddoc.</code>
+Enables processing of IBMIdDOC documents (used in some IBM manuals).
+Off by default.
+The flag <code>sgml</code> should also be set on when <code>ibmiddoc</code> is on.
+
+<li><code>idtext.</code>
+Stands for &quot;identificational text&quot;.
+Helps parsing of Jeopardy!-style segments.
+Special heuristics are used for the occasionally
+non-standard uses in Jeopardy! questions of &quot;this&quot;
+and similar words, and also for the greater use of
+NPs as complete segments.
+
+<li><code>langpersent.</code>
+...
+
+<li><code>latrace.</code>
+...
+
+<li><code>lattrace.</code>
+...
+
+<li><code>ldtsyn.</code>
+Display LDTs in standard <code>sgph</code> form.
+
+<li><code>lexconmsg.</code>
+...
+
+<li><code>limitall.</code>
+Suppose the value of this flag is the integer <i>N</i>.
+If the flag <code>all</code> is on, then only the first <i>N</i>
+parses of the current segment will be processed
+(if <i>N</i> &leq; 0, this means that no parses will be processed).
+If <code>all</code> is off, then exactly the first parse
+will be processed, no matter what <code>limitall</code> is set to.
+The default value of <code>limitall</code> is a &quot;large integer&quot;
+(like 1000000).
+
+<li><code>linemode.</code>
+Causes newlines to break segments
+(so that segments cannot span across lines).
+Useful for regression testing.
+A segment (on a line) need not have a segment terminator
+(like a period, question mark, etc.).
+Off by default.
+
+<li><code>linemodesep.</code>
+...
+
+<li><code>linemodesepnl.</code>
+...
+
+<li><code>linesyn.</code>
+...
+
+<li><code>lmt.</code>
+...
+
+<li><code>lncolonsep.</code>
+It is on by default.
+See flag <code>colonsep</code> for the effect of this flag.
+
+<li><code>loadlangs.</code>
+This flag should be turned on at initialization
+time in order to load the lexicon <code>enlang.lx</code> &ndash;
+see <code>dolangs</code> above.
+
+<li><code>loadontwn.</code>
+...
+
+<li><code>longlineout.</code>
+...
+
+<li><code>ltrace.</code>
+When this is turned on, <b>XSG</b> will trace the lexical
+analyses it finds for each (single) word <i>w</i> in the segment,
+including multiword analyses with <i>w</i> as head.
+
+<li><code>marklexsn.</code>
+...
+
+<li><code>markontwn.</code>
+...
+
+<li><code>marktrace.</code>
+...
+
+<li><code>markwnsenses.</code>
+...
+
+<li><code>mlexcore.</code>
+...
+
+<li><code>morfilter.</code>
+...
+
+<li><code>morplus.</code>
+...
+
+<li><code>mwwordhyph.</code>
+...
+
+<li><code>net.</code>
+...
+
+<li><code>nettrace.</code>
+...
+
+<li><code>noparse.</code>
+If this flag is turned on, then only the morpholexical part of
+parsing will be done;
+the chart parsing will be skipped.
+
+<li><code>onlyLDT.</code>
+Turning this on has the effect of turing on
+<code>doLDT</code> and <code>ldtsyn</code>, but turning off
+any other parse displays.
+
+<li><code>osensecomp.</code>
+...
+
+<li><code>otext.</code>
+Enables processing of Otext documents.
+The flag <code>sgml</code> should also be turned on when <code>otext</code> is on.
+Off by default.
+
+<li><code>parsemw.</code>
+...
+
+<li><code>parsemwa.</code>
+...
+
+<li><code>partrace.</code>
+...
+
+<li><code>penntags.</code>
+In parse trees, parts of speech get displayed
+in Penn Treebank form.
+
+<li><code>pennwtags.</code>
+...
+
+<li><code>predargs.</code>
+This is on by default, and
+in parse displays, it enables word senses to be
+shown with their arguments, like:
+
+<pre>
+believe2(2,1,3,4)
+</pre>
+
+When it is off, you would see just <code>believe2</code> in
+the head sense position.
+
+<li><code>predargslots.</code>
+When this is turned on, it causes word sense predications
+to be displayed with slot names attached to the arguments, like so:
+
+<code>
+believe2(2,subj:1,obj:3,comp:4)
+</code>
+
+<li><code>prefnp.</code>
+This is used in <b>ESG</b>.
+When it is on, short top-level segments that have <i>some</i>
+<i>NP</i> analysis are preferred as <i>NPs</i> &ndash; the shorter, the more
+preference.
+This is implemented in <code>topeval</code> by decrementing the
+<code>eval</code> field by an amount that increases with shorter segments.
+This flag is off by default.
+It can also be turned on with a value different from 1 (or 0).
+When it is given a non-zero value, that value will be used as
+a multiplier in a certain formula that rewards NP analyses.
+So for example a value of 3 will produce 3 times the reward of a
+value of 1.
+
+<li><code>printinc.</code>
+Causes the segments with incomplete parses
+to be printed out in a file with the same
+filename as the main output file,
+but with extension <code>.inc</code>.
+
+<li><code>printsentno.</code>
+When this is on (and it is on by default),
+and a file is parsed, the segment number of each segment
+will be printed before the segment string in the output file.
+
+<li><code>prompt.</code>
+...
+
+<li><code>prune.</code>
+When this is on (and it is on by default),
+the parsing algorithm prunes away (discards) partial analyses whose
+parse scores become too bad.
+If you turn this flag off, the parser generally produces many more parses.
+If not enough space is allocated for <b>XSG</b> and <code>prune</code> is off,
+then there may be problems for parsing longer sentences.
+An alternative to turning <code>prune</code> off is to increase the <b>XSG</b>
+field <code>prunedelta</code>.
+
+<li><code>prunedeltafiller.</code>
+Used in function goodfiller in <code>lapar.c</code>. Setting <code>sgh->flag[prunedeltafiller]</code> to a value greater than the default 0.000000000000001 makes it easier for a phrase to be a slot-filler for a matrix phrase in terms of the parse scoring.
+
+<li><code>prunef.</code>
+...
+
+<li><code>prunesupw.</code>
+...
+
+<li><code>ptbtree.</code>
+When this is turned on, a Penn Treebank (PTB) form of the parse will be
+displayed.
+(It uses Cambridge Polish syntax.)
+If the flag value is 1, then the PTB tree will be displayed
+on one line.
+If the value is 2, the tree will be displayed in a nice
+indented form.
+
+<li><code>ptbtreeF.</code>
+If this is on, the PTB tree will be added (as a string)
+to the features of the top node of the parse tree.
+This allows a way of communicating the PTB tree through
+the existing <b>XSG</b> API.
+
+<li><code>ptokparse.</code>
+...
+
+<li><code>qtnodes.</code>
+On by default.
+Allows quote node analyses.
+
+<li><code>sbslots.</code>
+...
+
+<li><code>seglexstat.</code>
+...
+
+<li><code>semicolonsep.</code>
+Causes semicolons to be treated as segment terminators.
+It is on by default.
+When it is off, semicolons will be treated as punctuation conjunctions.
+
+<li><code>sevaldisp.</code>
+...
+
+<li><code>sgltrace.</code>
+...
+
+<li><code>sgml.</code>
+Enables processing of SGML texts.
+It is on by default.
+Even when it is on, plain text is handled because plain text
+is just viewed as SGML text with no tags.
+
+<li><code>sgsyn.</code>
+Causes parse trees to be printed out.
+On by default.
+
+<li><code>showCLI.</code>
+...
+
+<li><code>showDocCLI.</code>
+...
+
+<li><code>showLF.</code>
+Show logical forms in <code>term</code> form.
+Off by default.
+
+<li><code>showLFf.</code>
+...
+
+<li><code>showaopts.</code>
+This is off by default, but
+when it is turned on, the chosen option <i>o</i> for each <i>adjunct</i>
+slot <i>s</i> will be shown in parses in the form <i>s</i><code>(</code><i>o</i><code>)</code>.
+So for example for the determiner <code>the</code>, one would see
+the slot <code>ndet(dt)</code> instead of just <code>ndet</code>.
+
+<li><code>showcite.</code>
+...
+
+<li><code>showfullopts.</code>
+...
+
+<li><code>showgloss.</code>
+...
+
+<li><code>showlstats.</code>
+...
+
+<li><code>showmo.</code>
+...
+
+<li><code>shownumparses.</code>
+In parse output, shows the total number of parses obtained.
+On by default.
+
+<li><code>shownumsent.</code>
+When this is on
+and a file is parsed, the segment number of each segment
+will be printed to the console.
+On by default.
+
+<li><code>showodef.</code>
+...
+
+<li><code>showopts.</code>
+When this is turned on, the chosen option <i>o</i> for each complement
+slot <i>s</i> will be shown in parses in the form <i>s</i><code>(</code><i>o</i><code>)</code>.
+On by default.
+
+<li><code>showosense.</code>
+...
+
+<li><code>showosenseid.</code>
+...
+
+<li><code>showoweights.</code>
+...
+
+<li><code>showposonly.</code>
+In parse tree displays, the only features shown are parts of speech.
+
+<li><code>showseglexstat.</code>
+...
+
+<li><code>showsense.</code>
+In word sense predications in parse displays, this causes
+sense names of the words to be used as the predicates.
+It is overridden by <code>showssense</code>.
+If both <code>showsense</code> and <code>showssense</code> are off, citation
+forms will be used for the predicates.
+On by default.
+
+<li><code>showsf.</code>
+...
+
+<li><code>showslots.</code>
+Show the available (unfilled complement)
+slots of each phrase in the parse tree.
+Off by default.
+
+<li><code>showssense.</code>
+For the predicate of each word sense predication in parse displays,
+this shows a deeper kind of sense expression for some word senses
+(details not given here).
+Off by default.
+
+<li><code>showssf.</code>
+...
+
+<li><code>showsynno.</code>
+...
+
+<li><code>showwordno.</code>
+...
+
+<li><code>simplefeas.</code>
+...
+
+<li><code>skipnontextsegs.</code>
+...
+
+<li><code>spacelinecut.</code>
+If this on, then each line of input text that consists only
+of whitespace will break the current segment.
+Off by default.
+
+<li><code>stortrace.</code>
+...
+
+<li><code>syn.</code>
+...
+
+<li><code>timit.</code>
+Causes tracing of time used for analyzing each sentence.
+On by default.
+
+<li><code>tokparse.</code>
+...
+
+<li><code>toksout.</code>
+...
+
+<li><code>toktrace.</code>
+Causes display of the tokens for a segment that are
+produced by the tokenizer.
+
+<li><code>toktrace0.</code>
+...
+
+<li><code>tptrace.</code>
+...
+
+<li><code>uctest.</code>
+...
+
+<li><code>uctext.</code>
+...
+
+<li><code>uscmarkup.</code>
+...
+
+<li><code>usealex.</code>
+...
+
+<li><code>usechunklex.</code>
+Enables chunk-lexical processing.
+Same as <code>hstlex</code>.
+
+<li><code>uselal.</code>
+...
+
+<li><code>uselexstat.</code>
+...
+
+<li><code>uselexwstat.</code>
+...
+
+<li><code>usesgtb.</code>
+...
+
+<li><code>usewordont.</code>
+...
+
+<li><code>wiki.</code>
+...
+
+<li><code>wnuse.</code>
+...
+
+<li><code>wphtrace.</code>
+...
+
+<li><code>wsd.</code>
+...
+
+<li><code>wsda.</code>
+...
+
+<li><code>wsddisp.</code>
+...
+
+<li><code>wsdtrace.</code>
+...
+
+<li><code>wstrace.</code>
+If turned on, causes morphological analysis structures to be displayed.
+
+<li><code>xout.</code>
+When it is on, results go, in interactive mode, to the file
+<code>sg.out</code>.
+When it is off, they go to the console.
+Off by default, except on VM.
+
+</ul>
+
+<!-- <p class="sansserif"> -->
+<!-- This completes the inventory of flags. -->
+
+</font>
+</body>
+</html>

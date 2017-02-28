@@ -1,0 +1,7 @@
+https://github.com/fcrimins/fcrimins.github.io/wiki/Machine-Learning-Notes
+
+On Tue, Sep 8, 2015 at 4:47 PM, Frederick Crimins <frederick.crimins@gmail.com> wrote:
+
+    https://www.google.com/search?q=projection+onto+curved+subspaces&ie=utf-8&oe=utf-8#q=projection+onto+nonlinear+subspaces
+
+        http://deeplearning.net/tutorial/rbm.html

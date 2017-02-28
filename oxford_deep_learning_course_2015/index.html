@@ -1,0 +1,459 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Author" content="Nando de Freitas">
+<title>Machine Learning</title>
+</head>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xml:lang="en" lang="en-gb" prefix="og: http://ogp.me/ns#">
+<head>
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8"/>
+<link media="all" href="/styles/basic.css" rel="stylesheet" type="text/css"/>
+<link media="all" href="/styles/csbasic.css" rel="stylesheet" type="text/css"/>
+<link media="screen,projection,print" href="/styles/layout.css" rel="stylesheet" type="text/css"/>
+<link media="screen,projection,print" href="/styles/mainnav.css" rel="stylesheet" type="text/css"/>
+<link media="screen,projection,print" href="/styles/lookandfeel.css" rel="stylesheet" type="text/css"/>
+<link media="screen,projection,print" href="/styles/cslayout.css" rel="stylesheet" type="text/css"/>
+<link media="screen,projection,print" href="/styles/csmainnav.css" rel="stylesheet" type="text/css"/>
+<link media="screen,projection,print" href="/styles/cslookandfeel.css" rel="stylesheet" type="text/css"/>
+<link media="print" href="/styles/csprint.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="/javascript/rss.js?version=4"></script>
+<script type="text/javascript" src="/javascript/csmenu.js"></script>
+
+<link rel="icon" href="/favicon.ico" type="images/x-icon" /> 
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="top" href="/" title="Homepage"/>
+<meta name="author" content="University of Oxford" />
+
+<meta name="keywords" content="Department of Computer Science">
+<meta name="description" content="Website for the Department of Computer Science at the heart of computing and related interdisciplinary activity at Oxford.">
+<title>Machine Learning</title>
+<script type="text/javascript">
+// <![CDATA[
+
+	/**
+	**  Honour the "do not track" browser setting.
+	**/
+	if(typeof navigator.doNotTrack === "undefined" || (navigator.doNotTrack !== 'yes' && navigator.doNotTrack !== '1'))
+	{
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-25164877-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+    	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	}
+  
+// ]]>
+</script>
+<script type="text/javascript" src="/javascript/eucookielaw.js?version=1"></script>
+</head>
+<body style="background-image: none;">
+<!-- all div starts -->
+<div id="all" style="border: 15px solid white; width: 960px; margin-left: auto; margin-right: auto">
+
+<div style="border-bottom: 10px solid white;position: relative; width: 960px" id="csbanner"><!-- 156 -->
+<img src="/images/CompSci_logo_landscapeL_rgb_corrected.jpg" style="height: 140px;position: relative; left: -1px; top: -1px" alt="University of Oxford Logo" usemap="#compscimap"/>
+<map name="compscimap" id="compscimap"><area shape="rect" coords="0,0,140,140" href="http://www.ox.ac.uk/" alt="University of Oxford" title="University of Oxford"/><area shape="rect" coords="164,0,427,140" href="/" alt="Department of Computer Science - Home" title="Department of Computer Science - Home"/></map>
+<!-- searchbox div starts -->
+<div style="position: absolute; right: 0px; top: 15px;" id="topnav">
+
+<div style="position: absolute; right: 0px; height: 1.5em">
+<form action="/search/" id="searchbox_015502513156171547487:pcshjhkjzqe" >
+<div class="searchspan">
+<input type="text" class="searchinput" maxlength="128" autocomplete="off" name="q" value="Search" onfocus="if(this.value=='Search'){this.value='';}" onblur="if(this.value==''){this.value='Search';}"/><input type="submit" name="sa" value=""  class="searchbutton"/> 
+</div>
+<input type="hidden" name="cx" value="015502513156171547487:pcshjhkjzqe" />
+<input type="hidden" name="cof" value="FORID:11" />
+  
+<!--
+ <table id="searchtable" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+   <td id="searchinput">
+    <input type="text" maxlength="128" autocomplete="off" name="q" value="Search" onfocus="if(this.value=='Search'){this.value='';}" onblur="if(this.value==''){this.value='Search';}"/>
+   </td>
+   <td id="searchbutton">
+    <input type="hidden" name="cx" value="015502513156171547487:pcshjhkjzqe" />
+    <input type="hidden" name="cof" value="FORID:11" />
+    <input type="submit" name="sa" value="Search" id="submit"/>
+   </td>
+  </tr>
+ </table>
+ -->
+</form>
+</div>
+
+<div class="headLinks" style="position: absolute; top: 2.8em; right: 1px; width: 452px; padding: 4px 0px 4px 0px;text-align: right;">
+        <div id="banner_contact_us"><a href="/contact.html">Contact us</a></div>
+        <div id="banner_about_us"><a href="/contact/history.html">About us</a></div>
+        <div id="banner_cookies"><a href="/privacy-policy.html">Privacy &amp; Cookies</a></div>
+        <div id="banner_sitemap"><a href="/sitemap.html">Site map</a></div>
+        <div id="banner_ourpeople"><a href="/people/">Our people</a></div>
+        <div id="banner_ourresearch"><a href="/research/">Our research</a></div>
+</div>
+
+  
+
+<div style="position: absolute; top: 6em; right: -6px; width: 293px; padding: 4px 0px 4px 0px;text-align: right; vertical-align: center; text-align: center">
+
+	<div class="icon24_2">
+		<a href="http://www.facebook.com/DepartmentOfComputerScienceUniversityOfOxford"><img src="/images/icons/24/socicon/facebook.png" alt="On Facebook" title="The Department on Facebook"/></a>
+		<div>Facebook</div>
+	</div>
+
+	<div class="icon24_2">
+		<a href="https://twitter.com/CompSciOxford"><img src="/images/icons/24/socicon/twitter.png" alt="Follow us on twitter" title="Follow us on twitter"/></a>
+		<div>Twitter</div>
+	</div>
+
+	<div class="icon24_2">
+		<a href="http://www.linkedin.com/company/department-of-computer-science-university-of-oxford"><img src="/images/icons/24/socicon/linkedin.png" alt="Linked in" title="Linked in"/></a>
+		<div>Linked in</div>
+	</div>
+
+	<div class="icon24_2">
+		<a href="http://www.flickr.com/photos/computerscienceoxford/"><img src="/images/icons/24/socicon/flickrcol.png" alt="Flickr" title="Flickr"/></a>
+		<div>Flickr</div>
+	</div>
+
+	<div class="icon24_2">
+		<a href="https://plus.google.com/share?url=https%3A%2F%2Fwww.cs.ox.ac.uk/people/nando.defreitas/machinelearning/index.html&amp;hl=en-GB"><img src="/images/icons/24/socicon/google.png" alt="Google plus" title="Google plus"/></a>
+		<div>Google plus</div>
+	</div>
+
+	<div class="icon24_2">
+		<a href="http://digg.com/submit?url=https%3A%2F%2Fwww.cs.ox.ac.uk/people/nando.defreitas/machinelearning/index.html&amp;"><img src="/images/icons/24/socicon/digg.png" alt="Digg" title="Digg"/></a>
+		<div>Digg</div>
+	</div>
+
+	<div class="icon24_2">
+		<a href="https://pinterest.com/pin/create/link/?url=https%3A%2F%2Fwww.cs.ox.ac.uk/people/nando.defreitas/machinelearning/index.html&amp;"><img src="/images/icons/24/socicon/pinterest.png" alt="Pinterest" title="Pinterest"/></a>
+		<div>Pinterest</div>
+	</div>
+
+	<div class="icon24_2">
+		<a href="http://www.stumbleupon.com/submit?url=https%3A%2F%2Fwww.cs.ox.ac.uk/people/nando.defreitas/machinelearning/index.html&amp;"><img src="/images/icons/24/socicon/stumbleupon.png" alt="Stumble Upon" title="Stumble Upon"/></a>
+		<div>Stumble Upon</div>
+	</div>
+
+</div>
+
+</div>
+	<!-- EU Cookie law banner -->
+		<div style="position: absolute; right: 0px; top: 0px; width: 480px; border: 1px solid #002147;background-color: white; display: none" id="cookiepolicy">
+		<div style="padding: 7px; font-size: 80%">
+			<div style="float:right; padding: 7px"><button onclick="continueUsingSite()" style='background-color: #001247; color: white; border: 0; background-image: url("/images/ox-bg.gif");'>Continue&hellip;</button></div>
+			<p>We use cookies on this website. <a href="/privacy-policy.html">Our privacy policy</a> explains what cookies are and how they are being used here.
+			If you continue to access our website, we'll assume that you consent to receiving cookies from this website.</p>
+			
+			</div>
+		</div>
+	<!--/ EU Cookie law banner -->
+</div>
+
+<div id="pageurl" style="display: none">
+www.cs.ox.ac.uk/people/nando.defreitas/machinelearning/index.html
+</div>
+
+<!-- header div ends -->
+
+<!-- breadcrumb div starts -->
+
+
+<div id="breadcrumb"><span id="breadcrumb-label">You are here:</span><ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/currentstudents/">Current Students</a></li>
+      <li><a href="/teaching/courses/">Courses</a></li>
+      <li><span class="youarehere">Machine Learning</span></li>
+   </ul>
+</div><div id="content">
+<h1>Machine Learning:&nbsp;2014-2015</h1>
+<h2>Course materials</h2>
+
+<body>
+
+
+<center> <h2> <a name="Lectures"></a>Lectures</h2> </center>
+
+This course is taught by <a href="http://www.cs.ox.ac.uk/people/nando.defreitas/">Nando de Freitas</a>.
+
+
+<br>
+<br>
+
+
+
+<tr>
+<td> <b>Lecture 1</b>:  Introduction  
+<a href="lecture1.pdf">slides</a> 
+<a href="https://www.youtube.com/watch?v=PlhFWT7vAEw">Video</a> 
+</td><br>
+<td> <b>Lecture 2</b>:  Linear prediction  
+<a href="lecture2.pdf">slides</a> 
+<a href="https://www.youtube.com/watch?v=DHspIG64CVM">Video</a> 
+</td><br>
+<td> <b>Lecture 3</b>: Maximum likelihood  
+<a href="lecture3.pdf">slides.pdf</a> 
+<a href="https://www.youtube.com/watch?v=kPrHqQzCkg0">Video</a> 
+</td><br>
+<td> <b>Lectures 4 & 5</b>: Regularizers, basis functions and cross-validation   
+<a href="lecture4.pdf">slides.pdf</a> 
+<a href="https://www.youtube.com/watch?v=VR0W_PNwLGw">Video 1</a> 
+<a href="https://www.youtube.com/watch?v=qz9bKfOqd0Y">Video 2</a> 
+</td><br>
+<td> <b>Lecture 6</b>: Optimisation  
+<a href="lecture5.pdf">slides.pdf</a> 
+<a href="https://www.youtube.com/watch?v=0qUAb94CpOw">Video</a> 
+</td><br>
+<td> <b>Lecture 7</b>: Logistic regression 
+<a href="lecture6.pdf">slides.pdf</a> 
+<a href="https://www.youtube.com/watch?v=FYgsztDxSvE">Video</a> 
+</td><br>
+<td> <b>Lecture 8</b>: Back-propagation and layer-wise design of neural nets 
+<a href="lecture7.pdf">slides.pdf</a> 
+<a href="https://www.youtube.com/watch?v=-YRB0eFxeQA">Video</a> 
+</td><br>
+<td> <b>Lecture 9</b>: Neural networks and deep learning with Torch  
+<a href="lecture8.pdf">slides.pdf</a> 
+<a href="https://www.youtube.com/watch?v=NUKp0c4xb8w">Video</a> 
+</td><br>
+<td> <b>Lecture 10</b>: Convolutional neural networks  
+<a href="lecture9.pdf">slides.pdf</a> 
+<a href="https://www.youtube.com/watch?v=bEUX_56Lojc">Video</a> 
+</td><br>
+<td> <b>Lecture 11</b>: Max-margin learning and siamese networks  
+<a href="lecture10.pdf">slides.pdf</a> 
+<a href="https://www.youtube.com/watch?v=jCGplSKrl2Y">Video</a> 
+</td><br>
+<td> <b>Lecture 12</b>: Recurrent neural networks and LSTMs  
+<a href="lecture11.pdf">slides.pdf</a> 
+<a href="https://www.youtube.com/watch?v=56TYLaQN4N8">Video</a> 
+</td><br>
+<td> <b>Lecture 13</b>: Hand-writing with recurrent neural networks (Guest speaker: Alex Graves from Google Deepmind)
+<!--<a href="lecture12.pdf">slides.pdf</a> -->
+</td><br>
+<td> <b>Lecture 14</b>: Variational autoencoders and image generation (Guest speaker: Karol Gregor from Google Deepmind)
+<!--<a href="lecture14.pdf">slides.pdf</a> -->
+</td><br>
+<td> <b>Lecture 15</b>: Reinforcement learning with direct policy search   
+<a href="lecture12.pdf">slides.pdf</a> 
+<a href="https://www.youtube.com/watch?v=kUiR0RLmGCo">Video</a> 
+</td><br>
+<td> <b>Lecture 16</b>: Reinforcement learning with action-value functions   
+<a href="lecture12.pdf">slides.pdf</a>
+<a href="https://www.youtube.com/watch?v=dV80NAlEins">Video</a> 
+</td><br>
+</tr>
+
+
+
+<br>
+<br>
+
+
+
+
+<center> <h2> <a name="Practicals"></a>Practicals</h2> </center>
+
+<p>
+Please click on Timetables on the right hand side of this page for time and location of the practicals. The instructors are <a href="https://www.cs.ox.ac.uk/people/brendan.shillingford/">Brendan Shillingford</a> and Marcin Moczulsky.
+</p>
+
+<p>
+Practicals will use <a href="https://github.com/torch/torch7/wiki/Cheatsheet">Torch</a>, a powerful programming framework for deep learning that is very popular at Google and Facebook research. 
+</p>
+
+<tr>
+    <td> <b>Practical on week 2</b>: (1) Learning Lua and the tensor library. <a href="practicals/practical1.pdf">pdf</a> </td><br>
+    <td> <b>Practical on week 3</b>: (2) Online and batch linear regression. <a href="practicals/practical2.pdf">pdf</a> </td><br>
+    <td> <b>Practical on week 4</b>: (3) Logistic regression and optimization. <a href="practicals/practical3.pdf">pdf</a> </td><br>
+    <td> <b>Practical on week 5</b>: continued previous practical. </td><br>
+    <td> <b>Practical on week 6</b>: (4) Feedforward neural networks, and implementing your own layer. <a href="practicals/practical4.pdf">pdf</a> </td><br>
+    <td> <b>Practical on week 7</b>: (5) Intro to nngraph for graph-shaped modules. <a href="practicals/practical5.pdf">pdf</a></td><br>
+    <td> <b>Practical on week 8</b>: (6) Training a LSTM language model. <a href="practicals/practical6.pdf">pdf</a></td><br>
+</tr>
+
+See the <a href="https://github.com/oxford-cs-ml-2015/">Github repository list</a> for the practicals' code and technical instructions.
+
+
+
+<br>
+<br>
+
+
+<center> <h2> <a name="Classes"></a>Classes</h2> </center>
+
+<p>
+Please click on Timetables on the right hand side of this page for time and location of the classes. The exercises appear below and are due Thursdays at 1pm on the specified week.
+</p>
+
+<tr>
+<td> <b>Class on Week 3</b>: <a href="class1.pdf">Problem set</a>. Due 1pm Thursday of Week 2.</td><br>
+<td> <b>Class on Week 5</b>: <a href="class2.pdf">Problem set</a>. Due 1pm Thursday of Week 4.</td><br>
+<td> <b>Class on Week 7</b>: <a href="class3.pdf">Problem set</a>. Due 1pm Thursday of Week 6.</td><br>
+<td> <b>Class on Week 8</b>: <a href="class4.pdf">Problem set</a>. Due 1pm Thursday of Week 7.</td><br>
+</tr>
+
+
+<br>
+<br>
+
+
+
+</tbody>                               
+</table>
+<br>
+</center>
+
+<center>                                
+<h3> <a name="assessment"></a></h3>
+</center>
+
+<ul>
+
+</ul>
+
+<address>  </address>
+
+</body>
+</div>
+<div id="sidebar">
+
+<!--  mainnav div starts -->
+<div id="nav">     
+ <h2 id="mainsections">Main sections</h2>
+ 
+ <ul class="mainnav" >
+  <li>
+   <a href="/" title="Return to the Home page" class="menu" >Home
+   </a>
+  </li>
+  <li>
+   <a href="/prospectivestudents/" title="Information for prospective students, and admissions information" class="menu" >Prospective Students
+   </a>
+  </li>
+  <li><a href="/currentstudents/" title="Information for current graduate and undergraduate students" class="currentsection">Current Students</a></li>
+  <li>
+   <a href="/research/" title="Research themes, activities and projects; publications and people" class="menu">Research
+   </a>
+  </li>
+  <li>
+   <a href="/people/" title="Faculty, research staff and students, administrative and support staff" class="menu" >People
+   </a>
+  </li>
+  <li>
+   <a href="/news.html" title="Recent news" class="menu">News
+   </a>
+  </li>
+  <li>
+   <a href="/seminarsEvents.html" title="Recent events" class="menu">Events
+   </a>
+  </li>
+  <li>
+   <a href="/vacanciesstudentships.html" title="Job vacancies and studentships" class="menu">Vacancies &amp; Studentships
+   </a>
+  </li>
+  <li>
+   <a href="/contact.html" title="Directions for visitors, contact information and details for press" class="menu">Contact Us
+   </a>
+  </li>
+  <li>
+   <a href="/alumni/" title="The Department of Computer Science Alumni Network" class="menu">Alumni
+   </a>
+  </li>
+  <li>
+   <a href="https://www.cs.ox.ac.uk/industry/" title="The Department of Computer Science Industry Liaison Network" class="menu">Industry Liaison
+   </a>
+  </li>
+ </ul>
+<h2 id="inthissection">Machine Learning</h2>
+<ul class="subnav">
+   <li><a href="/teaching/courses/2014-2015/ml/index.html" class="menu">Information</a></li>
+   <li><a href="/teaching/courses/2014-2015/ml/timetable.html" class="menu">Timetables</a></li>
+   <li><span class="youarehere">Course materials</span></li>
+   <li><a href="/teaching/internal/courses/2014-2015/ml/pastpapers.html" class="menu">Past exam papers</a></li>
+   <li><a href="/teaching/internal/courses/2014-2015/ml/pastmaterials.html" class="menu">Previous course materials</a></li>
+</ul>
+<h2 id="inthissection">RSS Feeds</h2>
+<div class="popoutarea">
+<ul>
+<li class="popout" id="newsfeedspopout"><a href="javascript:void(0)" onblur="var parentNode=this.parentNode;window.setTimeout(function(){parentNode.className='popout';},200);" onclick="if(this.parentNode.className=='popout'){changeCSSClass(this.parentNode.parentNode.parentNode.parentNode,'poppedout','popout');this.parentNode.className='poppedout';this.focus();}else{changeCSSClass(this.parentNode.parentNode.parentNode.parentNode,'poppedout','popout');this.blur(); };"><span>News</span></a>
+
+<div class="popoutmenu">
+<h2 id="inthissection">News</h2>
+<ul class="subnav">
+<li><a title="News" class="rss" href="http://www.cs.ox.ac.uk/feeds/News-All.xml">All news</a></li>
+<li><a title="Awards" class="rss"
+      href="http://www.cs.ox.ac.uk/feeds/News-Awards.xml">Awards</a></li>
+<li><a title="Events" class="rss"
+      href="http://www.cs.ox.ac.uk/feeds/News-Events.xml">Events</a></li>
+<li><a title="Miscellaneous" class="rss"
+      href="http://www.cs.ox.ac.uk/feeds/News-Miscellaneous.xml">Miscellaneous</a></li>
+<li><a title="Projects" class="rss"
+      href="http://www.cs.ox.ac.uk/feeds/News-Projects.xml">Project news</a></li>
+<li><a title="Publications" class="rss"
+      href="http://www.cs.ox.ac.uk/feeds/News-Publications.xml">Publications</a></li>
+<li><a title="Projects" class="rss" href="http://www.cs.ox.ac.uk/feeds/Projects-All.xml">Current Projects</a></li>
+</ul>
+</div>
+
+</li>
+</ul>
+</div>
+
+<div class="popoutarea">
+<ul>
+<li class="popout"><a href="javascript:void(0)" onblur="var parentNode=this.parentNode;window.setTimeout(function(){parentNode.className='popout';},200);" onclick="if(this.parentNode.className=='popout'){changeCSSClass(this.parentNode.parentNode.parentNode.parentNode,'poppedout','popout');this.parentNode.className='poppedout';this.focus();}else{changeCSSClass(this.parentNode.parentNode.parentNode.parentNode,'poppedout','popout');this.blur(); };"><span>Vacancies &amp; studentships</span></a>
+<div class="popoutmenu">
+<h2 id="inthissection">Vacancies &amp; studentships</h2>
+<ul class="subnav">
+<li><a title="Vacancies" class="rss" href="http://www.cs.ox.ac.uk/feeds/News-Vacancies.xml">Vacancies</a></li>
+<li><a title="Studentships" class="rss" href="http://www.cs.ox.ac.uk/feeds/News-Studentships.xml">Studentships</a></li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+<h2 id="inthissection">Calendars</h2>
+
+<div class="popoutarea">
+<ul>
+<li class="popout"><a href="javascript:void(0)" onblur="var parentNode=this.parentNode;window.setTimeout(function(){parentNode.className='popout';},200);" onclick="if(this.parentNode.className=='popout'){changeCSSClass(this.parentNode.parentNode.parentNode.parentNode,'poppedout','popout');this.parentNode.className='poppedout';this.focus();}else{changeCSSClass(this.parentNode.parentNode.parentNode.parentNode,'poppedout','popout');this.blur(); };"><span>Seminars &amp; timetables</span></a>
+<div class="popoutmenu">
+<h2 id="inthissection">Seminars &amp; timetables</h2>
+
+<ul class="subnav">
+<li><a href="javascript:void(0)" onclick="icalLink('http://www.cs.ox.ac.uk/feeds/SeminarSeries-All.ics','All Seminars')" class="ical">All Seminars</a></li>
+<li><a href="javascript:void(0)" onclick="icalLink('http://www.cs.ox.ac.uk/feeds/Timetable-Lecture.ics','Lecture timetable')" class="ical">Lecture timetable</a></li>
+<li><a href="javascript:void(0)" onclick="icalLink('http://www.cs.ox.ac.uk/feeds/Timetable-Practical.ics','Practical timetable')" class="ical">Practical timetable</a></li>
+<li><a href="javascript:void(0)" onclick="icalLink('http://www.cs.ox.ac.uk/feeds/Timetable-Class.ics','Class timetable')" class="ical">Class timetable</a></li>
+</ul>
+
+</div>
+</li>
+</ul>
+</div>
+
+<h2 id="inthissection">Internal</h2>
+<ul class="subnav">
+<li><a href="/internal/" class="menu">Internal / Intranet</a></li>
+<li><a href="/login/" class="menu">Edit website / database login</a></li>
+<li><a href="https://wiki.cs.ox.ac.uk/wiki/support" class="menu">IT Support</a></li>
+</ul>
+</div>
+</div>
+
+
+
+</div>
+<!-- all div ends -->
+</body>
+</html>
+
+<!-- </html> -->
